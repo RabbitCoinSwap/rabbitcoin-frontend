@@ -54,13 +54,13 @@ function MyApp(props: AppProps) {
         />
         <meta
           name="description"
-          content="RabbitCoin is the MultiChain NFT DeFi Protocol. Earn tokens through NTF staking, yield farming or special pools, RabbitCoin NFTs are lifetime privilege."
+          content="RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin"
         />
         <meta name="theme-color" content="#E91E63" />
         <meta name="twitter:image" content="https://rabbitcoin.xyz/assets/images/clone/ogbanner.png" />
         <meta
           name="twitter:description"
-          content="RabbitCoin is the MultiChain NFT DeFi Protocol. Earn tokens through NTF staking, yield farming or special pools, RabbitCoin NFTs are lifetime privilege."
+          content="RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="RabbitCoin is the MultiChain NFT DeFi Protocol." />
