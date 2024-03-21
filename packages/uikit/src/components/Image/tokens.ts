@@ -745,6 +745,7 @@ const tokens = {
     address: {
       56: "0x55d398326f99059fF775485246999027B3197955",
       97: "0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5",
+      137: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
     },
     decimals: 18,
     projectLink: "https://tether.to/",
