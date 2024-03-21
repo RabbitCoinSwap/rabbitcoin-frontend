@@ -53,7 +53,7 @@ export const footerLinks: FooterLinkType[] = [
     items: [
       {
         label: "Github",
-        href: "https://github.com/pancakeswap",
+        href: "https://github.com/rabbitcoinswap",
       },
       {
         label: "Documentation",
@@ -96,23 +96,25 @@ export const socials: SocialLinkType[] = [
     label: "Instagram",
     icon: "Instagram",
     href: "https://www.instagram.com/rabbitcoinorg/",
-  },
-  */
+  },  
   {
     label: "Github",
     icon: "Github",
     href: "https://github.com/RabbitCoinSwap",
   },
+  */
   {
     label: "Discord",
     icon: "Discord",
     href: "https://discord.gg/4BQ9mkfJPT",
   },
+  /*
   {
     label: "Youtube",
     icon: "Youtube",
     href: "https://www.youtube.com/@RabbitCoinApp",
   },
+  */
   {
     label: "Medium",
     icon: "Medium",
