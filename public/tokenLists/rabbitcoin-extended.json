@@ -18,7 +18,7 @@
       "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
+      "logoURI": "https://rabbitcoin.xyz/images/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
     },
     {
       "name": "8PAY Network",
@@ -26,7 +26,7 @@
       "address": "0xFeea0bDd3D07eb6FE305938878C0caDBFa169042",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/0xFeea0bDd3D07eb6FE305938878C0caDBFa169042.png"
+      "logoURI": "https://rabbitcoin.xyz/images/0xFeea0bDd3D07eb6FE305938878C0caDBFa169042.png"
     }
   ]
 }
