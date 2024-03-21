@@ -49,6 +49,14 @@
       "chainId": 137,
       "decimals": 18,
       "logoURI": "https://rabbitcoin.xyz/images/tokens/0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063.png"
+    },    
+    {
+      "name": "CarrotBar",
+      "symbol": "CARROT",
+      "address": "0xC31A8f95395b587D96AEa0253610874C04143fC4",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://rabbitcoin.xyz/images/tokens/0xC31A8f95395b587D96AEa0253610874C04143fC4.png"
     },
     {
       "name": "RabbitCoin",
