@@ -4,22 +4,22 @@ import { ContextApi } from 'contexts/Localization/types'
 export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
   {
     label: t('About'),
-    items: [
+    items: [      
       {
-        label: t('Contact'),
-        href: 'https://docs.rabbitcoin.xyz/extras/contact-us',
-      },
-      {
-        label: t('What is Rabbit?'),
-        href: 'https://docs.rabbitcoin.xyz/usdcollect-token/what-is-usdcollect',
+        label: t('RabbitCoin'),
+        href: 'https://docs.rabbitcoin.xyz/rabbitcoin/about-me',
       },
       {
         label: t('Tokenomics'),
-        href: 'https://docs.rabbitcoin.xyz/usdcollect-token/tokenomics',
+        href: 'https://docs.rabbitcoin.xyz/rabbitcoin/tokenomics',
       },
       {
-        label: t('Community'),
-        href: 'https://docs.rabbitcoin.xyz/extras/offical-accounts',
+        label: t('Roadmap'),
+        href: 'https://docs.rabbitcoin.xyz/rabbitcoin/roadmap',
+      },
+      {
+        label: t('Contact Us'),
+        href: 'https://docs.rabbitcoin.xyz/#contact-us',
       },
       /*
       {
@@ -38,15 +38,15 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
     items: [
       {
         label: t('Customer Support'),
-        href: 'https://docs.rabbitcoin.xyz/extras/offical-accounts',
+        href: 'https://docs.rabbitcoin.xyz/help/customer-support',
       },
       {
         label: t('Troubleshooting'),
-        href: 'https://docs.rabbitcoin.xyz/',
+        href: 'https://docs.rabbitcoin.xyz/help/troubleshooting',
       },
       {
         label: t('Guides'),
-        href: 'https://docs.rabbitcoin.xyz',
+        href: 'https://docs.rabbitcoin.xyz/help/get-started',
       },
     ],
   },
@@ -60,23 +60,23 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
       },
       */
       {
-        label: t('Documentation'),
-        href: 'https://docs.rabbitcoin.xyz/',
+        label: t('Smart Contracts'),
+        href: 'https://docs.rabbitcoin.xyz/developments/smart-contrats',
+      },
+      {
+        label: t('Listing Token'),
+        href: 'https://docs.rabbitcoin.xyz/developments/listing-token',
       },
       /*
       {
         label: t('Bug Bounty'),
         href: 'https://docs.pancakeswap.finance/code/bug-bounty',
       },
-      */
-      {
-        label: t('Audits'),
-        href: 'https://docs.rabbitcoin.xyz',
-      },
       {
         label: t('Careers'),
         href: 'https://docs.rabbitcoin.xyz/extras/offical-accounts',
       },
+      */
     ],
   },
 ]

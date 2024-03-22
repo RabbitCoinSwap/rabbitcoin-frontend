@@ -69,30 +69,29 @@ const drawerLinks: MenuItemsType[] = [
         href: '/more',
         initialOpenState: false,
         items: [
-            /*
-            {
-                label: 'CoinMarketCap',
-                href: 'https://coinmarketcap.com/currencies/rabbitcoin/',
-            },
-
-            {
-                label: 'OpenSea',
-                href: 'https://opensea.io/collection/rabbitcoin-nfts',
-            },
             {
                 label: 'DappRadar',
                 href: 'https://dappradar.com/dapp/rabbitcoin',
             },
+
             {
-                label: 'NFTrade',
-                href: 'https://nftrade.com/assets/polygon/0x569b70fc565afba702d9e77e75fd3e3c78f57eed',
+                label: 'Coingecko',
+                href: 'https://www.coingecko.com/en/coins/rabbitcoin-exchange',
             },
-            */
             {
                 label: 'Docs & Guides',
                 href: 'https://docs.rabbitcoin.xyz/',
             },
-
+            {
+                label: 'Form add Logo',
+                href: 'https://forms.gle/rJ8ipx33fA6jX9Mo8',
+            },
+            /*
+            {
+                label: 'Docs & Guides',
+                href: 'https://docs.rabbitcoin.xyz/',
+            },
+            */
         ],
     },
 

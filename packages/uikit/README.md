@@ -1,4 +1,4 @@
-# 🥞 Pancake UIkit
+# 💡 Pancake UIkit
 
 [![Version](https://img.shields.io/npm/v/@pancakeswap/uikit)](https://www.npmjs.com/package/@pancakeswap/uikit) [![Size](https://img.shields.io/bundlephobia/min/@pancakeswap/uikit)](https://www.npmjs.com/package/@pancakeswap/uikit)
 

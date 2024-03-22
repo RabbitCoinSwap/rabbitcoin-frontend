@@ -6,20 +6,20 @@ export const footerLinks: FooterLinkType[] = [
     label: "About",
     items: [
       {
-        label: "Contact",
-        href: "https://docs.rabbitcoin.xyz",
+        label: "Contact Us",
+        href: "https://docs.rabbitcoin.xyz/#contact-us",
       },
       {
         label: "Blog",
-        href: "https://docs.rabbitcoin.xyz",
+        href: "https://blog.rabbitcoin.xyz",
       },
       {
         label: "Community",
-        href: "https://docs.rabbitcoin.xyzcontact-us/telegram",
+        href: "https://docs.rabbitcoin.xyz",
       },
       {
-        label: "CAKE",
-        href: "https://docs.rabbitcoin.xyztokenomics/cake",
+        label: "RabbitCoin",
+        href: "https://docs.rabbitcoin.xyz/rabbitcoin/about-me",
       },
       {
         label: "—",
@@ -36,7 +36,7 @@ export const footerLinks: FooterLinkType[] = [
     items: [
       {
         label: "Customer",
-        href: "Support https://docs.rabbitcoin.xyz/contact-us/customer-support",
+        href: "Support https://docs.rabbitcoin.xyz/help/customer-support",
       },
       {
         label: "Troubleshooting",
@@ -44,7 +44,7 @@ export const footerLinks: FooterLinkType[] = [
       },
       {
         label: "Guides",
-        href: "https://docs.rabbitcoin.xyz/get-started",
+        href: "https://docs.rabbitcoin.xyz/help/get-started",
       },
     ],
   },
@@ -61,15 +61,15 @@ export const footerLinks: FooterLinkType[] = [
       },
       {
         label: "Bug Bounty",
-        href: "https://app.gitbook.com/@pancakeswap-1/s/pancakeswap/code/bug-bounty",
+        href: "",
       },
       {
         label: "Audits",
-        href: "https://docs.rabbitcoin.xyz/help/faq#is-pancakeswap-safe-has-pancakeswap-been-audited",
+        href: "",
       },
       {
         label: "Careers",
-        href: "https://docs.rabbitcoin.xyz/hiring/become-a-chef",
+        href: "",
       },
     ],
   },
