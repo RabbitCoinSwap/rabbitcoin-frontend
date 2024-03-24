@@ -65,7 +65,7 @@ export const mainnetTokens = defineTokens({
   ),
   carrot: new Token(
     POLYGON_MAINNET,
-    '0xC31A8f95395b587D96AEa0253610874C04143fC4',
+    '0x18d8d6190c3bcb9514eb8151f690bb9cd30e45fc',
     18,
     'CARROT',
     'CarrotBar',

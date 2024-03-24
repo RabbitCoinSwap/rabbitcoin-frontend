@@ -48,23 +48,23 @@ const pools: SerializedPoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
   },
-  /*
   {
     sousId: 1,
-    stakingToken: serializedTokens.rabbit,
-    earningToken: serializedTokens.carrot,
+    stakingToken: serializedTokens.carrot,
+    earningToken: serializedTokens.rabbit,
     contractAddress: {
-      137: '0x',
+      137: '0x9e0629e8Ef591b626A5d0893783199668E1a5893',
       80001: '0x',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
     sortOrder: 2,
-    tokenPerBlock: '0.5',
-    deployedBlockNumber: 45634311,
+    tokenPerBlock: '0.0025',
+    deployedBlockNumber: 55016560,
     version: 3,
-    participantThreshold: 1000000,
+    participantThreshold: 10000,
   },
+  /*
   {
     sousId: 2,
     stakingToken: serializedTokens.wmatic,
