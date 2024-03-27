@@ -2,6 +2,7 @@ export default {
   masterChef: {
     97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+    137: '0x8a844091aB74b4a5742DdC4ADbdc988dFFf50752',
   },
   // Only Pool Version Masterchef
   rabbitCoinPool: {
@@ -37,6 +38,7 @@ export default {
   multiCall: {
     56: '0xfF6FD90A470Aaa0c1B8A54681746b07AcdFedc9B',
     97: '0x8F3273Fb89B075b1645095ABaC6ed17B2d4Bc576',
+    137: '0xad60E57C5098aEeD20EC507c25C48Ed25E66026f',
   },
   multiCallPolygon: {
     137: '0xad60E57C5098aEeD20EC507c25C48Ed25E66026f',

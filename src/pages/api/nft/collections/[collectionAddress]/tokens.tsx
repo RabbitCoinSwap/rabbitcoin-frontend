@@ -22,7 +22,7 @@ export default function handler(req, res) {
         
         const polygonNFTs  =await Moralis.Web3API.token.getAllTokenIds({ 
             chain: 'polygon', 
-            address: '0x569B70fc565AFba702d9e77e75FD3e3c78F57eeD',
+            address: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E', // contract NFT
             limit: 20,
         });
         console.log(polygonNFTs);

@@ -15,14 +15,14 @@ describe('Config farms', () => {
   })
 
   it.each(farmsToTest)('Farm #%d has an unique address', (pid, farm) => {
-    const duplicates = farms.filter((f) => farm.lpAddresses[56] === f.lpAddresses[56])
+    const duplicates = farms.filter((f) => farm.lpAddresses[137] === f.lpAddresses[137])
     expect(duplicates).toHaveLength(1)
   })
 
   it.each(farmsToTest)('Farm %d has the correct token addresses', async (pid, farm) => {
     const tokenAddress = farm.token.address
     const quoteTokenAddress = farm.quoteToken.address
-    const lpContract = getLpContract(farm.lpAddresses[56])
+    const lpContract = getLpContract(farm.lpAddresses[137])
 
     const token0Address = (await lpContract.token0()).toLowerCase()
     const token1Address = (await lpContract.token1()).toLowerCase()
@@ -37,11 +37,11 @@ describe('Config farms', () => {
 
   // The first pid using the new factory
   const START_PID = 365
-  const FACTORY_ADDRESS = '0xca143ce32fe78f1f7019d7d551a6402fc5350c73'
+  const FACTORY_ADDRESS = '0x47f2604A1b19Ea4BA3f613ee7C65584EcC39319e'
   const newFarmsToTest = farmsToTest.filter((farmSet) => farmSet[0] >= START_PID)
 
   it.each(newFarmsToTest)('farm %d is using correct factory address', async (pid, farm) => {
-    const lpContract = getLpContract(farm.lpAddresses[56])
+    const lpContract = getLpContract(farm.lpAddresses[137])
     const factory = await lpContract.factory()
     expect(factory.toLowerCase()).toEqual(FACTORY_ADDRESS)
   })
