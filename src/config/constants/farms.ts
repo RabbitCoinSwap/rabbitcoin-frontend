@@ -36,7 +36,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 2,
-    lpSymbol: 'RABBIT-MATIC LP',
+    lpSymbol: 'RABBIT-WMATIC LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
@@ -60,15 +60,15 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 4,
-    lpSymbol: 'MATIC-USDT LP',
+    lpSymbol: 'USDT-WMATIC LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
-      137: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA',
+      137: '0xd2e6c7fc39c5118c8f79b54b86768a520fc061ca',
       80001: '0x' // CHANGE_ADDRESS:Pair
     },
-    token: serializedTokens.blitz,
-    quoteToken: serializedTokens.rabbit,
+    token: serializedTokens.usdt,
+    quoteToken: serializedTokens.wmatic,
   },
   /*
   {
