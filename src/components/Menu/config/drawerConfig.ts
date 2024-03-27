@@ -86,12 +86,10 @@ const drawerLinks: MenuItemsType[] = [
                 label: 'Form add Logo',
                 href: 'https://forms.gle/rJ8ipx33fA6jX9Mo8',
             },
-            /*
             {
-                label: 'Docs & Guides',
-                href: 'https://docs.rabbitcoin.xyz/',
+                label: 'CMC Community',
+                href: 'https://coinmarketcap.com/community/profile/rabbitchef/',
             },
-            */
         ],
     },
 
