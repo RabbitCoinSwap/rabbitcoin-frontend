@@ -6,14 +6,14 @@ import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamp
 import { getChangeForPeriod, getPercentChange } from 'views/Info/utils/infoDataHelpers'
 import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
 
-interface PancakeFactory {
+interface RabbitCoinFactory {
   totalTransactions: string
   totalVolumeUSD: string
   totalLiquidityUSD: string
 }
 
 interface OverviewResponse {
-  pancakeFactories: PancakeFactory[]
+  pancakeFactories: RabbitCoinFactory[]
 }
 
 /**
@@ -38,12 +38,12 @@ const getOverviewData = async (block?: number): Promise<{ data?: OverviewRespons
   }
 }
 
-const formatPancakeFactoryResponse = (rawPancakeFactory?: PancakeFactory) => {
-  if (rawPancakeFactory) {
+const formatRabbitCoinFactoryResponse = (rawRabbitCoinFactory?: RabbitCoinFactory) => {
+  if (rawRabbitCoinFactory) {
     return {
-      totalTransactions: parseFloat(rawPancakeFactory.totalTransactions),
-      totalVolumeUSD: parseFloat(rawPancakeFactory.totalVolumeUSD),
-      totalLiquidityUSD: parseFloat(rawPancakeFactory.totalLiquidityUSD),
+      totalTransactions: parseFloat(rawRabbitCoinFactory.totalTransactions),
+      totalVolumeUSD: parseFloat(rawRabbitCoinFactory.totalVolumeUSD),
+      totalLiquidityUSD: parseFloat(rawRabbitCoinFactory.totalLiquidityUSD),
     }
   }
   return null
@@ -68,9 +68,9 @@ const useFetchProtocolData = (): ProtocolFetchState => {
       const { error: error24, data: data24 } = await getOverviewData(block24?.number ?? undefined)
       const { error: error48, data: data48 } = await getOverviewData(block48?.number ?? undefined)
       const anyError = error || error24 || error48
-      const overviewData = formatPancakeFactoryResponse(data?.pancakeFactories?.[0])
-      const overviewData24 = formatPancakeFactoryResponse(data24?.pancakeFactories?.[0])
-      const overviewData48 = formatPancakeFactoryResponse(data48?.pancakeFactories?.[0])
+      const overviewData = formatRabbitCoinFactoryResponse(data?.pancakeFactories?.[0])
+      const overviewData24 = formatRabbitCoinFactoryResponse(data24?.pancakeFactories?.[0])
+      const overviewData48 = formatRabbitCoinFactoryResponse(data48?.pancakeFactories?.[0])
       const allDataAvailable = overviewData && overviewData24 && overviewData48
       if (anyError || !allDataAvailable) {
         setFetchState({
