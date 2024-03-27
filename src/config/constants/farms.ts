@@ -58,19 +58,19 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.dai,
     quoteToken: serializedTokens.usdc,
   },
-  /*
   {
     pid: 4,
-    lpSymbol: 'RABBIT-BLITZ LP',
+    lpSymbol: 'MATIC-USDT LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
-      137: '0x244C4b75C83d38f1458e322996e09d9E60f55d77',
-      80001: '0x159a66a1808613C037c008e6b4868cf5f68C22ca' // CHANGE_ADDRESS:Pair
+      137: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA',
+      80001: '0x' // CHANGE_ADDRESS:Pair
     },
     token: serializedTokens.blitz,
     quoteToken: serializedTokens.rabbit,
   },
+  /*
   {
     pid: 5,
     lpSymbol: 'RABBIT-AVATAR LP',
