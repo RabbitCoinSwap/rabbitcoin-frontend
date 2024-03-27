@@ -54,16 +54,16 @@ function MyApp(props: AppProps) {
         />
         <meta
           name="description"
-          content="RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin"
+          content="Dive into RabbitCoin decentralized exchange (DEX), where you can effortlessly stake, farm, or trade with unparalleled ease and flexibility, making your crypto journey seamless and rewarding!. Start earning passive income with RabbitCoin today!"
         />
         <meta name="theme-color" content="#E91E63" />
         <meta name="twitter:image" content="https://rabbitcoin.xyz/assets/images/clone/ogbanner.png" />
         <meta
           name="twitter:description"
-          content="RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin"
+          content="Dive into RabbitCoin decentralized exchange (DEX), where you can effortlessly stake, farm, or trade with unparalleled ease and flexibility, making your crypto journey seamless and rewarding!. Start earning passive income with RabbitCoin today!"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin" />
+        <meta name="twitter:title" content="Dive into RabbitCoin decentralized exchange (DEX), where you can effortlessly stake, farm, or trade with unparalleled ease and flexibility, making your crypto journey seamless and rewarding!. Start earning passive income with RabbitCoin today!" />
         <title>RabbitCoin</title>
       </Head>
       <Providers store={store}>
