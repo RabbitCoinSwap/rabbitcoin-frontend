@@ -63,7 +63,7 @@ function MyApp(props: AppProps) {
           content="RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="RabbitCoin is the MultiChain NFT DeFi Protocol." />
+        <meta name="twitter:title" content="RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin" />
         <title>RabbitCoin</title>
       </Head>
       <Providers store={store}>

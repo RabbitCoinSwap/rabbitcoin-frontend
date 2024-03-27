@@ -4,7 +4,7 @@ import { PageMeta } from './types'
 export const DEFAULT_META: PageMeta = {
   title: 'RabbitCoin',
   description:
-    'RabbitCoin is the MultiChain NFT DeFi Protocol, that helps NFT traders, high yield farmers, liquidity providers, developers and web 3.0 startups to participate in an open financial market with no barriers to entry',
+    'RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin',
   image: 'https://rabbitcoin.xyz/assets/images/clone/ogbanner.png',
 }
 
