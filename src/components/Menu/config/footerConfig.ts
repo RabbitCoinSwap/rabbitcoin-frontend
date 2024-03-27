@@ -53,12 +53,10 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
   {
     label: t('Developers'),
     items: [
-      /*
       {
         label: 'Github',
         href: 'https://github.com/rabbitcoinswap',
       },
-      */
       {
         label: t('Smart Contracts'),
         href: 'https://docs.rabbitcoin.xyz/developments/smart-contrats',
@@ -66,6 +64,10 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
       {
         label: t('Listing Token'),
         href: 'https://docs.rabbitcoin.xyz/developments/listing-token',
+      },
+      {
+        label: t('Selfdrop'),
+        href: 'https://airdrop.rabbitcoin.xyz',
       },
       /*
       {

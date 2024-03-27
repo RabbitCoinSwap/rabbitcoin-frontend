@@ -7,25 +7,25 @@ export default {
   // Only Pool Version Masterchef
   rabbitCoinPool: {
     137: '0x15d2A505bCa0491ec25d73af8FD970754Ee7fac8',
-    80001: '0xE26C5d768D97db78Effee63d79028B27d51d67cD', // RabbitCoinPool (test)
+    80001: '0xE26C5d768D97db78Effee63d79028B27d51d67cD', // RabbitCoinPool
   },
   // Only Pool Version Masterchef
   rabbitCoinFarm: {
-    137: '0xb44dF85f83E3b8b7cf652071741600f1726AFbF9', 
-    80001: '0x54935482f669D6BEBBb78E8e7a8280001F2B563E', // RabbitCoinFarm (test)
+    137: '0xb44dF85f83E3b8b7cf652071741600f1726AFbF9', // 0x8d7c15970F6728E95c060fda680759Cd388Ff0fD
+    80001: '0x54935482f669D6BEBBb78E8e7a8280001F2B563E', // RabbitCoinFarm
   },
   // Only NFT Pool Version Masterchef
   rabbitCoinNftStake: {
     137: '0x5aE558bc57e13642CCC3c664DE75aa718193017B',
-    80001: '0xc56ccD0d132f4eFC8FC76E802B7Bcd5284CEEB43', // RabbitCoinNftStake (test)
+    80001: '0xc56ccD0d132f4eFC8FC76E802B7Bcd5284CEEB43', // RabbitCoinNftStake
   },
   rabbitCoinClaimReward: {
     137: '0x06d3413d6e07bc9566b2aea2264dfc67a0f1b21e',
-    80001: '0x6356dfb4de6344B07b5a8570a35F3Da2D85ae5f3', // RabbitCoinClaimReward (test)
+    80001: '0x6356dfb4de6344B07b5a8570a35F3Da2D85ae5f3', // RabbitCoinClaimReward
   },
   rabbitCoinClaimRewardV2: {
     137: '0x7df66A1f361e86Aacc161929DF7Ec75dAABD311A',
-    80001: '0x86FB358916EC34f49c1EFb137fbD683c01fE3FFe', // RabbitCoinClaimReward (test)
+    80001: '0x86FB358916EC34f49c1EFb137fbD683c01fE3FFe', // RabbitCoinClaimReward
   },
   sousChef: {
     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
