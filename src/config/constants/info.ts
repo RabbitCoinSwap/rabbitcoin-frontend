@@ -17,6 +17,7 @@ export const ITEMS_PER_INFO_TABLE_PAGE = 10
 // None of them present any interest as they have almost 0 daily trade volume
 export const TOKEN_BLACKLIST = [
   // These ones are copied from v1 info
+  /*
   '0x495c7f3a713870f68f8b418b355c085dfdc412c3',
   '0xc3761eb917cd790b30dad99f6cc5b4ff93c4f9ea',
   '0xe31debd7abff90b06bca21010dd860d8701fd901',
@@ -38,4 +39,5 @@ export const TOKEN_BLACKLIST = [
   // These ones are newly found
   '0xF1D50dB2C40b63D2c598e2A808d1871a40b1E653',
   '0x4269e4090ff9dfc99d8846eb0d42e67f01c3ac8b',
+  */
 ]
