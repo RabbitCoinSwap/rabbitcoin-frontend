@@ -41,8 +41,8 @@ export const RABBIT_PER_YEAR_FARM = RABBIT_PER_BLOCK_FARM * BLOCKS_PER_YEAR
 export const RABBIT_PER_BLOCK_NFTFARM = 0.35 // You can set and test NftFarm emission
 export const RABBIT_PER_YEAR_NFTFARM = RABBIT_PER_BLOCK_NFTFARM * BLOCKS_PER_YEAR 
 
-export const BASE_COINRABBIT_URL = 'https://rabbitcoin.xyz'
-export const BASE_COINRABBIT_ADD_LIQUIDITY_URL = `${BASE_COINRABBIT_URL}/add`
+export const BASE_RABBITCOIN_URL = 'https://rabbitcoin.xyz'
+export const BASE_RABBITCOIN_ADD_LIQUIDITY_URL = `${BASE_RABBITCOIN_URL}/add`
 export const BASE_POLYGON_SCAN_URL = BASE_POLYGON_SCAN_URLS[process.env.NEXT_PUBLIC_CHAIN_ID]
 
 
