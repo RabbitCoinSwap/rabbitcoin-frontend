@@ -105,7 +105,7 @@ const Footer = () => {
           {t('Start in seconds.')}
         </Heading>
         <Text textAlign="center" color="white">
-          {t('Connect your crypto wallet to start using the app in seconds.')}
+          {t('Instantly Access the App by Connecting Your Crypto Wallet in Seconds!')}
         </Text>
         <Text mb="24px" bold color="white">
           {t('No registration needed.')}

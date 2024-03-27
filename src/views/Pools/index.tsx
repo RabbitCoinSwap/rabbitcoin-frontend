@@ -261,10 +261,10 @@ const Pools: React.FC = () => {
               {t('Syrup Pools')}
             </Heading>
             <Heading scale="md" color="text">
-              {t('Just stake some tokens to earn.')}
+              {t('Stake LP Tokens and Watch Your Earnings Soar!')}
             </Heading>
             <Heading scale="md" color="text">
-              {t('High APR, low risk.')}
+              {t('High APR, Low Risk. Secure Your Profits with Confidence!')}
             </Heading>
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>

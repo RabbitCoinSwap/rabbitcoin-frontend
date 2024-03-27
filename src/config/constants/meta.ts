@@ -4,7 +4,7 @@ import { PageMeta } from './types'
 export const DEFAULT_META: PageMeta = {
   title: 'RabbitCoin',
   description:
-    'RabbitCoin is a Decentralized exchange (DEX). staking, farming or trading with ease and flexibility. Earn Passive Income with RabbitCoin',
+    'Experience the future of decentralized finance with RabbitCoin DEX. Stake, farm, or trade with unparalleled ease and flexibility. Join us now and revolutionize your crypto journey!. Unlock passive income potential with RabbitCoin!',
   image: 'https://rabbitcoin.xyz/assets/images/clone/ogbanner.png',
 }
 
