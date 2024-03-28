@@ -332,7 +332,7 @@
   "Enter UP": "Enter UP",
   "Enter DOWN": "Enter DOWN",
   "Set Position": "Set Position",
-  "Insufficient BNB balance": "Insufficient BNB balance",
+  "Insufficient MATIC balance": "Insufficient MATIC balance",
   "A minimum amount of %num% %token% is required": "A minimum amount of %num% %token% is required",
   "Enter an amount": "Enter an amount",
   "You won’t be able to remove or change your position once you enter it.": "You won’t be able to remove or change your position once you enter it.",

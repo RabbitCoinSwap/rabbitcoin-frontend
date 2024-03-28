@@ -574,7 +574,7 @@
   "Enter DOWN": "輸入下降",
   "An error occurred, unable to enter your position": "發生錯誤，無法輸入您的部位",
   "Set Position": "設定部位",
-  "Insufficient BNB balance": "BNB 餘額不足",
+  "Insufficient MATIC balance": "BNB 餘額不足",
   "A minimum amount of %num% %token% is required": "最少需要 %num% %token% 金額",
   "Enter an amount": "輸入金額",
   "You won’t be able to remove or change your position once you enter it.": "輸入後，您將無法移除或變更自己的部位。",

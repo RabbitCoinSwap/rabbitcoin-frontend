@@ -56,7 +56,7 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : t('Insufficient BNB balance'),
+        inputError: sufficientBalance ? undefined : t('Insufficient MATIC balance'),
       }
     }
     if (currencyEquals(WETH[chainId], inputCurrency) && outputCurrency === ETHER) {
