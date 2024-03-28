@@ -39,8 +39,8 @@ const pools: SerializedPoolConfig[] = [
     contractAddress: {
       97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
       56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
-      137: '0x15d2A505bCa0491ec25d73af8FD970754Ee7fac8', // CHANGE_ADDRESS:RabbitCoinPool 
-      80001: '0xE26C5d768D97db78Effee63d79028B27d51d67cD' // CHANGE_ADDRESS:RabbitCoinPool (test)
+      137: '0x15d2A505bCa0491ec25d73af8FD970754Ee7fac8', // RabbitCoinPool 
+      80001: '0xE26C5d768D97db78Effee63d79028B27d51d67cD' // RabbitCoinPool
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
