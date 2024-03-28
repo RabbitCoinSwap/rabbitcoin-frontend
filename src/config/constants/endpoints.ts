@@ -12,7 +12,7 @@ export const SNAPSHOT_HUB_API = `${SNAPSHOT_BASE_URL}/api/message`
  */
 export const GRAPH_API_PREDICTION_V1 = 'https://api.thegraph.com/subgraphs/name/pancakeswap/prediction'
 
-export const INFO_CLIENT = 'https://subgraph.satsuma-prod.com/228d763b4e8f/rabbits-team--297058/exchange/api'
+export const INFO_CLIENT = 'https://subgraph.satsuma-prod.com/rabbits-team--297058/exchange/playground'
 export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
 export const GRAPH_API_NFTMARKET = process.env.NEXT_PUBLIC_GRAPH_API_NFT_MARKET
 export const GRAPH_HEALTH = 'https://graphql.bitquery.io'
