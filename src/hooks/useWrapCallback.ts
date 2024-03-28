@@ -75,7 +75,7 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : t('Insufficient WBNB balance'),
+        inputError: sufficientBalance ? undefined : t('Insufficient WMATIC balance'),
       }
     }
     return NOT_APPLICABLE
