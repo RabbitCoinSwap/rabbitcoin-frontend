@@ -11,7 +11,7 @@ export default {
   },
   // Only Pool Version Masterchef
   rabbitCoinFarm: {
-    137: '0xb44dF85f83E3b8b7cf652071741600f1726AFbF9', // 0x8d7c15970F6728E95c060fda680759Cd388Ff0fD
+    137: '0x8d7c15970F6728E95c060fda680759Cd388Ff0fD', // 0xb44dF85f83E3b8b7cf652071741600f1726AFbF9
     80001: '0x54935482f669D6BEBBb78E8e7a8280001F2B563E', // RabbitCoinFarm
   },
   // Only NFT Pool Version Masterchef
