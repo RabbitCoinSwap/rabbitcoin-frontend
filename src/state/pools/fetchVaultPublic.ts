@@ -18,14 +18,10 @@ export const fetchPublicVaultData = async () => {
       name: method,
     }))
 
-    
-
     const [[sharePrice], [shares], [estimatedCakeBountyReward], [totalPendingCakeHarvest]] = await multicallPolygonv2(
       rabbitCoinAutoPoolVaultAbi,
       calls,
     )
-
-
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
     const sharePriceAsBigNumber = sharePrice ? new BigNumber(sharePrice.toString()) : BIG_ZERO
@@ -55,8 +51,11 @@ export const fetchVaultFees = async () => {
       name: method,
     }))
 
-    const [[performanceFee], [callFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallPolygonv2(cakeVaultAbi, calls)
-    
+    const [[performanceFee], [callFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallPolygonv2(
+      cakeVaultAbi,
+      calls,
+    )
+
     return {
       performanceFee: performanceFee.toNumber(),
       callFee: callFee.toNumber(),

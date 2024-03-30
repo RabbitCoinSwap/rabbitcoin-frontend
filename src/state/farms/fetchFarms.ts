@@ -4,9 +4,7 @@ import { BIG_TEN, BIG_ZERO } from '../../utils/bigNumber'
 import { fetchPublicFarmsData } from './fetchPublicFarmData'
 import { fetchMasterChefData } from './fetchMasterChefData'
 
-
 const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]) => {
-  
   // Information about LP Token Contract(Pair)
   const farmResult = await fetchPublicFarmsData(farmsToFetch)
 
@@ -14,11 +12,10 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]) => {
   const masterChefResult = await fetchMasterChefData(farmsToFetch)
 
   return farmsToFetch.map((farm, index) => {
-
     // LP Token Contract(Pair) datas
     const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
       farmResult[index]
-      
+
     // Farming Pools on Masterchef
     const [info, totalAllocPoint] = masterChefResult[index]
 

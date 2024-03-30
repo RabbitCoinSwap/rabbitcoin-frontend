@@ -4,7 +4,7 @@ import { ContextApi } from 'contexts/Localization/types'
 export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
   {
     label: t('About'),
-    items: [      
+    items: [
       {
         label: t('RabbitCoin'),
         href: 'https://docs.rabbitcoin.xyz/rabbitcoin/about-me',

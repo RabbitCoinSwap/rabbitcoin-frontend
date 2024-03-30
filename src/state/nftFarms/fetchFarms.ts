@@ -84,22 +84,19 @@ export const fetchNftPoolsStakingLimits = async (
 }
 
 const fetchFarms = async (farmsToFetch: SerializedNftFarmConfig[], currentBlock: number) => {
-  
-
   const blockLimits = await fetchNftFarmsBlockLimits()
-  
+
   // Information about LP Token Contract(Pair)
   const farmResult = await fetchPublicFarmsData(farmsToFetch)
 
   // Only farms in nftStakeContract(not smartchef)
   const rabbitCoinFarms = farmsToFetch.filter((f) => !f.contractAddresses)
   const smartNftStakePools = farmsToFetch.filter((f) => f.contractAddresses)
-  
+
   // Information about Farming Pools on Masterchef
   const oldNftStakePoolResult = await fetchMasterChefData(rabbitCoinFarms, false)
-  
+
   const smartNftStakePoolResult = await fetchMasterChefData(smartNftStakePools, true)
-  
 
   return farmsToFetch.map((farm, index) => {
     const blockLimit = blockLimits.find((entry) => entry.pid === farm.pid)
@@ -108,9 +105,9 @@ const fetchFarms = async (farmsToFetch: SerializedNftFarmConfig[], currentBlock:
 
     // LP Token Contract(Pair) datas
     const [lpTokenBalanceMC] = farmResult[index]
-      
+
     // Farming Pools on Masterchef
-    const [info, totalAllocPoint] = rabbitCoinFarms.includes(farm) ? oldNftStakePoolResult[index] : [null,null]
+    const [info, totalAllocPoint] = rabbitCoinFarms.includes(farm) ? oldNftStakePoolResult[index] : [null, null]
     const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
     const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
     const totalShares = farm.contractAddresses ? smartNftStakePoolResult[index - rabbitCoinFarms.length] : BIG_ZERO

@@ -219,10 +219,18 @@ export const getRabbitCoinNftStakeContract = (signer?: Signer | Provider) => {
   return getContractForPolygon(rabbitCoinNftStake, getRabbitCoinNftStakeAddress(), signer) as RabbitCoinNftStake
 }
 export const getRabbitCoinClaimRewardContract = (signer?: Signer | Provider) => {
-  return getContractForPolygon(rabbitCoinClaimReward, getRabbitCoinClaimRewardAddress(), signer) as RabbitCoinClaimReward
+  return getContractForPolygon(
+    rabbitCoinClaimReward,
+    getRabbitCoinClaimRewardAddress(),
+    signer,
+  ) as RabbitCoinClaimReward
 }
 export const getRabbitCoinClaimRewardV2Contract = (signer?: Signer | Provider) => {
-  return getContractForPolygon(rabbitCoinClaimReward, getRabbitCoinClaimRewardV2Address(), signer) as RabbitCoinClaimReward
+  return getContractForPolygon(
+    rabbitCoinClaimReward,
+    getRabbitCoinClaimRewardV2Address(),
+    signer,
+  ) as RabbitCoinClaimReward
 }
 export const getClaimRefundContract = (signer?: Signer | Provider) => {
   return getContract(claimRefundAbi, getClaimRefundAddress(), signer) as ClaimRefund
@@ -243,7 +251,11 @@ export const getCakeVaultContract = (signer?: Signer | Provider) => {
 
 // For RabbitCoin Auto Pool // CakeVaultContract
 export const getRabbitCoinAutoPoolVaultContract = (signer?: Signer | Provider) => {
-  return getContractForPolygon(rabbitCoinAutoPoolVaultAbi, getRabbitCoinAutoPoolVaultAddress(), signer) as RabbitCoinAutoPoolVault
+  return getContractForPolygon(
+    rabbitCoinAutoPoolVaultAbi,
+    getRabbitCoinAutoPoolVaultAddress(),
+    signer,
+  ) as RabbitCoinAutoPoolVault
 }
 export const getIfoPoolContract = (signer?: Signer | Provider) => {
   return getContract(ifoPoolAbi, getIfoPoolAddress(), signer) as IfoPool

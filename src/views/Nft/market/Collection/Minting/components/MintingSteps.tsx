@@ -83,10 +83,7 @@ const Step1 = ({ hasProfile }: { hasProfile: boolean }) => {
           'IFO credit is calculated by average block balance in the IFO pool in over the staking period announced with each IFO proposal.',
         )}
       </span>{' '}
-      <InlineLink
-        external
-        href="https://docs.rabbitcoin.xyz"
-      >
+      <InlineLink external href="https://docs.rabbitcoin.xyz">
         {t('Please refer to our docs for more details.')}
       </InlineLink>
     </Box>,
@@ -173,10 +170,9 @@ const Step2 = ({ hasProfile, isLive, isCommitted }: { hasProfile: boolean; isLiv
       <Text color="textSubtle" small>
         {t('When the IFO sales are live, you can “commit” your CAKE to buy the tokens being sold.')} <br />
       </Text>
-        <Button external={true} as="a" href="/claim" mt="16px">
-          {t('Claim Now')}
-        </Button>
-      
+      <Button external={true} as="a" href="/claim" mt="16px">
+        {t('Claim Now')}
+      </Button>
     </CardBody>
   )
 }

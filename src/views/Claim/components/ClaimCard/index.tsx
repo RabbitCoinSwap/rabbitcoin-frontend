@@ -13,7 +13,12 @@ export const RoundedImage = styled(Image)`
   overflow: hidden;
 `
 
-const ClaimCard: React.FC<{ claimId: number; claim: any; claimData: any; account: string }> = ({ claimId, claim, claimData, account }) => {
+const ClaimCard: React.FC<{ claimId: number; claim: any; claimData: any; account: string }> = ({
+  claimId,
+  claim,
+  claimData,
+  account,
+}) => {
   const { t } = useTranslation()
 
   return (
@@ -22,17 +27,18 @@ const ClaimCard: React.FC<{ claimId: number; claim: any; claimData: any; account
       ribbon={claim.isFinished && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
     >
       <ClaimCardHeader isFinished={claim.isFinished}>
-      <RoundedImage width={400} height={400} src={claim.imageLink} />
+        <RoundedImage width={400} height={400} src={claim.imageLink} />
       </ClaimCardHeader>
 
       <CardBody p={24} pt={10}>
-      {claimData.data !== undefined && (claimData.data[claimId].userWeight || 0) === 0 && 
-                                      (<NotEligibleWarning requiredToken={claim.requiredToken} nftCount={claimData.data[claimId].nftsToClaim[1].length || 0} remainingClaims={claimData.data[claimId].remainingClaims || 0}  />)}
-      <ClaimCardHeaderTitle
-          title={claim.name}
-          subTitle={claim.description}
-          isFinished={claim.isFinished}
-        />
+        {claimData.data !== undefined && (claimData.data[claimId].userWeight || 0) === 0 && (
+          <NotEligibleWarning
+            requiredToken={claim.requiredToken}
+            nftCount={claimData.data[claimId].nftsToClaim[1].length || 0}
+            remainingClaims={claimData.data[claimId].remainingClaims || 0}
+          />
+        )}
+        <ClaimCardHeaderTitle title={claim.name} subTitle={claim.description} isFinished={claim.isFinished} />
         <Flex mt="24px" flexDirection="column">
           {account ? (
             <>
@@ -44,14 +50,15 @@ const ClaimCard: React.FC<{ claimId: number; claim: any; claimData: any; account
                 <Button disabled>{t('Claim Limit Reached')}</Button>
               ) : (claimData.data[claimId].userWeight || 0) === 0 ? (
                 <Button disabled>{t(`${claim.requiredToken} required!`)}</Button>
-              ) : (claimData.data[claimId].rewardBalance ?? 0) < (claim.baseAmount * (claimData.data[claimId].userWeight || 1)) * (10**18) ? (
+              ) : (claimData.data[claimId].rewardBalance ?? 0) <
+                claim.baseAmount * (claimData.data[claimId].userWeight || 1) * 10 ** 18 ? (
                 <Button disabled>{t('No Rewards Available')}</Button>
               ) : (
                 <ClaimAction claimId={claimId} claim={claim} claimData={claimData} />
               )}
             </>
           ) : (
-              <ConnectWalletButton />
+            <ConnectWalletButton />
           )}
         </Flex>
       </CardBody>

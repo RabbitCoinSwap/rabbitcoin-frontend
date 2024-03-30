@@ -31,7 +31,6 @@ const SmartContractIcon: React.FC<SvgProps> = (props) => {
   )
 }
 
-
 interface Props {
   ifo: Minting
   publicIfoData: PublicIfoData
@@ -54,41 +53,41 @@ const IfoAchievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
   const { t } = useTranslation()
 
   return (
-        <Flex flexDirection="column" ml="8px">
-          <FlexGap gap="16px" pl="4px">
-            <Link external href={ifo.articleUrl}>
-              <LanguageIcon color="textSubtle" />
-            </Link>
-            <Link external href={getPolygonScanLink(ifo.address, 'address')}>
-              <SmartContractIcon color="textSubtle" />
-            </Link>
-            {ifo.twitterUrl && (
-              <Link external href={ifo.twitterUrl}>
-                <TwitterIcon color="textSubtle" />
-              </Link>
-            )}
-            {ifo.telegramUrl && (
-              <Link external href={ifo.telegramUrl}>
-                <TelegramIcon color="textSubtle" />
-              </Link>
-            )}
-            {ifo.discordUrl && (
-              <Link external href={ifo.discordUrl}>
-                <DiscordIcon color="textSubtle" />
-              </Link>
-            )}
-            {ifo.cmcUrl && (
-              <Link external href={ifo.cmcUrl}>
-                <CmcIcon color="textSubtle" />
-              </Link>
-            )}
-            {ifo.openSeaUrl && (
-              <Link external href={ifo.openSeaUrl}>
-                <OpenSeaIcon color="textSubtle" />
-              </Link>
-            )}
-          </FlexGap>
-        </Flex>
+    <Flex flexDirection="column" ml="8px">
+      <FlexGap gap="16px" pl="4px">
+        <Link external href={ifo.articleUrl}>
+          <LanguageIcon color="textSubtle" />
+        </Link>
+        <Link external href={getPolygonScanLink(ifo.address, 'address')}>
+          <SmartContractIcon color="textSubtle" />
+        </Link>
+        {ifo.twitterUrl && (
+          <Link external href={ifo.twitterUrl}>
+            <TwitterIcon color="textSubtle" />
+          </Link>
+        )}
+        {ifo.telegramUrl && (
+          <Link external href={ifo.telegramUrl}>
+            <TelegramIcon color="textSubtle" />
+          </Link>
+        )}
+        {ifo.discordUrl && (
+          <Link external href={ifo.discordUrl}>
+            <DiscordIcon color="textSubtle" />
+          </Link>
+        )}
+        {ifo.cmcUrl && (
+          <Link external href={ifo.cmcUrl}>
+            <CmcIcon color="textSubtle" />
+          </Link>
+        )}
+        {ifo.openSeaUrl && (
+          <Link external href={ifo.openSeaUrl}>
+            <OpenSeaIcon color="textSubtle" />
+          </Link>
+        )}
+      </FlexGap>
+    </Flex>
   )
 }
 

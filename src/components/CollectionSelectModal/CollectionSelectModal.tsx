@@ -19,7 +19,6 @@ import { FixedSizeList } from 'react-window'
 import { useFarms, useFarmUser } from 'state/nftFarms/hooks'
 import { DeserializedNftFarm } from 'state/types'
 
-
 const StyledModalContainer = styled(ModalContainer)`
   max-width: 420px;
   width: 100%;
@@ -49,10 +48,9 @@ export default function CollectionSelectModal({
 }: CollectionSelectModalProps) {
   const [modalView, setModalView] = useState<SelectCollectionModalView>(SelectCollectionModalView.select)
 
-
   const { data: nftFarms } = useFarms()
 
-  const notToListFarms = ["Starter SHIB", "Bronze SHIB", "Silver SHIB", "Gold SHIB", "Collectors Pool"]
+  const notToListFarms = ['Starter SHIB', 'Bronze SHIB', 'Silver SHIB', 'Gold SHIB', 'Collectors Pool']
   const collectionPidOrigins = {
     6: 1,
     7: 2,
@@ -61,43 +59,44 @@ export default function CollectionSelectModal({
     10: 4,
   }
 
-  const mainNftStakeFarm = nftFarms.filter(
-    (farm) => farm.pid == pid
+  const mainNftStakeFarm = nftFarms.filter((farm) => farm.pid == pid)
+
+  const mainNftStakeFarmReplaced = notToListFarms.includes(mainNftStakeFarm[0].lpSymbol)
+    ? nftFarms.filter((farm) => farm.pid == collectionPidOrigins[mainNftStakeFarm[0].pid])
+    : null
+
+  const communityTokenFarms = nftFarms.filter(
+    (farm) => farm.pid <= 4 && (mainNftStakeFarmReplaced === null || farm.pid !== mainNftStakeFarmReplaced[0].pid),
   )
 
-  const mainNftStakeFarmReplaced = notToListFarms.includes(mainNftStakeFarm[0].lpSymbol) ? nftFarms.filter((farm) => farm.pid == collectionPidOrigins[mainNftStakeFarm[0].pid]) : null
+  const eligibleCollections = [
+    collectionPidOrigins[mainNftStakeFarm[0].pid] ?? mainNftStakeFarm[0].pid,
+    ...mainNftStakeFarm[0]['supportedCollectionPids'],
+  ]
 
-  const communityTokenFarms = nftFarms.filter((farm) =>
-    farm.pid <= 4 && (mainNftStakeFarmReplaced === null || farm.pid !== mainNftStakeFarmReplaced[0].pid)
-  )
+  const externalCommunityCollectionPids = mainNftStakeFarm[0]['supportedCollectionPids'].filter((pid) => pid > 4)
+  const externalNftStakeFarm = nftFarms.filter((farm) => externalCommunityCollectionPids.includes(farm.pid))
 
-
-  const eligibleCollections = [collectionPidOrigins[mainNftStakeFarm[0].pid] ?? mainNftStakeFarm[0].pid, ...mainNftStakeFarm[0]["supportedCollectionPids"]]
-  
-  const externalCommunityCollectionPids = mainNftStakeFarm[0]["supportedCollectionPids"].filter((pid) => pid > 4)
-  const externalNftStakeFarm = nftFarms.filter(
-    (farm) => externalCommunityCollectionPids.includes(farm.pid)
-  )
-
-
-  const collectionList = mainNftStakeFarmReplaced 
-    ? [...mainNftStakeFarmReplaced, ...communityTokenFarms] 
+  const collectionList = mainNftStakeFarmReplaced
+    ? [...mainNftStakeFarmReplaced, ...communityTokenFarms]
     : [...mainNftStakeFarm, ...externalNftStakeFarm, ...communityTokenFarms]
-  
-  const collectionPowers = mainNftStakeFarm[0]["collectionPowers"] ?? collectionList.map((collection) => {
-    switch (collection.pid) {
-      case 1:
-        return 1;
-      case 2:
-        return 3;
-      case 3:
-        return 6;
-      case 4:
-        return 12;
-      default:
-        return 15;
-    }
-  })
+
+  const collectionPowers =
+    mainNftStakeFarm[0]['collectionPowers'] ??
+    collectionList.map((collection) => {
+      switch (collection.pid) {
+        case 1:
+          return 1
+        case 2:
+          return 3
+        case 3:
+          return 6
+        case 4:
+          return 12
+        default:
+          return 15
+      }
+    })
 
   const { allowance } = useFarmUser(pid)
 

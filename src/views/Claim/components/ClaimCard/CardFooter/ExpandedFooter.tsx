@@ -42,21 +42,20 @@ const ExpandedWrapper = styled(Flex)`
 const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ claim, account }) => {
   const { t } = useTranslation()
 
-  const {
-    name
-  } = claim
+  const { name } = claim
 
-  
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
- 
 
-  
-
-  const { targetRef: rewardPerNftTargetRef, tooltip: rewardPerNftTooltip, tooltipVisible: rewardPerNftTooltipVisible } = useTooltip(
-    t('Each NFT collection has a different power level. The amount of reward you will receive is determined by multiplying the total power of the NFTs you own by a unit amount.'),
+  const {
+    targetRef: rewardPerNftTargetRef,
+    tooltip: rewardPerNftTooltip,
+    tooltipVisible: rewardPerNftTooltipVisible,
+  } = useTooltip(
+    t(
+      'Each NFT collection has a different power level. The amount of reward you will receive is determined by multiplying the total power of the NFTs you own by a unit amount.',
+    ),
     { placement: 'top-start' },
   )
-
 
   const {
     targetRef: totalRewardTargetRef,
@@ -81,7 +80,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ claim, account }) => {
         <Flex alignItems="flex-start">
           {true ? (
             <>
-              <Balance prefix='NFT Power x ' small value={claim.baseAmount} decimals={1} />
+              <Balance prefix="NFT Power x " small value={claim.baseAmount} decimals={1} />
               <span ref={rewardPerNftTargetRef}>
                 <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
               </span>
@@ -110,8 +109,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ claim, account }) => {
         </Flex>
       </Flex>
 
-
-
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
         <Text small>{t('Max NFT')}:</Text>
         <Flex alignItems="flex-start">
@@ -128,7 +125,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ claim, account }) => {
           {nftLimitTooltipVisible && nftLimitTooltip}
         </Flex>
       </Flex>
-      
 
       <Flex mb="2px" justifyContent="flex-end">
         <LinkExternal href={claim.projectSite} bold={false} small>
@@ -137,11 +133,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ claim, account }) => {
       </Flex>
       {true && (
         <Flex mb="2px" justifyContent="flex-end">
-          <LinkExternal
-            href={`${BASE_POLYGON_SCAN_URL}/address/${claim.rewardTokenAddress}`}
-            bold={false}
-            small
-          >
+          <LinkExternal href={`${BASE_POLYGON_SCAN_URL}/address/${claim.rewardTokenAddress}`} bold={false} small>
             {t('View Contract')}
           </LinkExternal>
         </Flex>

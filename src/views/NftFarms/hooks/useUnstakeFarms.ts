@@ -8,7 +8,7 @@ import { getAddress } from 'utils/addressHelpers'
 const useUnstakeFarms = (pid: number) => {
   const farm = useFarmFromPid(pid)
   const isSmartNftPool = farm.contractAddresses ? getAddress(farm.contractAddresses) : null
-  const masterChefContract = isSmartNftPool ? useSmartNftStakeContract(pid) : useRabbitCoinNftStake() 
+  const masterChefContract = isSmartNftPool ? useSmartNftStakeContract(pid) : useRabbitCoinNftStake()
   const gasPrice = useGasPrice()
 
   const handleUnstake = useCallback(

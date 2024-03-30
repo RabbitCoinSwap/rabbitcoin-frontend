@@ -1,7 +1,7 @@
 import { useWeb3React } from '@web3-react/core'
 import axios from 'axios'
 import { IPFS_GATEWAY } from 'config'
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import { getRabbitCoinNftStakeAddress } from 'utils/addressHelpers'
 import { useFarmUser } from 'state/nftFarms/hooks'
 import { range } from 'lodash'
@@ -16,7 +16,6 @@ import useSWR from 'swr'
 import { isAddress } from 'utils'
 import { FetchStatus } from 'config/constants/types'
 
-
 export const useStakedNfts = (selectedPid: number) => {
   const { account } = useWeb3React()
   const { stakedBalance } = useFarmUser(selectedPid)
@@ -25,7 +24,6 @@ export const useStakedNfts = (selectedPid: number) => {
   const nftPool = nftFarmsConfig.filter(({ pid }) => pid == selectedPid)[0]
   const collectionAddress = getAddress(nftPool.nftAddresses)
   const smartNftStakeAddress = nftPool.contractAddresses ? getAddress(nftPool.contractAddresses) : null
-
 
   const getNfts = async () => {
     try {
@@ -41,18 +39,18 @@ export const useStakedNfts = (selectedPid: number) => {
 
       const parsedTokenIds = rawTokens.map((token) => {
         if (!smartNftStakeAddress) {
-          return { tokenId: new BigNumber(token).toJSON() };
+          return { tokenId: new BigNumber(token).toJSON() }
         } else {
-          const [tokenAddress, tokenId] = token;
+          const [tokenAddress, tokenId] = token
           return {
             tokenId: new BigNumber(tokenId._hex).toJSON(),
-            tokenAddress: tokenAddress
-          };
+            tokenAddress: tokenAddress,
+          }
         }
-      });
+      })
 
       const imageCalls = parsedTokenIds.map((token) => {
-        const { tokenId, tokenAddress } = token;
+        const { tokenId, tokenAddress } = token
         return {
           address: smartNftStakeAddress ? tokenAddress : collectionAddress,
           name: 'tokenURI',
@@ -61,40 +59,46 @@ export const useStakedNfts = (selectedPid: number) => {
       })
       const rawTokenURIs = await multicallPolygonv1(erc721ABI, imageCalls)
 
-      const tokenIdsNumber = await Promise.all(parsedTokenIds.map(async (token, index) => {
-        const { tokenId, tokenAddress } = token;
+      const tokenIdsNumber = await Promise.all(
+        parsedTokenIds.map(async (token, index) => {
+          const { tokenId, tokenAddress } = token
 
-        let meta = null;
-        try {
-          //@ts-ignore
-          const tokenURI = rawTokenURIs[index][0];
-          meta = await axios(tokenURI);
-        } catch (error) {
-          console.log('IPFS link is broken!', error);
-        }
+          let meta = null
+          try {
+            //@ts-ignore
+            const tokenURI = rawTokenURIs[index][0]
+            meta = await axios(tokenURI)
+          } catch (error) {
+            console.log('IPFS link is broken!', error)
+          }
 
-        return {
-          tokenId: tokenId,
-          collectionAddress: smartNftStakeAddress ? tokenAddress : collectionAddress,
-          image: meta ? meta.data.image.replace("ipfs://", `${IPFS_GATEWAY}/`) : 'images/nfts/no-profile-md.png'
-        };
-      }));
+          return {
+            tokenId: tokenId,
+            collectionAddress: smartNftStakeAddress ? tokenAddress : collectionAddress,
+            image: meta ? meta.data.image.replace('ipfs://', `${IPFS_GATEWAY}/`) : 'images/nfts/no-profile-md.png',
+          }
+        }),
+      )
 
-      return tokenIdsNumber;
+      return tokenIdsNumber
     } catch (error) {
-      console.log('Error fetching staked NFTs:', error);
-      throw error; // Re-throw the error to trigger SWR's error handling
+      console.log('Error fetching staked NFTs:', error)
+      throw error // Re-throw the error to trigger SWR's error handling
     }
   }
 
-  const { data, status, error, mutate } = useSWR(isAddress(account) ? [account, selectedPid, 'stakedNftList'] : null, async () => getNfts(), {
-    onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
-      if (retryCount < 3) {
-        // Retry the SWR request up to 3 times on error
-        setTimeout(() => revalidate({ retryCount: retryCount + 1 }), 1000);
-      }
+  const { data, status, error, mutate } = useSWR(
+    isAddress(account) ? [account, selectedPid, 'stakedNftList'] : null,
+    async () => getNfts(),
+    {
+      onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+        if (retryCount < 3) {
+          // Retry the SWR request up to 3 times on error
+          setTimeout(() => revalidate({ retryCount: retryCount + 1 }), 1000)
+        }
+      },
     },
-  });
+  )
 
   return { nfts: data ?? [], isLoading: status !== FetchStatus.Fetched, error, revalidateNfts: mutate }
 }

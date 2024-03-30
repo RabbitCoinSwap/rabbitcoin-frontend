@@ -27,7 +27,7 @@ const DetailsWrapper = styled.div`
   }
 `
 
-const IfoQuestions = ({mintingData}) => {
+const IfoQuestions = ({ mintingData }) => {
   const { t } = useTranslation()
   let { faq } = mintingData
 

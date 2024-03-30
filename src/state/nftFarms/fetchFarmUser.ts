@@ -11,29 +11,34 @@ import nftFarmsConfig from 'config/constants/nftFarms'
 export const fetchFarmUserAllowances = async (account: string, farmsToFetch: SerializedNftFarmConfig[]) => {
   const masterChefAddress = getRabbitCoinNftStakeAddress()
 
-  const calls: { address: string, name: string, params: any[] }[] = []
+  const calls: { address: string; name: string; params: any[] }[] = []
 
   for (const farm of farmsToFetch) {
-    
-      const nftContractAddress = getAddress(farm.nftAddresses)
-      const smartNftPoolAddress = farm.contractAddresses ? getAddress(farm.contractAddresses) : null
-      calls.push({ address: nftContractAddress, name: 'isApprovedForAll', params: [account, smartNftPoolAddress ?? masterChefAddress] })
+    const nftContractAddress = getAddress(farm.nftAddresses)
+    const smartNftPoolAddress = farm.contractAddresses ? getAddress(farm.contractAddresses) : null
+    calls.push({
+      address: nftContractAddress,
+      name: 'isApprovedForAll',
+      params: [account, smartNftPoolAddress ?? masterChefAddress],
+    })
 
-      if(farm?.supportedCollectionPids && farm.supportedCollectionPids.length > 0) {
-        for (const pid of farm.supportedCollectionPids) {
-          const supportedPool = nftFarmsConfig.find(farm => farm.pid === pid);
-          const supportedNftContractAddress = getAddress(supportedPool.nftAddresses)
-          calls.push({ address: supportedNftContractAddress, name: 'isApprovedForAll', params: [account, smartNftPoolAddress] })
-        }
+    if (farm?.supportedCollectionPids && farm.supportedCollectionPids.length > 0) {
+      for (const pid of farm.supportedCollectionPids) {
+        const supportedPool = nftFarmsConfig.find((farm) => farm.pid === pid)
+        const supportedNftContractAddress = getAddress(supportedPool.nftAddresses)
+        calls.push({
+          address: supportedNftContractAddress,
+          name: 'isApprovedForAll',
+          params: [account, smartNftPoolAddress],
+        })
       }
-    
+    }
   }
 
   const rawAllowances = await multicallPolygonv1<boolean[]>(erc721ABI, calls)
   const parsedNftAllowances: boolean[][] = []
   let currentIndex = 0
   for (const farm of farmsToFetch) {
-
     const allowancesForPool: boolean[] = []
 
     // Allowance of main collection
@@ -48,12 +53,11 @@ export const fetchFarmUserAllowances = async (account: string, farmsToFetch: Ser
     }
     parsedNftAllowances.push(allowancesForPool)
   }
-  
+
   return parsedNftAllowances
 }
 // Staked Nft Balance
 export const fetchFarmUserTokenBalances = async (account: string, farmsToFetch: SerializedNftFarmConfig[]) => {
-  
   const calls = farmsToFetch.map((farm) => {
     const nftContractAddress = getAddress(farm.nftAddresses)
     return {
@@ -94,7 +98,7 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
   const [rawStakedBalances_1, rawStakedBalances_2] = await Promise.all([
     multicallPolygonv1(rabbitCoinNftStakeABI, rabbitCoinNftsCalls),
     multicallPolygonv1(smartNftStakeABI, smartNftPoolCalls),
-  ]);
+  ])
 
   const rawStakedBalances = [...rawStakedBalances_1, ...rawStakedBalances_2]
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
@@ -108,7 +112,7 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: Seria
   // Only farms in nftStakeContract(not smartchef)
   const rabbitCoinFarms = farmsToFetch.filter((f) => !f.contractAddresses)
   const smartNftFarms = farmsToFetch.filter((f) => f.contractAddresses)
-  
+
   const rabbitCoinNftsCalls = rabbitCoinFarms.map((farm) => {
     return {
       address: masterChefAddress,

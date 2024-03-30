@@ -95,7 +95,7 @@ const MaxTokenEntry = ({ maxToken, ifo, poolId }: { maxToken: number; ifo: Minti
 
 const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ isEligible, poolId, ifo, publicIfoData, walletIfoData }) => {
   const { t } = useTranslation()
-  const { status, currencyPriceInUSD, balance, totalSupply, } = publicIfoData
+  const { status, currencyPriceInUSD, balance, totalSupply } = publicIfoData
   const poolCharacteristic = publicIfoData[poolId]
   const walletCharacteristic = walletIfoData[poolId]
 
@@ -133,8 +133,8 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ isEligible, poolId, ifo
     .plus(poolCharacteristic.raisingAmountPool)
     .div(poolCharacteristic.offeringAmountPool)
     .div(poolCharacteristic.raisingAmountPool.div(poolCharacteristic.offeringAmountPool))
-  
-    /*
+
+  /*
     const pricePerTokenWithFee = `~$${formatNumber(
     pricePerTokenWithFeeToOriginalRatio.times(ifo.tokenOfferingPrice).toNumber(),
     0,
@@ -148,16 +148,13 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ isEligible, poolId, ifo
 
   /* Format end */
   const renderBasedOnIfoStatus = () => {
-    
     return (
       <>
         {(poolId === PoolIds.poolBasic || ifo.isActive) && tokenEntry}
         <FooterEntry label={t('Total Minted:')} value={totalSupply} />
         <FooterEntry label={t('Your balance:')} value={balance} />
-
       </>
     )
-   
   }
 
   return <Box paddingTop="24px">{renderBasedOnIfoStatus()}</Box>

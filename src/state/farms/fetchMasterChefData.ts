@@ -39,7 +39,7 @@ export const fetchMasterChefData = async (farms: SerializedFarmConfig[]): Promis
     .flat()
 
   const masterChefMultiCallResult = await multicallPolygonv2(masterchefABI, masterChefAggregatedCalls)
-  
+
   const masterChefChunkedResultRaw = chunk(masterChefMultiCallResult, chunkSize)
   let masterChefChunkedResultCounter = 0
   return masterChefCalls.map((masterChefCall) => {

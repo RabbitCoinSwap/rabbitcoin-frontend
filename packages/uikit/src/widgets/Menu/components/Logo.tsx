@@ -2,7 +2,13 @@ import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import Flex from "../../../components/Box/Flex";
 import MenuButton from "./MenuButton";
-import { LogoIcon, LogoWithTextIcon, HamburgerIcon, HamburgerCloseIcon, LogoIcon as LogoWithText } from "../../../components/Svg";
+import {
+  LogoIcon,
+  LogoWithTextIcon,
+  HamburgerIcon,
+  HamburgerCloseIcon,
+  LogoIcon as LogoWithText,
+} from "../../../components/Svg";
 import { MenuContext } from "../context";
 
 interface Props {

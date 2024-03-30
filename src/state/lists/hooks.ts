@@ -8,7 +8,6 @@ import DEFAULT_TOKEN_LIST from '../../config/constants/tokenLists/rabbitcoin-def
 import { UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../config/constants/tokenLists/rabbitcoin-unsupported.tokenlist.json'
 
-
 // CAUTION: This declaration was inside @pancakeswap/sdk
 // TODO: Make customized clone of @pancakeswap/sdk
 declare enum ChainId {
@@ -64,7 +63,7 @@ const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MAINNET]: {},
   [ChainId.TESTNET]: {},
   137: {}, // CAUTION: No need after clone @pancakeswap/sdk
-  80001: {} // CAUTION: No need after clone @pancakeswap/sdk
+  80001: {}, // CAUTION: No need after clone @pancakeswap/sdk
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =

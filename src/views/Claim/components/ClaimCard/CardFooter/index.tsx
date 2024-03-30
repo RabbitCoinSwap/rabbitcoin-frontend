@@ -26,7 +26,9 @@ const Footer: React.FC<FooterProps> = ({ claim, account, defaultExpanded }) => {
   const { t } = useTranslation()
   const [isExpanded, setIsExpanded] = useState(defaultExpanded || false)
 
-  const manualTooltipText = t('This reward pool operates on a fixed structure, maintaining consistent rewards and steadfast rules. Enjoy reliable benefits with each claim you make.')
+  const manualTooltipText = t(
+    'This reward pool operates on a fixed structure, maintaining consistent rewards and steadfast rules. Enjoy reliable benefits with each claim you make.',
+  )
   const autoTooltipText = t(
     'This reward pool is a dynamic entity, subject to periodic changes in rewards and governing rules. Please stay updated to maximize your benefits.',
   )

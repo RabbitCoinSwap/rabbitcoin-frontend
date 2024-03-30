@@ -32,8 +32,7 @@ export const useGetLowestPriceFromNft = (nft: NftToken): LowestNftPrice => {
   //const isPancakeBunny = nft.collectionAddress?.toLowerCase() === pancakeBunniesAddress.toLowerCase()
 
   //const bunnyIdAttr = isPancakeBunny && getBunnyIdFromNft(nft)
-  const bunnyIdAttr= ""
-  
+  const bunnyIdAttr = ''
 
   return useGetLowestPriceFromBunnyId(bunnyIdAttr)
 }

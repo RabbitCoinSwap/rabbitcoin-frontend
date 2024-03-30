@@ -68,8 +68,8 @@ const useGetPublicIfoData = (ifo: Minting): PublicIfoData => {
     totalSupply: 0,
     cost: 0,
     holderDiscountPercentage: 0,
-    partialMaxSupply: 0, 
-    isLastPrice: true, 
+    partialMaxSupply: 0,
+    isLastPrice: true,
     nextPrice: 0,
     lastPrice,
   })
@@ -78,74 +78,63 @@ const useGetPublicIfoData = (ifo: Minting): PublicIfoData => {
 
   const fetchIfoData = useCallback(
     async (currentBlock: number, account: string | undefined) => {
-  
-      const [
-        totalSupply,
-        maxSupply,
-        isSaleActive,
-        cost,
-        balance,
-        priceDetails,
-        startBlock,
-        holderDiscountPercentage,
-      ] = await multicallPolygonv1(
-        abi,
-        [
-          {
-            address,
-            name: 'totalSupply',
-          },
-          {
-            address,
-            name: 'maxSupply',
-          },
-          {
-            address,
-            name: 'isSaleActive',
-          },
-          {
-            address,
-            name: 'cost',
-          },
-          {
-            address,
-            name: 'balanceOf',
-            params: [account ? account : '0x514910771af9ca656af840dff83e8264ecf986ca']
-          },
-          version === 3.1 && {
-            address,
-            name: 'getPriceDetails',
-          },
-          version === 3.1 && {
-            address,
-            name: 'startBlock',
-          },
-          version === 3.1 && {
-            address,
-            name: 'holderDiscountPercentage',
-          },
-        ].filter(Boolean),
-      )
-        
-      
+      const [totalSupply, maxSupply, isSaleActive, cost, balance, priceDetails, startBlock, holderDiscountPercentage] =
+        await multicallPolygonv1(
+          abi,
+          [
+            {
+              address,
+              name: 'totalSupply',
+            },
+            {
+              address,
+              name: 'maxSupply',
+            },
+            {
+              address,
+              name: 'isSaleActive',
+            },
+            {
+              address,
+              name: 'cost',
+            },
+            {
+              address,
+              name: 'balanceOf',
+              params: [account ? account : '0x514910771af9ca656af840dff83e8264ecf986ca'],
+            },
+            version === 3.1 && {
+              address,
+              name: 'getPriceDetails',
+            },
+            version === 3.1 && {
+              address,
+              name: 'startBlock',
+            },
+            version === 3.1 && {
+              address,
+              name: 'holderDiscountPercentage',
+            },
+          ].filter(Boolean),
+        )
 
       const priceDetailsFormatted = formatPriceDetails(priceDetails)
 
       const startBlockNum = startBlock ? startBlock[0].toNumber() : 0
-      const totalSupplyNum =  totalSupply ? totalSupply[0].toNumber() : 0
-      const maxSupplyNum =  maxSupply ? maxSupply[0].toNumber() : 0
+      const totalSupplyNum = totalSupply ? totalSupply[0].toNumber() : 0
+      const maxSupplyNum = maxSupply ? maxSupply[0].toNumber() : 0
       const formattedCost = cost ? parseFloat(formatEther(cost[0])) : 0
       const balanceNum = balance ? balance[0].toNumber() : 0
       const holderDiscountPercentageNum = holderDiscountPercentage ? holderDiscountPercentage[0].toNumber() : 0
-      
+
       const status = getStatus(currentBlock, startBlockNum, totalSupplyNum, maxSupplyNum, isSaleActive)
 
-      const isDynamicPrice = (priceDetailsFormatted.partialMaxSupply && priceDetailsFormatted.nextPrice);
+      const isDynamicPrice = priceDetailsFormatted.partialMaxSupply && priceDetailsFormatted.nextPrice
 
       //Calculate Progress Percantage
-      const progress = isDynamicPrice ? (totalSupplyNum * 100) / priceDetailsFormatted.partialMaxSupply
-                                      : (totalSupplyNum * 100) / maxSupplyNum
-
+      const progress = isDynamicPrice
+        ? (totalSupplyNum * 100) / priceDetailsFormatted.partialMaxSupply
+        : (totalSupplyNum * 100) / maxSupplyNum
 
       setState((prev) => ({
         ...prev,

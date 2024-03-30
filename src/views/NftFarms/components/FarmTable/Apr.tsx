@@ -65,7 +65,7 @@ const Apr: React.FC<AprProps> = ({
         </AprWrapper>
       )}
     </Container>
-  ) 
+  )
 }
 
 export default Apr

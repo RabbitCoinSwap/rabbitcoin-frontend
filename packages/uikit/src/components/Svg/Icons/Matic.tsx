@@ -3,7 +3,7 @@ import Svg from "../Svg";
 import { SvgProps } from "../types";
 
 const Icon: React.FC<SvgProps> = (props) => {
-  return (    
+  return (
     <Svg viewBox="0 0 100 100" {...props}>
       <circle cx="10" cy="10" r="48" fill="#0000" />
       <path

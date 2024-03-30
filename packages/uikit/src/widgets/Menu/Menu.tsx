@@ -10,7 +10,14 @@ import { SubMenuItems } from "../../components/SubMenuItems";
 import { useMatchBreakpoints } from "../../hooks";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
-import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE, SIDEBAR_WIDTH_FULL, SIDEBAR_WIDTH_REDUCED } from "./config";
+import {
+  MENU_HEIGHT,
+  MOBILE_MENU_HEIGHT,
+  TOP_BANNER_HEIGHT,
+  TOP_BANNER_HEIGHT_MOBILE,
+  SIDEBAR_WIDTH_FULL,
+  SIDEBAR_WIDTH_REDUCED,
+} from "./config";
 import { NavProps } from "./types";
 import LangSelector from "../../components/LangSelector/LangSelector";
 import { MenuContext } from "./context";
@@ -141,16 +148,15 @@ const Menu: React.FC<NavProps> = ({
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
             <Flex>
-            <Logo 
-                isDark={isDark} 
-                href={homeLink?.href ?? "/"} 
+              <Logo
+                isDark={isDark}
+                href={homeLink?.href ?? "/"}
                 isPushed={isPushed}
                 togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
               />
               {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
             </Flex>
             <Flex alignItems="center" height="100%">
-              
               {!isMobile && (
                 <Box mr="12px">
                   <CakePrice cakePriceUsd={cakePriceUsd} />
@@ -200,7 +206,7 @@ const Menu: React.FC<NavProps> = ({
             cakePriceUsd={cakePriceUsd}
             pushNav={setIsPushed}
             links={drawerLinks}
-          /> 
+          />
           <Inner isPushed={isPushed} showMenu={showMenu}>
             {children}
             <Footer

@@ -20,7 +20,7 @@ export const estimateGas = async (
   if (!contract[methodName]) {
     throw new Error(`Method ${methodName} doesn't exist on ${contract.address}`)
   }
-  const rawGasEstimation = await contract.estimateGas[methodName](...methodArgs, {...overrides,})
+  const rawGasEstimation = await contract.estimateGas[methodName](...methodArgs, { ...overrides })
   // By convention, BigNumber values are multiplied by 1000 to avoid dealing with real numbers
   const gasEstimation = rawGasEstimation
     .mul(BigNumber.from(10000).add(BigNumber.from(gasMarginPer10000)))

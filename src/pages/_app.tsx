@@ -63,7 +63,10 @@ function MyApp(props: AppProps) {
           content="Experience the future of decentralized finance with RabbitCoin DEX. Stake, farm, or trade with unparalleled ease and flexibility. Join us now and revolutionize your crypto journey!. Unlock passive income potential with RabbitCoin!"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Experience the future of decentralized finance with RabbitCoin DEX. Stake, farm, or trade with unparalleled ease and flexibility. Join us now and revolutionize your crypto journey!. Unlock passive income potential with RabbitCoin!" />
+        <meta
+          name="twitter:title"
+          content="Experience the future of decentralized finance with RabbitCoin DEX. Stake, farm, or trade with unparalleled ease and flexibility. Join us now and revolutionize your crypto journey!. Unlock passive income potential with RabbitCoin!"
+        />
         <title>RabbitCoin</title>
       </Head>
       <Providers store={store}>

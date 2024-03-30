@@ -51,22 +51,20 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const dispatch = useAppDispatch()
 
   const useDidMountEffect = (func, deps) => {
-    const didMount = useRef(false);
+    const didMount = useRef(false)
 
     useEffect(() => {
-      if (didMount.current) func();
-      else didMount.current = true;
+      if (didMount.current) func()
+      else didMount.current = true
     }, deps)
-
   }
 
-  const alternativeCollectionPool = collectionOption ?? 0 > 0 ? nftFarmsConfig.find(farm => farm.pid === collectionOption) : null
+  const alternativeCollectionPool =
+    collectionOption ?? 0 > 0 ? nftFarmsConfig.find((farm) => farm.pid === collectionOption) : null
   const nftAddress = getAddress(alternativeCollectionPool ? alternativeCollectionPool.nftAddresses : nftAddresses)
   const nftContract = useErc721CollectionContract(nftAddress)
 
-
   const { onApprove } = useApproveNftFarm(nftContract, smartNftPoolAddress)
-
 
   const handleApprove = useCallback(async () => {
     const receipt = await fetchWithCatchTxError(() => {
@@ -75,21 +73,18 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     if (receipt?.status) {
       toastSuccess(t('Contract Enabled'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
-      
+
       if (smartNftPoolAddress) {
         // Open stake panel automatically
         onPresentDeposit()
       }
-      
     }
   }, [onApprove, dispatch, account, pid, t, toastSuccess, fetchWithCatchTxError])
 
-
   useDidMountEffect(() => {
-    if (collectionOption == null)
-      return
+    if (collectionOption == null) return
 
-    if (task == "approve") {
+    if (task == 'approve') {
       handleApprove()
     } else {
       onPresentDeposit()
@@ -97,11 +92,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     setCollectionOption(null)
   }, [collectionOption, task])
 
-
-
   const handleCollectionChange = useCallback(
     (collectionId: number, task: string) => {
-      const optionId = (collectionId > 4 && collectionId !== 14) ? 0 : collectionId
+      const optionId = collectionId > 4 && collectionId !== 14 ? 0 : collectionId
       setTask(task)
       setCollectionOption(optionId)
     },
@@ -109,30 +102,27 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   )
 
   const [onPresentCollectionModal] = useModal(
-    <CollectionSelectModal
-      onCollectionSelect={handleCollectionChange}
-      pid={pid}
-    />,
+    <CollectionSelectModal onCollectionSelect={handleCollectionChange} pid={pid} />,
   )
 
   // TODO: Duplicate Use Codes
   const { onStake } = useStakeFarms(pid)
   const handleStake = async (selectedNftList: { collectionAddress: string; tokenId: number }[]) => {
     const receipt = await fetchWithCatchTxError(() => {
-      const tokenIds = selectedNftList.map((selectedNft) => selectedNft.tokenId);
-      const collectionAddresses = selectedNftList.map((selectedNft) => selectedNft.collectionAddress);
-      return onStake(collectionAddresses, tokenIds);
-    });
+      const tokenIds = selectedNftList.map((selectedNft) => selectedNft.tokenId)
+      const collectionAddresses = selectedNftList.map((selectedNft) => selectedNft.collectionAddress)
+      return onStake(collectionAddresses, tokenIds)
+    })
     if (receipt?.status) {
       toastSuccess(
         `${t('Staked')}!`,
         <ToastDescriptionWithTx txHash={receipt.transactionHash}>
           {t('Your NFTs have been staked in the pool')}
-        </ToastDescriptionWithTx>
-      );
-      dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }));
+        </ToastDescriptionWithTx>,
+      )
+      dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
     }
-  };
+  }
   const [onPresentDeposit] = useModal(
     <DepositModal
       max={tokenBalance}
@@ -148,7 +138,6 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       pid={collectionOption ? collectionOption : pid}
     />,
   )
-  
 
   // =====/Duplicate Use Codes=====
 
@@ -169,29 +158,41 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         pendingTx={pendingTx}
       />
     ) : (
-      <Button mt="8px" 
-              width="100%" 
-              isLoading={pendingTx} 
-              endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
-              onClick={smartNftPoolAddress ? onPresentCollectionModal : handleApprove}
-        >
-        {smartNftPoolAddress ? pendingTx ? task === "approve" ? "Confirming" : "Staking" : t('Click to Stake Now') : t('Enable Contract')}
+      <Button
+        mt="8px"
+        width="100%"
+        isLoading={pendingTx}
+        endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+        onClick={smartNftPoolAddress ? onPresentCollectionModal : handleApprove}
+      >
+        {smartNftPoolAddress
+          ? pendingTx
+            ? task === 'approve'
+              ? 'Confirming'
+              : 'Staking'
+            : t('Click to Stake Now')
+          : t('Enable Contract')}
       </Button>
     )
   }
-
 
   return (
     <Action>
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          {sideRewards.length == 0 ? "RABBIT" : "REWARDS"}
+          {sideRewards.length == 0 ? 'RABBIT' : 'REWARDS'}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}
         </Text>
       </Flex>
-      <HarvestAction earnings={earnings} pid={pid} earnLabel={earnLabel} sideRewards={sideRewards} earningToken={farm.earningToken} />
+      <HarvestAction
+        earnings={earnings}
+        pid={pid}
+        earnLabel={earnLabel}
+        sideRewards={sideRewards}
+        earningToken={farm.earningToken}
+      />
       <Flex>
         {smartNftPoolAddress ? (
           <Text bold textTransform="uppercase" color="secondary" fontSize="12px">

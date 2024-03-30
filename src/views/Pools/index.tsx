@@ -108,8 +108,7 @@ const Pools: React.FC = () => {
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
   const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
-  
-  
+
   const stakedOnlyFinishedPools = useMemo(
     () =>
       finishedPools.filter((pool) => {
@@ -120,7 +119,6 @@ const Pools: React.FC = () => {
       }),
     [finishedPools, vaultPools],
   )
-
 
   const stakedOnlyOpenPools = useMemo(
     () =>
@@ -335,7 +333,7 @@ const Pools: React.FC = () => {
             <Loading />
           </Flex>
         )}
-        
+
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={observerRef} />
         <Image

@@ -29,7 +29,6 @@ import HelpButton from './components/HelpButton'
 import claimConfig from 'config/constants/claim'
 import { useClaimInfo } from './hooks/useClaimInfo'
 
-
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
 `
@@ -41,17 +40,17 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { observerRef, isIntersecting } = useIntersectionObserver()
 
-
-  const claimData  = useClaimInfo()
+  const claimData = useClaimInfo()
 
   const cardLayout = (
     <CardLayout>
-      {claimConfig.map((claim, index) =>
-        <ClaimCard key={index} claimId={index} claim={claim} claimData={claimData} account={account} />
-      ).reverse()}
+      {claimConfig
+        .map((claim, index) => (
+          <ClaimCard key={index} claimId={index} claim={claim} claimData={claimData} account={account} />
+        ))
+        .reverse()}
     </CardLayout>
   )
-
 
   return (
     <>
@@ -71,7 +70,6 @@ const Pools: React.FC = () => {
         </Flex>
       </PageHeader>
       <Page>
-        
         {cardLayout}
         <div ref={observerRef} />
         <Image

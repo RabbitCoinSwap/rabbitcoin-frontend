@@ -17,8 +17,6 @@ const nonMasterPools = poolsConfig.filter((pool) => pool.sousId !== 0)
 // Only Pool Version Masterchef
 const rabbitCoinPoolContract = getRabbitCoinPoolContract()
 
-
-
 /// Gets allowance amount for manual pool
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((pool) => ({
@@ -27,10 +25,8 @@ export const fetchPoolsAllowance = async (account) => {
     params: [account, getAddress(pool.contractAddress)],
   }))
 
-  
-
   const allowances = await multicallPolygonv1(erc20ABI, calls)
-  
+
   return nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},
@@ -45,10 +41,8 @@ export const fetchUserBalances = async (account) => {
     params: [account],
   }))
 
-  
-
   const tokenBalancesRaw = await multicallPolygonv1(erc20ABI, calls)
-  
+
   const tokenBalances = nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
@@ -102,7 +96,6 @@ export const fetchUserPendingRewards = async (account) => {
     params: [account],
   }))
 
-  
   const res = await multicallPolygonv1(sousChefABI, calls)
   const pendingRewards = nonMasterPools.reduce(
     (acc, pool, index) => ({

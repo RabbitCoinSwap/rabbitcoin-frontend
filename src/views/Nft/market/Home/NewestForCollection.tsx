@@ -1,15 +1,21 @@
-
 import { Heading, Flex, Button, Grid, ChevronRightIcon } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { NextLinkFromReactRouter } from 'components/NextLink'
 import GridPlaceholder from '../components/GridPlaceholder'
 import CollectibleLinkCard from '../components/CollectibleCard/CollectibleLinkCard'
 
-
-const NewestForCollection = ({mintingData}) => {
+const NewestForCollection = ({ mintingData }) => {
   const { t } = useTranslation()
   let { showCase, address, name, openSeaUrl } = mintingData
-  const nfts = showCase ? showCase.map((item, index) => ({ 'tokenId': item.tokenId, 'collectionAddress': address, 'name': `#${item.tokenId}`, 'collectionName': name, 'image': {'thumbnail': item.image} })) : [];
+  const nfts = showCase
+    ? showCase.map((item, index) => ({
+        tokenId: item.tokenId,
+        collectionAddress: address,
+        name: `#${item.tokenId}`,
+        collectionName: name,
+        image: { thumbnail: item.image },
+      }))
+    : []
 
   return (
     <div>
@@ -34,12 +40,7 @@ const NewestForCollection = ({mintingData}) => {
         >
           {nfts.map((nft, index) => {
             return (
-              <CollectibleLinkCard
-                data-test="showcase-nft-card"
-                key={nft.tokenId}
-                nft={nft}
-                directLink={openSeaUrl}
-              />
+              <CollectibleLinkCard data-test="showcase-nft-card" key={nft.tokenId} nft={nft} directLink={openSeaUrl} />
             )
           })}
         </Grid>

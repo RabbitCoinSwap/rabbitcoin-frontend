@@ -67,7 +67,8 @@ export const getStaticProps: GetStaticProps = async () => {
       if (
         totalTx?.rabbitCoinFactory?.totalTransactions &&
         totalTx30DaysAgo?.rabbitCoinFactory?.totalTransactions &&
-        parseInt(totalTx.rabbitCoinFactory.totalTransactions) > parseInt(totalTx30DaysAgo.rabbitCoinFactory.totalTransactions)
+        parseInt(totalTx.rabbitCoinFactory.totalTransactions) >
+          parseInt(totalTx30DaysAgo.rabbitCoinFactory.totalTransactions)
       ) {
         results.totalTx30Days =
           parseInt(totalTx.rabbitCoinFactory.totalTransactions) -

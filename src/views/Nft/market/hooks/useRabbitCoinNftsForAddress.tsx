@@ -1,7 +1,13 @@
 import { useMemo } from 'react'
 import isEmpty from 'lodash/isEmpty'
 import { useGetCollections } from 'state/nftMarket/hooks'
-import { ApiCollections, ApiResponseSpecificToken, NftLocation, NftToken, TokenIdWithCollectionAddress } from 'state/nftMarket/types'
+import {
+  ApiCollections,
+  ApiResponseSpecificToken,
+  NftLocation,
+  NftToken,
+  TokenIdWithCollectionAddress,
+} from 'state/nftMarket/types'
 import { Profile } from 'state/types'
 import { isAddress } from 'utils'
 import useSWR from 'swr'
@@ -47,18 +53,16 @@ const useNftsForAddress = (account: string, profile: Profile, isProfileFetching:
 
 export default useNftsForAddress
 
-
 const getCompleteAccountNftData = async (
   account: string,
   collections: ApiCollections,
   profileNftWithCollectionAddress?: TokenIdWithCollectionAddress,
 ): Promise<NftToken[]> => {
   const walletNftIdsWithCollectionAddress = await fetchWalletTokenIdsForCollections(account, collections)
-  
+
   if (profileNftWithCollectionAddress?.tokenId) {
     walletNftIdsWithCollectionAddress.unshift(profileNftWithCollectionAddress)
   }
-  
 
   const walletTokenIds = walletNftIdsWithCollectionAddress
     .filter((walletNft) => {
@@ -67,23 +71,19 @@ const getCompleteAccountNftData = async (
     })
     .map((nft) => nft.tokenId)
 
-  
-
   const metadataForAllNfts = await getNftsFromDifferentCollectionsApi([
     //...forSaleNftIds,
     ...walletNftIdsWithCollectionAddress,
   ])
 
-
   const completeNftData = combineNftMarketAndMetadata(
     metadataForAllNfts,
-    [],//marketDataForSaleNfts,
-    [],//walletNftsWithMarketData,
+    [], //marketDataForSaleNfts,
+    [], //walletNftsWithMarketData,
     walletTokenIds,
-    [],//tokenIdsForSale,
+    [], //tokenIdsForSale,
     profileNftWithCollectionAddress?.tokenId,
   )
-
 
   return completeNftData
 }
@@ -121,7 +121,7 @@ export const fetchWalletTokenIdsForCollections = async (
     })
     .flat()
 
-    let tokenIdResultRaw
+  let tokenIdResultRaw
   try {
     tokenIdResultRaw = await multicallPolygonv1(rabbitCoinNftAbi, tokenIdCalls)
   } catch (error) {
@@ -136,22 +136,20 @@ export const fetchWalletTokenIdsForCollections = async (
   const walletNfts = tokenIdResult.reduce((acc, tokenIdBn, index) => {
     if (tokenIdBn) {
       const { address: collectionAddress } = tokenIdCalls[index]
-      tokenIdBn.forEach((tokenId)=>{
-        acc.push({ tokenId: tokenId.toString(), collectionAddress, nftLocation, symbol: collections[index]["symbol"] })
+      tokenIdBn.forEach((tokenId) => {
+        acc.push({ tokenId: tokenId.toString(), collectionAddress, nftLocation, symbol: collections[index]['symbol'] })
       })
-      
     }
-  
+
     return acc
   }, [])
-  
+
   return walletNfts
 }
 
 export const getNftsFromDifferentCollectionsApi = async (
   from: { collectionAddress: string; tokenId: string }[],
 ): Promise<NftToken[]> => {
-
   const imageCalls = from.map((token) => {
     return {
       address: token.collectionAddress,
@@ -161,47 +159,45 @@ export const getNftsFromDifferentCollectionsApi = async (
   })
 
   const rawTokenURIs = await multicallPolygonv1(erc721ABI, imageCalls)
-  
-  const items = await Promise.all(from.map(async (token, index) => {
 
-    let meta = null;
-    try {
-      //@ts-ignore
-      const tokenURI = rawTokenURIs[index][0];
-      meta = await axios.get(tokenURI)
-      return {
-        tokenId: token.tokenId,
-        name: meta.data.name,
+  const items = await Promise.all(
+    from.map(async (token, index) => {
+      let meta = null
+      try {
         //@ts-ignore
-        collectionName: token.symbol,
-        collectionAddress: token.collectionAddress,
-        description: meta.data.description,
-        attributes: meta.data.attributes,
-        image: {
-          original: meta.data.image.replace("ipfs://", `${IPFS_GATEWAY}/`),
-          thumbnail: meta.data.image.replace("ipfs://", `${IPFS_GATEWAY}/`),
+        const tokenURI = rawTokenURIs[index][0]
+        meta = await axios.get(tokenURI)
+        return {
+          tokenId: token.tokenId,
+          name: meta.data.name,
+          //@ts-ignore
+          collectionName: token.symbol,
+          collectionAddress: token.collectionAddress,
+          description: meta.data.description,
+          attributes: meta.data.attributes,
+          image: {
+            original: meta.data.image.replace('ipfs://', `${IPFS_GATEWAY}/`),
+            thumbnail: meta.data.image.replace('ipfs://', `${IPFS_GATEWAY}/`),
+          },
+        }
+      } catch (error) {
+        console.log('IPFS link is broken!', error)
+        return {
+          tokenId: token.tokenId,
+          name: 'Name data cannot be fetched',
+          //@ts-ignore
+          collectionName: token.symbol,
+          collectionAddress: token.collectionAddress,
+          description: 'Description data cannot be fetched',
+          attributes: 'Attribute data cannot be fetched',
+          image: {
+            original: 'images/nfts/no-profile-md.png',
+            thumbnail: 'images/nfts/no-profile-md.png',
+          },
         }
       }
-   } catch (error) {
-      console.log('IPFS link is broken!', error);
-      return {
-        tokenId: token.tokenId,
-        name: "Name data cannot be fetched",
-        //@ts-ignore
-        collectionName: token.symbol,
-        collectionAddress: token.collectionAddress,
-        description: "Description data cannot be fetched",
-        attributes: "Attribute data cannot be fetched",
-        image: {
-          original: 'images/nfts/no-profile-md.png',
-          thumbnail: 'images/nfts/no-profile-md.png',
-        }
-      }
-   }
+    }),
+  )
 
-
-
-  }))
-  
   return items
 }

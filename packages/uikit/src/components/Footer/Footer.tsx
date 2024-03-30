@@ -101,7 +101,6 @@ const MenuItem: React.FC<FooterProps> = ({
               {buyCakeLabel}
             </Button>
           </Flex>
-          
         </StyledToolsContainer>
       </Flex>
     </StyledFooter>

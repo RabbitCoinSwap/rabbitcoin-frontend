@@ -5,7 +5,7 @@ import Text from "../../../components/Text/Text";
 import Flex from "../../../components/Box/Flex";
 import Button from "../../../components/Button/Button";
 
-const Icons = (IconModule as unknown) as { [key: string]: React.FC<SvgProps> };
+const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 const { MoonIcon, SunIcon } = Icons;
 
 interface Props {

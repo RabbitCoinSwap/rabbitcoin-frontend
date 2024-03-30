@@ -11,12 +11,12 @@ import styled from 'styled-components'
 import { useStakedNfts } from 'views/Nft/market/hooks/useStakedNfts'
 
 const NftBox = styled(RoundedImage)`
-    border-radius: 6px;
+  border-radius: 6px;
 `
 
 const SelectedNftBox = styled(RoundedImage)`
-    border-radius: 6px;
-    box-shadow: 0 0 10px 4px #e91e63;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 4px #e91e63;
 `
 
 interface WithdrawModalProps {
@@ -29,7 +29,7 @@ interface WithdrawModalProps {
 
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '', pid }) => {
   const [pendingTx, setPendingTx] = useState(false)
-  const [selectedNftList, setSelectedNftList] = useState<{ collectionAddress: string; tokenId: number }[]>([]);
+  const [selectedNftList, setSelectedNftList] = useState<{ collectionAddress: string; tokenId: number }[]>([])
   const { t } = useTranslation()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
@@ -38,15 +38,13 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const { nfts, isLoading, error, revalidateNfts } = useStakedNfts(pid)
   const handleRefresh = () => {
     // Call the revalidateNfts function to trigger SWR to revalidate the data
-    revalidateNfts();
-  };
+    revalidateNfts()
+  }
 
   const nftList = nfts.map((nft) => {
     const isSelected = selectedNftList.some(
-      (selectedNft) =>
-        selectedNft.collectionAddress === nft.collectionAddress &&
-        selectedNft.tokenId === nft.tokenId
-    );
+      (selectedNft) => selectedNft.collectionAddress === nft.collectionAddress && selectedNft.tokenId === nft.tokenId,
+    )
 
     return isSelected ? (
       <SelectedNftBox
@@ -66,31 +64,30 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         width={68}
         m="8px"
       />
-    );
-  });
+    )
+  })
 
-  const handleSelectNft = useCallback((collectionAddress: string, tokenId: number) => {
-    const isSelected = selectedNftList.some(
-      (selectedNft) =>
-        selectedNft.collectionAddress === collectionAddress && selectedNft.tokenId === tokenId
-    );
+  const handleSelectNft = useCallback(
+    (collectionAddress: string, tokenId: number) => {
+      const isSelected = selectedNftList.some(
+        (selectedNft) => selectedNft.collectionAddress === collectionAddress && selectedNft.tokenId === tokenId,
+      )
 
-    if (isSelected) {
-      setSelectedNftList((prevList) =>
-        prevList.filter(
-          (selectedNft) =>
-            selectedNft.collectionAddress !== collectionAddress || selectedNft.tokenId !== tokenId
+      if (isSelected) {
+        setSelectedNftList((prevList) =>
+          prevList.filter(
+            (selectedNft) => selectedNft.collectionAddress !== collectionAddress || selectedNft.tokenId !== tokenId,
+          ),
         )
-      );
-    } else {
-      setSelectedNftList((prevList) => [...prevList, { collectionAddress, tokenId }]);
-    }
-  }, [selectedNftList, setSelectedNftList]);
-
+      } else {
+        setSelectedNftList((prevList) => [...prevList, { collectionAddress, tokenId }])
+      }
+    },
+    [selectedNftList, setSelectedNftList],
+  )
 
   return (
     <Modal title={t('Select NFTs to UnStake')} onDismiss={onDismiss}>
-
       {nftList.length === 0 && !isLoading && !error ? (
         <Flex p="24px" flexDirection="column" alignItems="center">
           <NoNftsImage />
@@ -107,10 +104,10 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           <Button variant="light" onClick={handleRefresh} width="100%">
             {t('Retry')}
           </Button>
-          <Text pt="8px" fontSize='15px'>
+          <Text pt="8px" fontSize="15px">
             {t('There was a temporary network issue while fetching NFTs.')}
           </Text>
-          <Text pt="8px" fontSize='15px'>
+          <Text pt="8px" fontSize="15px">
             {t('Please wait a few seconds and press the retry button.')}
           </Text>
         </Flex>
@@ -121,16 +118,13 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         </Flex>
       )}
 
-
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
           {t('Cancel')}
         </Button>
         <Button
           width="100%"
-          disabled={
-            pendingTx || selectedNftList.length == 0
-          }
+          disabled={pendingTx || selectedNftList.length == 0}
           onClick={async () => {
             setPendingTx(true)
             await onConfirm(selectedNftList)
@@ -141,7 +135,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           {pendingTx ? t('Confirming') : t('Confirm')}
         </Button>
       </ModalActions>
-
     </Modal>
   )
 }

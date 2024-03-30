@@ -31,17 +31,16 @@ const Container = styled.div`
 `
 
 const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
-  const displayLiquidity =
-    liquidity ? (
-      <Balance small value={liquidity.toNumber()} decimals={0} />
-    ) : (
-      <Skeleton width={60} />
-    )
-  const { t } = useTranslation()
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('Total amount of NFT staked in this pool'),
-    { placement: 'top-end', tooltipOffset: [20, 10] },
+  const displayLiquidity = liquidity ? (
+    <Balance small value={liquidity.toNumber()} decimals={0} />
+  ) : (
+    <Skeleton width={60} />
   )
+  const { t } = useTranslation()
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('Total amount of NFT staked in this pool'), {
+    placement: 'top-end',
+    tooltipOffset: [20, 10],
+  })
 
   return (
     <Container>

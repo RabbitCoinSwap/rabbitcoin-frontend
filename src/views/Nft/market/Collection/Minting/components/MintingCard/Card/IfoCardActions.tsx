@@ -44,10 +44,9 @@ const IfoCardActions: React.FC<Props> = ({
     return <ConnectWalletButton width="100%" />
   }
 
-
-  return <ClaimButton poolId={poolId} ifoVersion={ifo.version} publicIfoData={publicIfoData} walletIfoData={walletIfoData} />
-  
-
+  return (
+    <ClaimButton poolId={poolId} ifoVersion={ifo.version} publicIfoData={publicIfoData} walletIfoData={walletIfoData} />
+  )
 }
 
 export default IfoCardActions

@@ -38,16 +38,14 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, earnLabe
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">
       <Flex flexDirection="column" alignItems="flex-start">
-      {sideRewards.length > 0 ? (
-        <Flex justifyContent="space-between">
-          <Text mr={10}>{earnLabel}:</Text>
-          <Text bold>{displayBalance}</Text>
-        </Flex>
-      ) : (
-        <Heading color={rawEarningsBalance.eq(0) ? 'textDisabled' : 'text'}>
-          {displayBalance}
-        </Heading>
-      )}
+        {sideRewards.length > 0 ? (
+          <Flex justifyContent="space-between">
+            <Text mr={10}>{earnLabel}:</Text>
+            <Text bold>{displayBalance}</Text>
+          </Flex>
+        ) : (
+          <Heading color={rawEarningsBalance.eq(0) ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+        )}
         {earningsBusd > 0 && (
           <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
         )}

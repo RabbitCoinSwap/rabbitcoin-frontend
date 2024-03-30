@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Table,
-  Text,
-  Th,
-  useMatchBreakpoints,
-} from '@pancakeswap/uikit'
+import { Box, Button, Flex, Table, Text, Th, useMatchBreakpoints } from '@pancakeswap/uikit'
 import Container from 'components/Layout/Container'
 import TableLoader from 'components/TableLoader'
 import { Collection } from 'state/nftMarket/types'
@@ -22,7 +14,6 @@ import { ToastDescriptionWithTx } from 'components/Toast'
 import { useEffect } from 'react'
 import { formatDistance, formatDistanceToNowStrict, parseISO } from 'date-fns'
 
-
 interface ActivityHistoryProps {
   collectionAddress: string
 }
@@ -34,32 +25,30 @@ const ActivityHistoryMinting: React.FC<ActivityHistoryProps> = ({ collectionAddr
   const { toastSuccess } = useToast()
 
   const { activities, isLoading, error, refresh } = useMintingActivity(collectionAddress.toLowerCase())
-  
+
   useEffect(() => {
-    if(activities.length > 0) {
+    if (activities.length > 0) {
       // Using setTimeout to delay the execution of toastSuccess by 30 seconds
       // TODO: Use lodash/delay
       const timeoutId = setTimeout(() => {
-        const dateCreated = formatDistanceToNowStrict(parseISO(activities[0].timestamp), { addSuffix: true });
+        const dateCreated = formatDistanceToNowStrict(parseISO(activities[0].timestamp), { addSuffix: true })
         toastSuccess(
           `${t('🎉 New NFT Alert!')}`,
           <ToastDescriptionWithTx txHash={activities[0].tx}>
             {t(`${activities[0].asset} NFT minted ${dateCreated}`)}
           </ToastDescriptionWithTx>,
-        );
-      }, 15000); // 15 seconds in milliseconds
+        )
+      }, 15000) // 15 seconds in milliseconds
 
       // Clear the timeout
-      return () => clearTimeout(timeoutId);
+      return () => clearTimeout(timeoutId)
     }
-  },[activities.length])
+  }, [activities.length])
 
-  
   return (
     <Box py="32px">
       <Container style={{ overflowX: 'auto' }}>
-        {activities.length === 0 &&
-        !isLoading ? (
+        {activities.length === 0 && !isLoading ? (
           <Flex p="24px" flexDirection="column" alignItems="center">
             <NoNftsImage />
             <Text pt="8px" bold>
@@ -106,16 +95,15 @@ const ActivityHistoryMinting: React.FC<ActivityHistoryProps> = ({ collectionAddr
               justifyContent="center"
               height="100%"
             >
-            <Button
-            as="a"
-            external 
-            href={ getPolygonScanLink(collectionAddress, 'token', "137") }
-            scale="sm"
-            disabled={isLoading}
-          >
-            {t('See All')}
-          </Button>
-
+              <Button
+                as="a"
+                external
+                href={getPolygonScanLink(collectionAddress, 'token', '137')}
+                scale="sm"
+                disabled={isLoading}
+              >
+                {t('See All')}
+              </Button>
             </Flex>
           </>
         )}

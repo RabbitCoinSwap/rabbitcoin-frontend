@@ -121,7 +121,7 @@ const WinSection = () => {
                 <PredictionCardContent />
               </IconCard>
             </Flex>
-           {/* <Flex flex="1" maxWidth={['275px', null, null, '100%']}>
+            {/* <Flex flex="1" maxWidth={['275px', null, null, '100%']}>
               <IconCard {...LotteryCardData}>
                 <LotteryCardContent />
               </IconCard>

@@ -1,56 +1,66 @@
-import { PageMeta } from "components/Layout/Page";
-import { NextRouter, useRouter } from "next/router"
-import { useEffect, useMemo } from "react";
-import Header from "views/Nft/market/Collection/Header";
-import Items from "views/Nft/market/Collection/Items";
-import CollectionNfts from "views/Nft/market/Collection/Items/CollectionNfts";
-import { Box, Button, Card, CardBody, CardRibbon, ChevronLeftIcon, Flex, Grid, LogoIcon, Step } from '@pancakeswap/uikit'
-import Container from "components/Layout/Container";
-import { useAppDispatch } from "state";
-import { fetchNftsFromCollections } from "state/nftMarket/reducer";
-import { CollectibleLinkCard } from "views/Nft/market/components/CollectibleCard";
-import MarketPageHeader from "views/Nft/market/components/MarketPageHeader";
-import TopBar from "views/Nft/market/Collection/TopBar";
-import BannerHeader from "views/Nft/market/components/BannerHeader";
-import MarketPageTitle from "views/Nft/market/components/MarketPageTitle";
-import StatBox, { StatBoxItem } from "views/Nft/market/components/StatBox";
-import { formatNumber } from "utils/formatBalance";
-import useTranslation from "contexts/Localization/useTranslation";
-import AvatarImage from "views/Nft/market/components/BannerHeader/AvatarImage";
+import { PageMeta } from 'components/Layout/Page'
+import { NextRouter, useRouter } from 'next/router'
+import { useEffect, useMemo } from 'react'
+import Header from 'views/Nft/market/Collection/Header'
+import Items from 'views/Nft/market/Collection/Items'
+import CollectionNfts from 'views/Nft/market/Collection/Items/CollectionNfts'
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardRibbon,
+  ChevronLeftIcon,
+  Flex,
+  Grid,
+  LogoIcon,
+  Step,
+} from '@pancakeswap/uikit'
+import Container from 'components/Layout/Container'
+import { useAppDispatch } from 'state'
+import { fetchNftsFromCollections } from 'state/nftMarket/reducer'
+import { CollectibleLinkCard } from 'views/Nft/market/components/CollectibleCard'
+import MarketPageHeader from 'views/Nft/market/components/MarketPageHeader'
+import TopBar from 'views/Nft/market/Collection/TopBar'
+import BannerHeader from 'views/Nft/market/components/BannerHeader'
+import MarketPageTitle from 'views/Nft/market/components/MarketPageTitle'
+import StatBox, { StatBoxItem } from 'views/Nft/market/components/StatBox'
+import { formatNumber } from 'utils/formatBalance'
+import useTranslation from 'contexts/Localization/useTranslation'
+import AvatarImage from 'views/Nft/market/components/BannerHeader/AvatarImage'
 import { Text } from '@pancakeswap/uikit'
-import { nftsBaseUrl } from "views/Nft/market/constants";
-import styled from "styled-components";
-import { NextLinkFromReactRouter } from "components/NextLink";
-import Row from "components/Layout/Row";
-import { multicallv2 } from "utils/multicall";
-import { useWeb3React } from "@web3-react/core";
+import { nftsBaseUrl } from 'views/Nft/market/constants'
+import styled from 'styled-components'
+import { NextLinkFromReactRouter } from 'components/NextLink'
+import Row from 'components/Layout/Row'
+import { multicallv2 } from 'utils/multicall'
+import { useWeb3React } from '@web3-react/core'
 import { isAddress } from 'utils'
-import useSWR from "swr";
-import { getCollectionApi } from "pages/nfts/collections/mint/[collectionAddress]";
-import useToast from "hooks/useToast";
-import { Contract } from "@ethersproject/contracts";
-import { MintingCurrentCard } from "views/Nft/market/Collection/Minting/components/MintingCard";
+import useSWR from 'swr'
+import { getCollectionApi } from 'pages/nfts/collections/mint/[collectionAddress]'
+import useToast from 'hooks/useToast'
+import { Contract } from '@ethersproject/contracts'
+import { MintingCurrentCard } from 'views/Nft/market/Collection/Minting/components/MintingCard'
 import useGetPublicIfoV2Data from 'views/Nft/market/Collection/Minting/hooks/v2/useGetPublicIfoData'
 import useGetWalletIfoV3Data from 'views/Nft/market/Collection/Minting/hooks/v3/useGetWalletIfoData'
 import { mintingConfig } from 'config/constants'
-import MintingSteps from "./components/MintingSteps";
-import MintingQuestions from "./components/MintingQuestions";
-import MintingLayout, { MintingLayoutWrapper } from "./components/MintingLayout";
-import IfoPoolVaultCard from "views/Ifos/components/IfoPoolVaultCard";
+import MintingSteps from './components/MintingSteps'
+import MintingQuestions from './components/MintingQuestions'
+import MintingLayout, { MintingLayoutWrapper } from './components/MintingLayout'
+import IfoPoolVaultCard from 'views/Ifos/components/IfoPoolVaultCard'
 import { useContext } from 'react'
 import { FarmsPageLayout, FarmsContext } from 'views/NftFarms'
 import FarmCard from 'views/NftFarms/components/FarmCard/FarmCard'
 import { getDisplayApr } from 'views/NftFarms/Farms'
 import { useFarmFromLpSymbol, useFarmFromPid, usePollFarmsWithUserData, usePriceCakeBusd } from 'state/nftFarms/hooks'
-import useStakeFarms from "views/NftFarms/hooks/useStakeFarms";
-import { StyledCard } from "../../../../../../packages/uikit/src/components/Card/StyledCard";
-import FlexLayout from "components/Layout/Flex";
-import NftStakeCard from "./components/NftStakeCard";
-import PoolCard from "views/Pools/components/PoolCard";
-import NewestForCollection from "../../Home/NewestForCollection";
-import IfoAchievement from "./components/MintingCard/Achievement";
-import ActivityHistoryMinting from "../../ActivityHistory/ActivityHistoryMinting";
-
+import useStakeFarms from 'views/NftFarms/hooks/useStakeFarms'
+import { StyledCard } from '../../../../../../packages/uikit/src/components/Card/StyledCard'
+import FlexLayout from 'components/Layout/Flex'
+import NftStakeCard from './components/NftStakeCard'
+import PoolCard from 'views/Pools/components/PoolCard'
+import NewestForCollection from '../../Home/NewestForCollection'
+import IfoAchievement from './components/MintingCard/Achievement'
+import ActivityHistoryMinting from '../../ActivityHistory/ActivityHistoryMinting'
 
 const BackLink = styled(NextLinkFromReactRouter)`
   align-items: center;
@@ -59,14 +69,11 @@ const BackLink = styled(NextLinkFromReactRouter)`
   font-weight: 600;
 `
 
-
 const IfoStepBackground = styled(Box)`
   background: ${({ theme }) => theme.colors.gradients.bubblegum};
 `
 
-
 export default function Minting() {
-
   const router = useRouter()
   const collectionAddress = router.query.collectionAddress as string
   const collection = useGetCollection(collectionAddress)
@@ -102,38 +109,25 @@ export default function Minting() {
           title={name}
           description={description ? <Text color="textSubtle">{t(description)}</Text> : null}
         >
-
-
           <StatBox>
             <StatBoxItem title={t('Minted')} stat={`${totalSupply}/${maxSupply}`} />
-            <StatBoxItem title={t('Price')} stat={(cost) + ' Matic'} />
+            <StatBoxItem title={t('Price')} stat={cost + ' Matic'} />
             <StatBoxItem title={t('Status')} stat={status} />
           </StatBox>
-
-
         </MarketPageTitle>
       </MarketPageHeader>
 
-
-
-
-
       <MintingLayout id="current-minting" py={['24px', '24px', '40px']}>
-
         <Container>
-
           <MintingLayoutWrapper>
-
             <NftStakeCard farm={farm} account={account} />
             <MintingCurrentCard ifo={minting} publicIfoData={publicIfoData} walletIfoData={walletIfoData} />
-
           </MintingLayoutWrapper>
-
         </Container>
 
         <Container>
           <Card>
-            <ActivityHistoryMinting  collectionAddress={collectionAddress} />
+            <ActivityHistoryMinting collectionAddress={collectionAddress} />
           </Card>
         </Container>
 
@@ -150,17 +144,10 @@ export default function Minting() {
         <Container>
           <MintingQuestions mintingData={minting} />
         </Container>
-
       </MintingLayout>
-
-
-
-
-
     </>
   )
 }
-
 
 const useGetCollection = (collectionAddress: string): any | undefined => {
   const checksummedCollectionAddress = isAddress(collectionAddress) || ''

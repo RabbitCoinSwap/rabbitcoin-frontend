@@ -32,7 +32,7 @@ export const getPolygonNodeUrl = () => {
     return process.env.NEXT_PUBLIC_POLYGON_NODE_PRODUCTION
   }
 
-  if (process.env.NEXT_PUBLIC_CHAIN_ID == "137") {
+  if (process.env.NEXT_PUBLIC_CHAIN_ID == '137') {
     return sample(maticNodes)
   }
 

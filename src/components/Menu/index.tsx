@@ -12,7 +12,7 @@ import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
 import { footerLinks } from './config/footerConfig'
-import drawerLinks from "./config/drawerConfig"
+import drawerLinks from './config/drawerConfig'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()

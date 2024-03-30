@@ -5,18 +5,18 @@ interface Window {
   }
   okxwallet?: {
     request?: (...args: any[]) => Promise<void>
-    send: unknown;
-    enable: () => Promise<string[]>;
-    on?: (method: string, listener: (...args: any[]) => void) => void;
-    removeListener?: (method: string, listener: (...args: any[]) => void) => void;
+    send: unknown
+    enable: () => Promise<string[]>
+    on?: (method: string, listener: (...args: any[]) => void) => void
+    removeListener?: (method: string, listener: (...args: any[]) => void) => void
   }
   bitkeep?: {
     ethereum?: {
       request?: (...args: any[]) => Promise<void>
-      send: unknown;
-      enable: () => Promise<string[]>;
-      on?: (method: string, listener: (...args: any[]) => void) => void;
-      removeListener?: (method: string, listener: (...args: any[]) => void) => void;
+      send: unknown
+      enable: () => Promise<string[]>
+      on?: (method: string, listener: (...args: any[]) => void) => void
+      removeListener?: (method: string, listener: (...args: any[]) => void) => void
     }
   }
   BinanceChain?: {

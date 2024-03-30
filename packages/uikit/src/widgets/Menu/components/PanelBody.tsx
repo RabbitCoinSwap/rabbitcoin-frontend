@@ -13,7 +13,7 @@ interface Props extends PanelProps, PushedProps {
   isMobile: boolean;
 }
 
-const Icons = (IconModule as unknown) as { [key: string]: React.FC<SvgProps> };
+const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 
 const Container = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   const location = useRouter();
-  
+
   // Close the menu when a user clicks a link on mobile
   const handleClick = isMobile ? () => pushNav(false) : undefined;
 
@@ -39,7 +39,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
         if (entry.items) {
           const itemsMatchIndex = entry.items.findIndex((item) => item.href === location.pathname);
           const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
-          
+
           return (
             <Accordion
               key={entry.label}
@@ -54,7 +54,9 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
               {isPushed &&
                 entry.items.map((item) => (
                   <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
-                    <MenuLink href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</MenuLink>
+                    <MenuLink href={item.href} target="_blank" rel="noopener noreferrer">
+                      {item.label}
+                    </MenuLink>
                   </MenuEntry>
                 ))}
             </Accordion>
@@ -64,8 +66,8 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
           <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
             <MenuLink href={entry.href} onClick={handleClick}>
               <a>
-              {iconElement}
-              <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
+                {iconElement}
+                <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
               </a>
             </MenuLink>
           </MenuEntry>

@@ -13,16 +13,15 @@ export const stakeNftFarm = async (
   tokenIds,
   gasPrice,
   isSmartNftPool,
-  performanceFee
+  performanceFee,
 ) => {
-  const stakePriceWei = performanceFee ? parseUnits(performanceFee, 'ether') : 0;
-  const stakeParams = isSmartNftPool ? [collectionAddresses, tokenIds] : [pid, tokenIds];
+  const stakePriceWei = performanceFee ? parseUnits(performanceFee, 'ether') : 0
+  const stakeParams = isSmartNftPool ? [collectionAddresses, tokenIds] : [pid, tokenIds]
   return callWithEstimateGas(masterChefContract, 'stakeAll', stakeParams, {
     value: stakePriceWei,
     gasPrice,
-  });
-};
-
+  })
+}
 
 export const unstakeNftFarm = async (
   masterChefContract,
@@ -30,16 +29,16 @@ export const unstakeNftFarm = async (
   collectionAddresses,
   tokenIds,
   gasPrice,
-  isSmartNftPool
+  isSmartNftPool,
 ) => {
-  const stakeParams = isSmartNftPool ? [collectionAddresses, tokenIds] : [pid, tokenIds];
+  const stakeParams = isSmartNftPool ? [collectionAddresses, tokenIds] : [pid, tokenIds]
   return callWithEstimateGas(masterChefContract, 'unstakeAll', stakeParams, {
     gasPrice,
   })
 }
 
 export const harvestNftFarm = async (masterChefContract, pid, gasPrice, isSmartNftPool) => {
-  const stakeParams = isSmartNftPool ? [] : [pid];
+  const stakeParams = isSmartNftPool ? [] : [pid]
   return callWithEstimateGas(masterChefContract, 'harvest', stakeParams, {
     gasPrice,
   })

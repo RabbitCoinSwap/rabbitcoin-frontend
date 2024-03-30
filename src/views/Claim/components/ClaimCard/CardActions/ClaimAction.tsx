@@ -10,12 +10,25 @@ interface ClaimActionProps {
   isDisabled?: boolean
 }
 
-const ClaimAction: React.FC<ClaimActionProps> = ({ claimId, claim, claimData, isLoading = false, isDisabled = false }) => {
+const ClaimAction: React.FC<ClaimActionProps> = ({
+  claimId,
+  claim,
+  claimData,
+  isLoading = false,
+  isDisabled = false,
+}) => {
   const { t } = useTranslation()
   const nftAddresses = claimData.data[claimId].nftsToClaim[0]
   const nftIds = claimData.data[claimId].nftsToClaim[1]
 
-  const { handleClaimReward, pendingTx } = useClaimReward(claim.cid, nftAddresses, nftIds, claim.rewardToken, claimData.data[claimId].version, claimData.refresh)
+  const { handleClaimReward, pendingTx } = useClaimReward(
+    claim.cid,
+    nftAddresses,
+    nftIds,
+    claim.rewardToken,
+    claimData.data[claimId].version,
+    claimData.refresh,
+  )
 
   return (
     <>
@@ -29,7 +42,11 @@ const ClaimAction: React.FC<ClaimActionProps> = ({ claimId, claim, claimData, is
           onClick={handleClaimReward}
           width="100%"
         >
-          {t(`Claim ${parseFloat((claim.baseAmount * (claimData.data[claimId].userWeight || 1)).toFixed(2))} ${claim.rewardToken}`)}
+          {t(
+            `Claim ${parseFloat((claim.baseAmount * (claimData.data[claimId].userWeight || 1)).toFixed(2))} ${
+              claim.rewardToken
+            }`,
+          )}
         </Button>
       )}
     </>

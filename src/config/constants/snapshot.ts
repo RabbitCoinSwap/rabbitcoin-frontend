@@ -1,5 +1,10 @@
 import tokens from 'config/constants/tokens'
-import { getCakeVaultAddress, getRabbitCoinFarmAddress, getIfoPoolAddress, getMasterChefAddress } from 'utils/addressHelpers'
+import {
+  getCakeVaultAddress,
+  getRabbitCoinFarmAddress,
+  getIfoPoolAddress,
+  getMasterChefAddress,
+} from 'utils/addressHelpers'
 
 const cakeLpAddress = '0x15D98d5b9Aa485a1f6989a507C9BbdCe8966F70D'
 

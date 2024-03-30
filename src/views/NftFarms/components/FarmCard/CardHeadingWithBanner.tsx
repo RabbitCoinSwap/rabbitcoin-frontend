@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { mintingConfig } from 'config/constants'
 import nftFarmsConfig from 'config/constants/nftFarms'
 
-
 export interface ExpandableSectionProps {
   lpLabel?: string
   multiplier?: string
@@ -36,11 +35,17 @@ export const CollectionAvatar = styled(ProfileAvatar)`
   border: 4px white solid;
 `
 
-const CardHeadingWithBanner: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, nftToken, pid, disabled= false }) => {
+const CardHeadingWithBanner: React.FC<ExpandableSectionProps> = ({
+  lpLabel,
+  multiplier,
+  nftToken,
+  pid,
+  disabled = false,
+}) => {
   const collectionData = mintingConfig.find((collection) => collection.stake_pid === pid)
   const nftFarmData = nftFarmsConfig.find((nftFarm) => nftFarm.pid === pid)
-  const banner = nftFarmData["banner"] ? nftFarmData["banner"] : collectionData?.banner.small
-  const avatar = nftFarmData["avatar"] ? nftFarmData["avatar"] : collectionData?.avatar
+  const banner = nftFarmData['banner'] ? nftFarmData['banner'] : collectionData?.banner.small
+  const avatar = nftFarmData['avatar'] ? nftFarmData['avatar'] : collectionData?.avatar
 
   return (
     <CardBody p="0px">

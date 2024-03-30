@@ -30,7 +30,7 @@ const TokenWrapper = styled.div`
   }
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({label, pid, nftAddress}) => {
+const Farm: React.FunctionComponent<FarmProps> = ({ label, pid, nftAddress }) => {
   const { stakedBalance } = useFarmUser(pid)
   const { t } = useTranslation()
 

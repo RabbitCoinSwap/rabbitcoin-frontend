@@ -142,8 +142,8 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
     ),
     { placement: 'bottom' },
   )
-  
-  const { isHolder, discountAmount, } = walletIfoData
+
+  const { isHolder, discountAmount } = walletIfoData
   const { holderDiscountPercentage } = publicIfoData
   const publicPoolCharacteristics = publicIfoData[poolId]
   const { totalSupply } = publicIfoData
@@ -170,50 +170,84 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
   )
 
   let { showCase, sampleNftImage, address, name, avatar, openSeaUrl } = ifo
-  const nfts = showCase ? showCase.map((item, index) => ({ 'tokenId': item.tokenId, 'collectionAddress': address, 'name': `#${item.tokenId}`, 'collectionName': name, 'image': { 'thumbnail': item.image } })) : [];
-  const nft = sampleNftImage ? { 'tokenId': sampleNftImage.tokenId, 'collectionAddress': address, 'name': `#${sampleNftImage.tokenId}`, 'collectionName': name, 'image': { 'thumbnail': sampleNftImage.image } } : nfts[0]
+  const nfts = showCase
+    ? showCase.map((item, index) => ({
+        tokenId: item.tokenId,
+        collectionAddress: address,
+        name: `#${item.tokenId}`,
+        collectionName: name,
+        image: { thumbnail: item.image },
+      }))
+    : []
+  const nft = sampleNftImage
+    ? {
+        tokenId: sampleNftImage.tokenId,
+        collectionAddress: address,
+        name: `#${sampleNftImage.tokenId}`,
+        collectionName: name,
+        image: { thumbnail: sampleNftImage.image },
+      }
+    : nfts[0]
 
   const renderTokenSection = () => {
     if (isLoading) {
       return <SkeletonCardTokens />
     }
-   
-      return (
-        <>
-          <OnSaleInfo avatarUrl={avatar} token={token} distributionRatio={totalSupply} saleAmount={ifo[poolId].saleAmount} />
 
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <NFTMedia style={{ backgroundPosition: "center" }} as={PreviewImage} nft={nft} height={200} width={200} mt="10px" borderRadius="8px" />
-          </div>
+    return (
+      <>
+        <OnSaleInfo
+          avatarUrl={avatar}
+          token={token}
+          distributionRatio={totalSupply}
+          saleAmount={ifo[poolId].saleAmount}
+        />
 
-          <Box mt="16px">
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <NFTMedia
+            style={{ backgroundPosition: 'center' }}
+            as={PreviewImage}
+            nft={nft}
+            height={200}
+            width={200}
+            mt="10px"
+            borderRadius="8px"
+          />
+        </div>
 
-          {(account && !isHolder && version == 3.1) && (
+        <Box mt="16px">
+          {account && !isHolder && version == 3.1 && (
             <Message my="24px" p="8px" variant="warning">
-            <Box>
-            <MessageText display="inline">
-            {t(`You don't have any RabbitCoin NFT, NFT holders get %${holderDiscountPercentage} discount and doesn't have to wait for the countdown.`)}
-              </MessageText>{' '}
-              <MessageTextLink display="inline" fontWeight={700} href="https://market.rabbitcoin.xyz/" target="_blank" color="failure">
-                {t('Not too late')} »
-              </MessageTextLink>
-            </Box>
-          </Message>
+              <Box>
+                <MessageText display="inline">
+                  {t(
+                    `You don't have any RabbitCoin NFT, NFT holders get %${holderDiscountPercentage} discount and doesn't have to wait for the countdown.`,
+                  )}
+                </MessageText>{' '}
+                <MessageTextLink
+                  display="inline"
+                  fontWeight={700}
+                  href="https://market.rabbitcoin.xyz/"
+                  target="_blank"
+                  color="failure"
+                >
+                  {t('Not too late')} »
+                </MessageTextLink>
+              </Box>
+            </Message>
           )}
-        
-          {(account && isHolder && version == 3.1) && (
+
+          {account && isHolder && version == 3.1 && (
             <Message mt="24px" p="8px" variant="success">
               <MessageText small display="inline">
                 {t(`Wow! You are holder. You save ${discountAmount} MATIC and no need to wait for the countdown.`)}
               </MessageText>
             </Message>
           )}
-
         </Box>
-        
-        </>
-      )
-  
+      </>
+    )
+
     return null
   }
   return (

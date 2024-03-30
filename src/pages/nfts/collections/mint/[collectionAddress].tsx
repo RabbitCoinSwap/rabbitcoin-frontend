@@ -11,11 +11,10 @@ import Minting from 'views/Nft/market/Collection/Minting/Minting'
 
 const CollectionPage = ({ fallback = {} }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
-  
+
   if (router.isFallback) {
     return <PageLoader />
   }
-  
 
   return (
     <SWRConfig
@@ -23,7 +22,7 @@ const CollectionPage = ({ fallback = {} }: InferGetStaticPropsType<typeof getSta
         fallback,
       }}
     >
-      <Minting/>
+      <Minting />
     </SWRConfig>
   )
 }
@@ -45,7 +44,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const collectionData = await getCollectionApi(collectionAddress)
-    
 
     if (collectionData) {
       return {
@@ -80,5 +78,3 @@ export const getCollectionApi = async (collectionAddress: string): Promise<any> 
   console.error(`API: Failed to fetch NFT collection ${collectionAddress}`, res.statusText)
   return null
 }
-
-

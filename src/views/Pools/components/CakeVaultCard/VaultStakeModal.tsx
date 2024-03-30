@@ -119,7 +119,7 @@ const VaultStakeModal: React.FC<React.PropsWithChildren<VaultStakeModalProps>> =
     }
     return false
   }, [allowance, stakeAmount, isRemovingStake])
-  
+
   const callOptions = {
     gasLimit: vaultPoolConfig[pool.vaultKey].gasLimit,
   }

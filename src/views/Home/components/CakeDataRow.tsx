@@ -97,12 +97,11 @@ const CakeDataRow = () => {
         requireSuccess: false,
       })
       const [totalSupply, burned, tvlBalance] = tokenDataResultRaw.flat()
-      
+
       setCakeSupply(totalSupply && burned ? +formatBigNumber(totalSupply.sub(burned)) : 0)
       setBurnedBalance(burned ? +formatBigNumber(burned) : 0)
       setTvl(tvlBalance ? +formatBigNumber(tvlBalance) : 0)
     }
-
 
     if (loadData) {
       fetchTokenData()

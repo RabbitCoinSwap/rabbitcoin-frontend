@@ -60,7 +60,6 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
           </>
         )}
         <Box display="inline">
-          
           <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
             {isStaked ? stakingToken.symbol : t('Stake')}{' '}
           </InlineText>
@@ -68,7 +67,6 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
           <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
             {isStaked ? t('Staked') : `${stakingToken.symbol}`}
           </InlineText>
-
         </Box>
         {notMeetRequired || notMeetThreshold ? (
           <ProfileRequirementWarning profileRequirement={profileRequirement} />

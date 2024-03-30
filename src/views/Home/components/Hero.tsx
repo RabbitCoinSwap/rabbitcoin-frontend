@@ -20,7 +20,6 @@ const flyingAnim = () => keyframes`
   }
 `
 
-
 const BgWrapper = styled.div`
   z-index: -1;
   overflow: hidden;
@@ -42,10 +41,8 @@ const BunnyWrapper = styled.div`
   animation: ${flyingAnim} 3.5s ease-in-out infinite;
 `
 
-
 const imagePath = '/images/home/lunar-bunny/'
 const imageSrc = 'bunny'
-
 
 const Hero = () => {
   const { t } = useTranslation()
@@ -84,7 +81,7 @@ const Hero = () => {
           width={['250px', null, null, '100%']}
           flex={[null, null, null, '1']}
           mb={['24px', null, null, '0']}
-          justifyContent='center'
+          justifyContent="center"
           position="relative"
         >
           <BunnyWrapper>
@@ -94,7 +91,6 @@ const Hero = () => {
               <img src={`${imagePath}${imageSrc}.png`} alt={t('Lunar bunny')} />
             </picture>
           </BunnyWrapper>
-          
         </Flex>
       </Flex>
     </>

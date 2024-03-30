@@ -12,7 +12,6 @@ import IfoCardTokens from './IfoCardTokens'
 import IfoCardActions from './IfoCardActions'
 import IfoCardDetails from './IfoCardDetails'
 
-
 const StyledCard = styled(Card)`
   background: none;
   max-width: 368px;
@@ -99,9 +98,9 @@ const SmallCard: React.FC<IfoCardProps> = ({ poolId, ifo, publicIfoData, walletI
   const { needQualifiedNFT, needQualifiedPoints } = useMemo(() => {
     return ifo.version === 3.1 && poolId === PoolIds.poolBasic
       ? {
-        needQualifiedNFT: Boolean(admissionProfile),
-        needQualifiedPoints: pointThreshold ? pointThreshold > 0 : false,
-      }
+          needQualifiedNFT: Boolean(admissionProfile),
+          needQualifiedPoints: pointThreshold ? pointThreshold > 0 : false,
+        }
       : {}
   }, [ifo.version, admissionProfile, pointThreshold, poolId])
 
@@ -121,7 +120,6 @@ const SmallCard: React.FC<IfoCardProps> = ({ poolId, ifo, publicIfoData, walletI
     needQualifiedPoints,
   })
 
-
   return (
     <>
       {tooltipVisible && tooltip}
@@ -137,7 +135,6 @@ const SmallCard: React.FC<IfoCardProps> = ({ poolId, ifo, publicIfoData, walletI
           </Flex>
         </CardHeader>
         <CardBody p="12px">
-
           <IfoCardTokens
             criterias={criterias}
             isEligible={isEligible}

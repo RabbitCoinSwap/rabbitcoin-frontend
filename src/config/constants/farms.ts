@@ -17,7 +17,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
       137: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E', // RabbitCoin
-      80001: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E' // RabbitCoin
+      80001: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E', // RabbitCoin
     },
     token: serializedTokens.carrot,
     quoteToken: serializedTokens.rabbit,
@@ -29,7 +29,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0xFb982fA95e94D1F98f43ec9EBc8d31632DA0040b', // RabbitCoinPair
-      80001: '0xFb982fA95e94D1F98f43ec9EBc8d31632DA0040b' // RabbitCoinPair
+      80001: '0xFb982fA95e94D1F98f43ec9EBc8d31632DA0040b', // RabbitCoinPair
     },
     token: serializedTokens.rabbit,
     quoteToken: serializedTokens.usdt,
@@ -41,7 +41,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x15D98d5b9Aa485a1f6989a507C9BbdCe8966F70D', // RabbitCoinPair
-      80001: '0x15D98d5b9Aa485a1f6989a507C9BbdCe8966F70D' // RabbitCoinPair
+      80001: '0x15D98d5b9Aa485a1f6989a507C9BbdCe8966F70D', // RabbitCoinPair
     },
     token: serializedTokens.rabbit,
     quoteToken: serializedTokens.wmatic,
@@ -53,7 +53,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x70B118b9Bd6996638024Be5EbBaFBEEe7DDe702C', // RabbitCoinPair
-      80001: '0x70B118b9Bd6996638024Be5EbBaFBEEe7DDe702C' // RabbitCoinPair
+      80001: '0x70B118b9Bd6996638024Be5EbBaFBEEe7DDe702C', // RabbitCoinPair
     },
     token: serializedTokens.dai,
     quoteToken: serializedTokens.usdc,
@@ -65,7 +65,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA',
-      80001: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA' // CHANGE_ADDRESS:Pair
+      80001: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA', // CHANGE_ADDRESS:Pair
     },
     token: serializedTokens.usdt,
     quoteToken: serializedTokens.wmatic,
@@ -132,7 +132,6 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.rabbit,
   },
   */
-  
 ].filter((f) => !!f.lpAddresses[ChainId.MAINNET])
 
 export default farms

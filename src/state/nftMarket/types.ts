@@ -265,14 +265,14 @@ export interface Activity {
 }
 
 export interface MintingActivity {
-  tokenId: string;
-  asset: string;
-  marketEvent: string;
-  tx: string;
-  from: string;
-  to: string;
-  address?: string;
-  timestamp?: string;
+  tokenId: string
+  asset: string
+  marketEvent: string
+  tx: string
+  from: string
+  to: string
+  address?: string
+  timestamp?: string
 }
 
 export enum MarketEvent {

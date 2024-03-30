@@ -53,8 +53,7 @@ const PredictionCardContent = () => {
           <Heading color="#280D5F" my="8px" scale="xl" bold>
             {t('Mint, Stake, Earn ')}
           </Heading>
-        
-          }
+        }
         <Text color="#280D5F" mb="24px" bold fontSize="16px">
           {wonSoFar}
         </Text>

@@ -37,8 +37,7 @@ const MintingActivityRow: React.FC<MintingActivityRowProps> = ({
 }) => {
   const { chainId } = useActiveWeb3React()
   const { isXs, isSm } = useMatchBreakpoints()
-  const localeTimestamp = formatDistanceToNowStrict(parseISO(activity.timestamp), { addSuffix: true });
-  
+  const localeTimestamp = formatDistanceToNowStrict(parseISO(activity.timestamp), { addSuffix: true })
 
   return (
     <tr {...((isXs || isSm) && { onClick: null })} data-test="nft-activity-row">
@@ -81,9 +80,7 @@ const MintingActivityRow: React.FC<MintingActivityRowProps> = ({
       ) : null}
       <Td>
         <Flex alignItems="center" justifyContent="flex-end">
-          <Text color="success">
-              {activity.marketEvent}
-          </Text>
+          <Text color="success">{activity.marketEvent}</Text>
         </Flex>
       </Td>
       {isXs || isSm ? null : (
@@ -98,19 +95,19 @@ const MintingActivityRow: React.FC<MintingActivityRowProps> = ({
             <>
               <Td>
                 <Flex justifyContent="center" alignItems="center">
-                  <Link external href={ getPolygonScanLink(activity.from, 'address', chainId.toString()) }>
-                      <Box display="inline">
-                        <Text lineHeight="1.25">{truncateHash(activity.from)}</Text>
-                      </Box>
+                  <Link external href={getPolygonScanLink(activity.from, 'address', chainId.toString())}>
+                    <Box display="inline">
+                      <Text lineHeight="1.25">{truncateHash(activity.from)}</Text>
+                    </Box>
                   </Link>
                 </Flex>
               </Td>
               <Td>
                 <Flex justifyContent="center" alignItems="center">
-                  <Link external href={ getPolygonScanLink(activity.to, 'address', chainId.toString()) }>
-                        <Box display="inline">
-                          <Text lineHeight="1.25">{truncateHash(activity.to)}</Text>
-                        </Box>
+                  <Link external href={getPolygonScanLink(activity.to, 'address', chainId.toString())}>
+                    <Box display="inline">
+                      <Text lineHeight="1.25">{truncateHash(activity.to)}</Text>
+                    </Box>
                   </Link>
                 </Flex>
               </Td>

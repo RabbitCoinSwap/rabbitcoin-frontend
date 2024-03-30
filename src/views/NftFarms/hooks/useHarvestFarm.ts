@@ -8,7 +8,7 @@ import { getAddress } from 'utils/addressHelpers'
 const useHarvestFarm = (farmPid: number) => {
   const farm = useFarmFromPid(farmPid)
   const isSmartNftPool = farm.contractAddresses ? getAddress(farm.contractAddresses) : null
-  const masterChefContract = isSmartNftPool ? useSmartNftStakeContract(farmPid) : useRabbitCoinNftStake() 
+  const masterChefContract = isSmartNftPool ? useSmartNftStakeContract(farmPid) : useRabbitCoinNftStake()
   const gasPrice = useGasPrice()
 
   const handleHarvest = useCallback(async () => {

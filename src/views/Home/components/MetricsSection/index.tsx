@@ -48,7 +48,7 @@ const Stats = () => {
       <Flex flexWrap="wrap">
         <Text display="inline" textAlign="center" color="textSubtle" mb="20px">
           {entrusting}
-         
+
           {inFunds}
         </Text>
       </Flex>

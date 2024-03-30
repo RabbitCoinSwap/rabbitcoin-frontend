@@ -57,4 +57,3 @@ export interface PushedProps {
   isPushed: boolean;
   pushNav: (isPushed: boolean) => void;
 }
-

@@ -150,7 +150,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const { dual } = farm
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
 
-  const apyModalLink = "/nfts/collections"
+  const apyModalLink = '/nfts/collections'
   const nftAddress = getAddress(farm.nftAddresses)
   const bsc = getPolygonScanLink(nftAddress, 'address')
   const farmConfig = nftFarmsConfig.filter((farmConfig) => farmConfig.pid == farm.pid)[0]
@@ -198,12 +198,16 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         )}
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
 
-        {farm.earningToken?.address && (<StyledLinkExternal href={`https://app.uniswap.org/#/tokens/polygon/${farm.earningToken.address}`}>{t('See Token Info')}</StyledLinkExternal>)}
-        {farmConfig.projectLink && (<StyledLinkExternal href={farmConfig.projectLink}>{t('View Project Site')}</StyledLinkExternal>)}
+        {farm.earningToken?.address && (
+          <StyledLinkExternal href={`https://app.uniswap.org/#/tokens/polygon/${farm.earningToken.address}`}>
+            {t('See Token Info')}
+          </StyledLinkExternal>
+        )}
+        {farmConfig.projectLink && (
+          <StyledLinkExternal href={farmConfig.projectLink}>{t('View Project Site')}</StyledLinkExternal>
+        )}
 
-        <TagsContainer>
-          {dual ? <DualTag /> : null}
-        </TagsContainer>
+        <TagsContainer>{dual ? <DualTag /> : null}</TagsContainer>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>

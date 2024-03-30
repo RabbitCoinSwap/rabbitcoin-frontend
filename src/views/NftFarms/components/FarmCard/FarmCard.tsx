@@ -50,9 +50,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const lpLabel = farm.lpSymbol && farm.lpSymbol.replace('RabbitCoin', '')
-  const earnLabel = farm.earningToken ? farm.earningToken.symbol: t('RABBIT')
+  const earnLabel = farm.earningToken ? farm.earningToken.symbol : t('RABBIT')
 
-  const apyModalLink = "/nfts/collections"
+  const apyModalLink = '/nfts/collections'
   const nftAddress = getAddress(farm.nftAddresses)
   const isPromotedFarm = false //farm.token.symbol === 'RABBIT' Caution: Fix
   const sideRewards = farm.sideRewards ? farm.sideRewards : []
@@ -69,42 +69,43 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
           disabled={farm.isFinished}
         />
 
-{!removed && (
-  <>
-    {sideRewards.length === 0 ? (
-      <Flex justifyContent="space-between" alignItems="center">
-        <Text>{t('Daily Reward')}:</Text>
-        <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-          {farm.apr ? displayApr : <Skeleton height={24} width={80} />}
-        </Text>
-      </Flex>
-    ) : (
-      <>
-        <Flex justifyContent="center" alignItems="center">
-          <Text>{t('Daily Rewards')}</Text>
-        </Flex>
-        <Flex justifyContent="space-between">
-            <Text>{earnLabel}</Text>
-            <Text bold>{farm.apr ? displayApr : <Skeleton height={24} width={80} />}</Text>
-        </Flex>
-        {sideRewards.map((reward, index) => (
-          <Flex key={index} justifyContent="space-between">
-            <Text>{reward.token}</Text>
-            <Text bold><Balance value={Number(displayApr) * (reward.percentage / 100)} /></Text>
+        {!removed && (
+          <>
+            {sideRewards.length === 0 ? (
+              <Flex justifyContent="space-between" alignItems="center">
+                <Text>{t('Daily Reward')}:</Text>
+                <Text bold style={{ display: 'flex', alignItems: 'center' }}>
+                  {farm.apr ? displayApr : <Skeleton height={24} width={80} />}
+                </Text>
+              </Flex>
+            ) : (
+              <>
+                <Flex justifyContent="center" alignItems="center">
+                  <Text>{t('Daily Rewards')}</Text>
+                </Flex>
+                <Flex justifyContent="space-between">
+                  <Text>{earnLabel}</Text>
+                  <Text bold>{farm.apr ? displayApr : <Skeleton height={24} width={80} />}</Text>
+                </Flex>
+                {sideRewards.map((reward, index) => (
+                  <Flex key={index} justifyContent="space-between">
+                    <Text>{reward.token}</Text>
+                    <Text bold>
+                      <Balance value={Number(displayApr) * (reward.percentage / 100)} />
+                    </Text>
+                  </Flex>
+                ))}
+              </>
+            )}
+          </>
+        )}
+
+        {sideRewards.length === 0 && (
+          <Flex justifyContent="space-between">
+            <Text>{t('Earn')}:</Text>
+            <Text bold>{earnLabel}</Text>
           </Flex>
-        ))}
-      </>
-    )}
-  </>
-)}
-
-{sideRewards.length === 0 && (
-  <Flex justifyContent="space-between">
-    <Text>{t('Earn')}:</Text>
-    <Text bold>{earnLabel}</Text>
-  </Flex>
-)}
-
+        )}
 
         <CardActionsContainer
           farm={farm}

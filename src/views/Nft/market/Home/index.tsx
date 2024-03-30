@@ -119,7 +119,6 @@ const Home = () => {
           />
           */}
           <Newest />
-          
         </PageSection>
       )}
       <Gradient p="64px 0">

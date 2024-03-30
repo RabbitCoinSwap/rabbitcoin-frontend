@@ -9,10 +9,10 @@ const Container = styled(Flex)`
   padding: 12px;
   align-items: center;
   background: linear-gradient(0deg, rgba(39, 38, 44, 0.4), rgba(39, 38, 44, 0.4)),
-    linear-gradient(180deg, #F06292 0%, #D81B60 100%);
+    linear-gradient(180deg, #f06292 0%, #d81b60 100%);
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 0px;
-    background: linear-gradient(180deg, #F06292 0%, #D81B60 100%);
+    background: linear-gradient(180deg, #f06292 0%, #d81b60 100%);
   }
 `
 

@@ -13,116 +13,93 @@ import erc20Abi from 'config/abi/erc20.json'
 import { walletOfOwnerApi } from 'state/nftMarket/helpers'
 
 interface CollectionInfo {
-  collectionAddress: string;
-  nftIds: number[];
-  isTargetNft?: boolean;
+  collectionAddress: string
+  nftIds: number[]
+  isTargetNft?: boolean
 }
 
 interface UserClaimInfo {
-  totalWeights: number;
-  remainingClaims: number;
+  totalWeights: number
+  remainingClaims: number
 }
 
 interface ClaimInfo {
-  claimId: number;
-  collections: CollectionInfo[];
-  targetCollectionWeight: number;
-  nftLimit: number;
-  claimedList: boolean[];
+  claimId: number
+  collections: CollectionInfo[]
+  targetCollectionWeight: number
+  nftLimit: number
+  claimedList: boolean[]
 }
 
 const getSpecificData = (claimInfo, dataType) => {
-  if (dataType == "userClaimInfo") {
+  if (dataType == 'userClaimInfo') {
     return claimInfo[2]
-  } else if (dataType == "rewardBalances") {
+  } else if (dataType == 'rewardBalances') {
     return claimInfo[3]
-  } else if (dataType == "targetNftsForClaimIndex") {
-
+  } else if (dataType == 'targetNftsForClaimIndex') {
     const targetNftsForClaimIndex = []
     for (let i = 0; i < claimInfo[1].length; i += 1) {
-      const addressList = Array(claimInfo[1][i][1].length).fill(claimInfo[1][i][0]);
-      const nftList = claimInfo[1][i][1].map((nft: BigNumber) => nft.toNumber());
+      const addressList = Array(claimInfo[1][i][1].length).fill(claimInfo[1][i][0])
+      const nftList = claimInfo[1][i][1].map((nft: BigNumber) => nft.toNumber())
       targetNftsForClaimIndex.push([addressList, nftList])
     }
     return targetNftsForClaimIndex
-
-  } else if (dataType == "communityNfts") {
-
+  } else if (dataType == 'communityNfts') {
     const communityNfts = [[], []]
     for (let i = 0; i < claimInfo[0].length; i += 1) {
-      const addressList = Array(claimInfo[0][i][1].length).fill(claimInfo[0][i][0]);
-      const nftList = claimInfo[0][i][1].map((nft: BigNumber) => nft.toNumber());
+      const addressList = Array(claimInfo[0][i][1].length).fill(claimInfo[0][i][0])
+      const nftList = claimInfo[0][i][1].map((nft: BigNumber) => nft.toNumber())
       communityNfts[0].push(...addressList)
       communityNfts[1].push(...nftList)
     }
     return communityNfts
-
   }
-
 }
 
-
-const getWeightForCollection = (
-  {
-    claimId,
-    collections,
-    targetCollectionWeight,
-    nftLimit,
-    claimedList,
-
-  }: ClaimInfo
-) => {
-
-  let totalWeights = 0;
-  let claimCount = 0;
-  let tokenIndex = 0;
+const getWeightForCollection = ({ claimId, collections, targetCollectionWeight, nftLimit, claimedList }: ClaimInfo) => {
+  let totalWeights = 0
+  let claimCount = 0
+  let tokenIndex = 0
   const communityCollectionWeights = {
-    "0x569B70fc565AFba702d9e77e75FD3e3c78F57eeD": 1,
-    "0x11DdF94710AD390063357D532042Bd5f23A3fBd6": 1,
-    "0x0B8E7D22CE826f1228a82525b8779dBdD9E24B80": 3,
-    "0x2c65d5355813D3E1f86d1c9b25DCFF367bBd913D": 3,
-    "0x0a846Dd40152d6fE8CB4DE4107E0b063B6D6b3F9": 5,
-    "0x117D6870e6dE9faBcB40C34CceDD5228C63e3a1e": 10,
-  };
+    '0x569B70fc565AFba702d9e77e75FD3e3c78F57eeD': 1,
+    '0x11DdF94710AD390063357D532042Bd5f23A3fBd6': 1,
+    '0x0B8E7D22CE826f1228a82525b8779dBdD9E24B80': 3,
+    '0x2c65d5355813D3E1f86d1c9b25DCFF367bBd913D': 3,
+    '0x0a846Dd40152d6fE8CB4DE4107E0b063B6D6b3F9': 5,
+    '0x117D6870e6dE9faBcB40C34CceDD5228C63e3a1e': 10,
+  }
 
   for (let i = 0; i < collections.length; i++) {
-    const collection = collections[i];
-
+    const collection = collections[i]
 
     for (let y = 0; y < collection.nftIds.length; y++) {
-
       if (!claimedList[tokenIndex]) {
         if (collection.isTargetNft) {
-          totalWeights += targetCollectionWeight;
+          totalWeights += targetCollectionWeight
         } else {
-          totalWeights += communityCollectionWeights[collection.collectionAddress];
+          totalWeights += communityCollectionWeights[collection.collectionAddress]
         }
-        claimCount += 1;
+        claimCount += 1
 
         if (claimCount >= nftLimit) {
-          break;
+          break
         }
       }
 
-      tokenIndex += 1;
-
+      tokenIndex += 1
     }
 
     if (claimCount >= nftLimit) {
-      break;
+      break
     }
-
-
   }
 
-  return [totalWeights, claimCount];
-
+  return [totalWeights, claimCount]
 }
 
-
 const getClaimInfoApi = async (account) => {
-  console.log("Started")
-  const v2Claims = claimConfig.filter((claim) => claim.version == 2);
+  console.log('Started')
+  const v2Claims = claimConfig.filter((claim) => claim.version == 2)
   const claimCalls = v2Claims.map((claim) => {
     const { cid } = claim
     return {
@@ -130,27 +107,25 @@ const getClaimInfoApi = async (account) => {
       address: getRabbitCoinClaimRewardV2Address(),
       params: [cid],
     }
-
-  });
-  const rawClaims = await multicallPolygonv2<any>(rabbitCoinClaimRewardAbi, claimCalls);
+  })
+  const rawClaims = await multicallPolygonv2<any>(rabbitCoinClaimRewardAbi, claimCalls)
   const parsedClaims = rawClaims.map((rawClaim, index) => {
     return {
-      cid: v2Claims[index]["cid"],
-      nftLimit: v2Claims[index]["nftLimit"],
+      cid: v2Claims[index]['cid'],
+      nftLimit: v2Claims[index]['nftLimit'],
       rewardToken: rawClaim[0],
       targetCollectionAddress: rawClaim[3],
       targetCollectionWeight: new BigNumber(rawClaim[4]._hex).toJSON(),
-      useApi: Boolean(v2Claims[index]["useApi"]),
+      useApi: Boolean(v2Claims[index]['useApi']),
     }
-  });
-  console.log("parsedClaims")
+  })
+  console.log('parsedClaims')
   console.log(parsedClaims)
-
 
   //=============================================================
 
   // Get RabbitCoin nfts
-  const communityCollection = nftFarmsConfig.filter((nftFarm) => nftFarm.pid <= 4).reverse();
+  const communityCollection = nftFarmsConfig.filter((nftFarm) => nftFarm.pid <= 4).reverse()
   const communityCollectionCalls = communityCollection.map((nftFarm) => {
     const { nftAddresses } = nftFarm
     return {
@@ -158,27 +133,24 @@ const getClaimInfoApi = async (account) => {
       address: getAddress(nftAddresses),
       params: [account],
     }
+  })
 
-  });
-
-  const communityNftsRaw = await multicallPolygonv2<any>(rabbitCoinNftAbi, communityCollectionCalls);
-  const communityNftsFlat = communityNftsRaw.flat();
+  const communityNftsRaw = await multicallPolygonv2<any>(rabbitCoinNftAbi, communityCollectionCalls)
+  const communityNftsFlat = communityNftsRaw.flat()
   const communityNfts: CollectionInfo[] = communityNftsFlat.map((communityNfts, index) => {
     const collectionInfo: CollectionInfo = {
       collectionAddress: getAddress(communityCollection[index].nftAddresses),
-      nftIds: communityNfts.map((id) => id.toNumber())
-    };
-    return collectionInfo;
-  });
-  console.log("communityNfts")
+      nftIds: communityNfts.map((id) => id.toNumber()),
+    }
+    return collectionInfo
+  })
+  console.log('communityNfts')
   console.log(communityNfts)
-
 
   //=============================================================
 
-
-  let apiClaims = parsedClaims.filter(claim => claim.useApi);
-  let nativeClaims = parsedClaims.filter(claim => !claim.useApi);
+  let apiClaims = parsedClaims.filter((claim) => claim.useApi)
+  let nativeClaims = parsedClaims.filter((claim) => !claim.useApi)
   // Get nfts with api if signed on config
   const nativeClaimsTargetNftCalls = nativeClaims.map((claim) => {
     return {
@@ -186,40 +158,38 @@ const getClaimInfoApi = async (account) => {
       address: claim.targetCollectionAddress,
       params: [account],
     }
-  });
-  const nativeTargetNftsRaw = await multicallPolygonv2<any>(rabbitCoinNftAbi, nativeClaimsTargetNftCalls);
-  const nativeTargetNfts = nativeTargetNftsRaw.flat();
+  })
+  const nativeTargetNftsRaw = await multicallPolygonv2<any>(rabbitCoinNftAbi, nativeClaimsTargetNftCalls)
+  const nativeTargetNfts = nativeTargetNftsRaw.flat()
 
-  const apiTargetNfts = await Promise.all(apiClaims.map(async (claim, index) => {
-    const tokenIds = await walletOfOwnerApi(account, claim.targetCollectionAddress);
-    return tokenIds;
-  }))
+  const apiTargetNfts = await Promise.all(
+    apiClaims.map(async (claim, index) => {
+      const tokenIds = await walletOfOwnerApi(account, claim.targetCollectionAddress)
+      return tokenIds
+    }),
+  )
 
-
-  let targetNFTs: CollectionInfo[] = [];
-  let apiTargetNftsIndex = 0;
-  let nativeTargetNftsIndex = 0;
-  parsedClaims.forEach(claim => {
-
-    const nftIdsRaw = claim.useApi ? apiTargetNfts[apiTargetNftsIndex] : nativeTargetNfts[nativeTargetNftsIndex];
-    const nftIdsNumber = nftIdsRaw.map((id) => id.toNumber());
+  let targetNFTs: CollectionInfo[] = []
+  let apiTargetNftsIndex = 0
+  let nativeTargetNftsIndex = 0
+  parsedClaims.forEach((claim) => {
+    const nftIdsRaw = claim.useApi ? apiTargetNfts[apiTargetNftsIndex] : nativeTargetNfts[nativeTargetNftsIndex]
+    const nftIdsNumber = nftIdsRaw.map((id) => id.toNumber())
     const collectionInfo: CollectionInfo = {
       collectionAddress: claim.targetCollectionAddress,
       nftIds: nftIdsNumber,
       isTargetNft: true,
-    };
-
-
-    targetNFTs.push(collectionInfo);
-    if (claim.useApi) {
-      apiTargetNftsIndex++;
-    } else {
-      nativeTargetNftsIndex++;
     }
-  });
-  console.log("targetNFTs")
-  console.log(targetNFTs)
 
+    targetNFTs.push(collectionInfo)
+    if (claim.useApi) {
+      apiTargetNftsIndex++
+    } else {
+      nativeTargetNftsIndex++
+    }
+  })
+  console.log('targetNFTs')
+  console.log(targetNFTs)
 
   /*
   No need this, remove later
@@ -229,21 +199,18 @@ const getClaimInfoApi = async (account) => {
   */
   //=============================================================
 
-
   const rewardBalancesCalls = parsedClaims.map((claim) => {
     return {
       name: 'balanceOf',
       address: claim.rewardToken,
       params: [getRabbitCoinClaimRewardV2Address()],
     }
-  });
-  const rewardBalancesRaw = await multicallPolygonv2<any>(erc20Abi, rewardBalancesCalls);
-  console.log("rewardBalancesRaw")
+  })
+  const rewardBalancesRaw = await multicallPolygonv2<any>(erc20Abi, rewardBalancesCalls)
+  console.log('rewardBalancesRaw')
   console.log(rewardBalancesRaw)
 
-
   //=============================================================
-
 
   const walletClaimedCountCalls = parsedClaims.map((claim, index) => {
     return {
@@ -251,89 +218,76 @@ const getClaimInfoApi = async (account) => {
       address: getRabbitCoinClaimRewardV2Address(),
       params: [0, index, account], // TODO: make loop value zero dynamic
     }
-  });
+  })
 
-  const walletClaimedCountsRaw = await multicallPolygonv2<any>(rabbitCoinClaimRewardAbi, walletClaimedCountCalls);
-  const walletClaimedCountsFlat = walletClaimedCountsRaw.flat();
+  const walletClaimedCountsRaw = await multicallPolygonv2<any>(rabbitCoinClaimRewardAbi, walletClaimedCountCalls)
+  const walletClaimedCountsFlat = walletClaimedCountsRaw.flat()
   const walletClaimedCountsNumber = walletClaimedCountsFlat.map((claimedCount) => {
     return claimedCount.toNumber()
-  });
-  console.log("walletClaimedCountsNumber")
+  })
+  console.log('walletClaimedCountsNumber')
   console.log(walletClaimedCountsNumber)
-
 
   //=============================================================
 
-
-  let isClaimedListCalls = [];
+  let isClaimedListCalls = []
   for (let i = 0; i < parsedClaims.length; i++) {
-    const claim = parsedClaims[i];
-    const allNftsForClaim = [targetNFTs[i], ...communityNfts];
+    const claim = parsedClaims[i]
+    const allNftsForClaim = [targetNFTs[i], ...communityNfts]
     allNftsForClaim.forEach((collectionInfo) => {
-
       if (collectionInfo.nftIds.length > 0) {
         collectionInfo.nftIds.forEach((tokenId) => {
-
           isClaimedListCalls.push({
             name: 'nftRewardsClaimed',
             address: getRabbitCoinClaimRewardV2Address(),
             params: [0, claim.cid, collectionInfo.collectionAddress, tokenId],
-          });
-
-        });
+          })
+        })
       }
-
-    });
-
+    })
   }
 
-  const isClaimedListRaw = await multicallPolygonv2<any>(rabbitCoinClaimRewardAbi, isClaimedListCalls);
-  const isClaimedListFlat = isClaimedListRaw.flat();
-  console.log("isClaimedListFlat")
+  const isClaimedListRaw = await multicallPolygonv2<any>(rabbitCoinClaimRewardAbi, isClaimedListCalls)
+  const isClaimedListFlat = isClaimedListRaw.flat()
+  console.log('isClaimedListFlat')
   console.log(isClaimedListFlat)
 
-  let isClaimedListSeperated = [];
-  let tokenIndex = 0;
+  let isClaimedListSeperated = []
+  let tokenIndex = 0
   for (let i = 0; i < parsedClaims.length; i++) {
-    const claim = parsedClaims[i];
-    const allNftsForClaim = [targetNFTs[i], ...communityNfts];
-    let isClaimedListForClaim = [];
+    const claim = parsedClaims[i]
+    const allNftsForClaim = [targetNFTs[i], ...communityNfts]
+    let isClaimedListForClaim = []
 
     allNftsForClaim.forEach((collectionInfo) => {
-
       if (collectionInfo.nftIds.length > 0) {
         collectionInfo.nftIds.forEach((tokenId, index) => {
-
-          isClaimedListForClaim.push(isClaimedListFlat[tokenIndex]);
-          tokenIndex++;
-
-        });
+          isClaimedListForClaim.push(isClaimedListFlat[tokenIndex])
+          tokenIndex++
+        })
       }
-
-    });
-    isClaimedListSeperated.push(isClaimedListForClaim);
+    })
+    isClaimedListSeperated.push(isClaimedListForClaim)
   }
 
-  console.log("isClaimedListSeperated")
+  console.log('isClaimedListSeperated')
   console.log(isClaimedListSeperated)
 
   //=============================================================
 
-
   const userClaimInfos: UserClaimInfo[] = parsedClaims.map((claim, index) => {
-
     let userClaimInfo: UserClaimInfo = {
       totalWeights: 0,
-      remainingClaims: 0
+      remainingClaims: 0,
     }
 
-    const walletClaimedCount = walletClaimedCountsNumber[index];
+    const walletClaimedCount = walletClaimedCountsNumber[index]
     if (walletClaimedCount >= claim.nftLimit) {
-      return userClaimInfo;
+      return userClaimInfo
     }
 
-    let remainingClaimCount = claim.nftLimit - walletClaimedCount;
-    userClaimInfo.remainingClaims = remainingClaimCount;
+    let remainingClaimCount = claim.nftLimit - walletClaimedCount
+    userClaimInfo.remainingClaims = remainingClaimCount
 
     // Calculate weights
     const [weight, claimedCount] = getWeightForCollection({
@@ -342,48 +296,38 @@ const getClaimInfoApi = async (account) => {
       targetCollectionWeight: parseInt(claim.targetCollectionWeight),
       nftLimit: remainingClaimCount,
       claimedList: isClaimedListSeperated[index],
-    });
-    userClaimInfo.totalWeights += weight;
-    return userClaimInfo;
+    })
+    userClaimInfo.totalWeights += weight
+    return userClaimInfo
+  })
 
-  });
-
-  console.log("userClaimInfos")
+  console.log('userClaimInfos')
   console.log(userClaimInfos)
 
-  return [communityNfts, targetNFTs, userClaimInfos, rewardBalancesRaw];
+  return [communityNfts, targetNFTs, userClaimInfos, rewardBalancesRaw]
 }
 
-
 const getClaimInfo = async (account, claimRewardContract, claimRewardV2Contract) => {
-  
   const [claimInfo, [communityNfts, targetNFTs, userClaimInfos, rewardBalancesRaw]] = await Promise.all([
     claimRewardContract.getInfo(account),
-    getClaimInfoApi(account)
-  ]);
-  
-
-
+    getClaimInfoApi(account),
+  ])
 
   try {
-
-    let claimIndex1 = 0;
-    let claimIndex2 = 0;
+    let claimIndex1 = 0
+    let claimIndex2 = 0
     const claimDetails = claimConfig.map((claim) => {
-
-      const claimIndex = claim.version == 2 ? claimIndex2++ : claimIndex1++;
+      const claimIndex = claim.version == 2 ? claimIndex2++ : claimIndex1++
 
       if (claim.version == 2) {
-
-      const nftsToClaim: CollectionInfo[] = [targetNFTs[claimIndex], ...communityNfts];
-      let nftsToClaimClean = [[], []];
-      nftsToClaim.forEach((info) => {
-        info.nftIds.forEach((tokenId) => {
-          nftsToClaimClean[0].push(info.collectionAddress);
-          nftsToClaimClean[1].push(tokenId);
-        });
-      });
-
+        const nftsToClaim: CollectionInfo[] = [targetNFTs[claimIndex], ...communityNfts]
+        let nftsToClaimClean = [[], []]
+        nftsToClaim.forEach((info) => {
+          info.nftIds.forEach((tokenId) => {
+            nftsToClaimClean[0].push(info.collectionAddress)
+            nftsToClaimClean[1].push(tokenId)
+          })
+        })
 
         return {
           ...claim,
@@ -392,28 +336,35 @@ const getClaimInfo = async (account, claimRewardContract, claimRewardV2Contract)
           rewardBalance: new BigNumber(rewardBalancesRaw[claimIndex][0]?._hex).toNumber(),
           nftsToClaim: nftsToClaimClean,
         }
-
       }
 
       return {
         ...claim,
-        userWeight: new BigNumber(getSpecificData(claimInfo, "userClaimInfo")[claimIndex]?.totalWeights?._hex).toNumber(),
-        remainingClaims: new BigNumber(getSpecificData(claimInfo, "userClaimInfo")[claimIndex]?.remainingClaims?._hex).toNumber(),
-        rewardBalance: new BigNumber(getSpecificData(claimInfo, "rewardBalances")[claimIndex]?._hex).toNumber(),
-        nftsToClaim: [[...getSpecificData(claimInfo, "targetNftsForClaimIndex")[claimIndex]?.[0] ?? [], ...getSpecificData(claimInfo, "communityNfts")[0]], [...getSpecificData(claimInfo, "targetNftsForClaimIndex")[claimIndex]?.[1] ?? [], ...getSpecificData(claimInfo, "communityNfts")[1]]],
+        userWeight: new BigNumber(
+          getSpecificData(claimInfo, 'userClaimInfo')[claimIndex]?.totalWeights?._hex,
+        ).toNumber(),
+        remainingClaims: new BigNumber(
+          getSpecificData(claimInfo, 'userClaimInfo')[claimIndex]?.remainingClaims?._hex,
+        ).toNumber(),
+        rewardBalance: new BigNumber(getSpecificData(claimInfo, 'rewardBalances')[claimIndex]?._hex).toNumber(),
+        nftsToClaim: [
+          [
+            ...(getSpecificData(claimInfo, 'targetNftsForClaimIndex')[claimIndex]?.[0] ?? []),
+            ...getSpecificData(claimInfo, 'communityNfts')[0],
+          ],
+          [
+            ...(getSpecificData(claimInfo, 'targetNftsForClaimIndex')[claimIndex]?.[1] ?? []),
+            ...getSpecificData(claimInfo, 'communityNfts')[1],
+          ],
+        ],
       }
-
-
     })
 
-
     return claimDetails
-
   } catch (error) {
     console.log(error)
     return null
   }
-
 }
 
 export const useClaimInfo = (): {
@@ -426,11 +377,12 @@ export const useClaimInfo = (): {
   const claimRewardContract = useRabbitCoinClaimRewardContract()
   const claimRewardV2Contract = useRabbitCoinClaimRewardV2Contract()
 
-  const { data, status, mutate } = useSWR(account ? [account, 'claimInfo'] : null, () => getClaimInfo(account, claimRewardContract, claimRewardV2Contract))
+  const { data, status, mutate } = useSWR(account ? [account, 'claimInfo'] : null, () =>
+    getClaimInfo(account, claimRewardContract, claimRewardV2Contract),
+  )
 
   const isLoading = status === FetchStatus.Fetching
   const isInitialized = status === FetchStatus.Fetched || status === FetchStatus.Failed
-
 
   return { data, isInitialized, isLoading, refresh: mutate }
 }

@@ -47,7 +47,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
     />,
     false,
   )
-  
+
   // CAUTION: Profile details disabled here
   profile = null
 
@@ -144,7 +144,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
   const renderDescription = () => {
     const getActivateButton = () => {
       // TODO: getActivateButton disabled by return statement below, activate later.
-      return;
+      return
       if (!profile) {
         return (
           <ReactRouterLink to="/create-profile">

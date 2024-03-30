@@ -4,7 +4,7 @@ import { Contract } from '@ethersproject/contracts'
 import { useRabbitCoinFarm } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 
-const useApproveFarm = (lpContract: Contract) => { 
+const useApproveFarm = (lpContract: Contract) => {
   const masterChefContract = useRabbitCoinFarm() //useMasterchef()
   const { callWithGasPrice } = useCallWithGasPrice()
   const handleApprove = useCallback(async () => {

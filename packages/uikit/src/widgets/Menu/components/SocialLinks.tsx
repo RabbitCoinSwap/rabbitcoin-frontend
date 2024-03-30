@@ -6,7 +6,7 @@ import Link from "../../../components/Link/Link";
 import { socials } from "../config";
 import { SvgProps } from "../../../components/Svg";
 
-const Icons = (IconModule as unknown) as { [key: string]: React.FC<SvgProps> };
+const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 
 const SocialLinks: React.FC = () => (
   <Flex>

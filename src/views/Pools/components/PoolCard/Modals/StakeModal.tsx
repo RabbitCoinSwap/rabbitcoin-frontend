@@ -127,7 +127,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
     earningToken.symbol,
   )
 
-
   const handleStakeInputChange = (input: string) => {
     if (input) {
       const convertedInput = getDecimalAmount(new BigNumber(input), stakingToken.decimals)
@@ -323,7 +322,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           onClick={handleEnableApprove}
           mt="24px"
         >
-          {t("Enable")}
+          {t('Enable')}
         </Button>
       ) : (
         <Button
@@ -333,8 +332,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
           disabled={!stakeAmount || parseFloat(stakeAmount) === 0 || hasReachedStakeLimit || userNotEnoughToken}
           mt="24px"
         >
-        {pendingTx ? t('Confirming') : t('Confirm')}
-      </Button>
+          {pendingTx ? t('Confirming') : t('Confirm')}
+        </Button>
       )}
       {!isRemovingStake && (
         <StyledLink external href={getTokenLink}>

@@ -46,25 +46,24 @@ export const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(p
 // Main Function for Farm Data and Price Calculation
 export const fetchFarmsPublicDataAsync = createAsyncThunk<
   [SerializedNftFarm[], number],
-  {pids: number[]; currentBlock: number},
+  { pids: number[]; currentBlock: number },
   {
     state: AppState
   }
 >(
   'nftFarms/fetchFarmsPublicDataAsync',
-  async ({pids, currentBlock}) => {
-
+  async ({ pids, currentBlock }) => {
     const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
 
     const farms = await fetchFarms(farmsToFetch, currentBlock)
 
     // const farmsWithPrices = getFarmsPrices(farms) TODO: Remove related file
-    
+
     // Filter out price helper LP config farms
-    const farmsWithoutHelperLps = farms.filter((farm: SerializedNftFarm) => {   // farmsWithPrices --> farms
+    const farmsWithoutHelperLps = farms.filter((farm: SerializedNftFarm) => {
+      // farmsWithPrices --> farms
       return farm.pid || farm.pid === 0
     })
-
 
     return [farmsWithoutHelperLps, farmsToFetch.length]
   },
@@ -223,6 +222,5 @@ export const farmsSlice = createSlice({
 })
 
 // Actions
-export const { setPoolsPublicData } =
-farmsSlice.actions
+export const { setPoolsPublicData } = farmsSlice.actions
 export default farmsSlice.reducer

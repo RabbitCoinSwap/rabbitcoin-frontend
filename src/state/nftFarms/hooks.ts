@@ -9,7 +9,13 @@ import { deserializeToken } from 'state/user/hooks/helpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, fetchNftPoolsStakingLimitsAsync, nonArchivedFarms } from '.'
-import { DeserializedNftFarm, DeserializedNftFarmsState, DeserializedNftFarmUserData, SerializedNftFarm, State } from '../types'
+import {
+  DeserializedNftFarm,
+  DeserializedNftFarmsState,
+  DeserializedNftFarmUserData,
+  SerializedNftFarm,
+  State,
+} from '../types'
 
 const deserializeNftFarmUserData = (farm: SerializedNftFarm): DeserializedNftFarmUserData => {
   return {
@@ -21,7 +27,23 @@ const deserializeNftFarmUserData = (farm: SerializedNftFarm): DeserializedNftFar
 }
 
 const deserializeNftFarm = (farm: SerializedNftFarm): DeserializedNftFarm => {
-  const { nftAddresses, contractAddresses, lpSymbol, pid, dual, multiplier, tokenPerBlock, startBlock, endBlock, participantThreshold, isFinished, numberBlocksForUserLimit, stakingLimit, earningToken, performanceFee } = farm
+  const {
+    nftAddresses,
+    contractAddresses,
+    lpSymbol,
+    pid,
+    dual,
+    multiplier,
+    tokenPerBlock,
+    startBlock,
+    endBlock,
+    participantThreshold,
+    isFinished,
+    numberBlocksForUserLimit,
+    stakingLimit,
+    earningToken,
+    performanceFee,
+  } = farm
   return {
     nftAddresses,
     contractAddresses,
@@ -47,7 +69,7 @@ const deserializeNftFarm = (farm: SerializedNftFarm): DeserializedNftFarm => {
     poolWeight: farm.poolWeight ? new BigNumber(farm.poolWeight) : BIG_ZERO,
     totalShares: farm.totalShares ? new BigNumber(farm.totalShares) : BIG_ZERO,
     supportedCollectionPids: farm.supportedCollectionPids ? farm.supportedCollectionPids : [],
-    collectionPowers: farm.collectionPowers ? farm.collectionPowers : null
+    collectionPowers: farm.collectionPowers ? farm.collectionPowers : null,
   }
 }
 
@@ -55,19 +77,22 @@ export const usePollFarmsWithUserData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
 
-  useSlowRefreshEffect((currentBlock) => {
-    const farmsToFetch = includeArchive ? nftFarmsConfig : nonArchivedFarms
-    const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
+  useSlowRefreshEffect(
+    (currentBlock) => {
+      const farmsToFetch = includeArchive ? nftFarmsConfig : nonArchivedFarms
+      const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
 
-    batch(() => {
-      dispatch(fetchFarmsPublicDataAsync({pids, currentBlock}))
-      dispatch(fetchNftPoolsStakingLimitsAsync())
-    })
+      batch(() => {
+        dispatch(fetchFarmsPublicDataAsync({ pids, currentBlock }))
+        dispatch(fetchNftPoolsStakingLimitsAsync())
+      })
 
-    if (account) {
-      dispatch(fetchFarmUserDataAsync({ account, pids }))
-    }
-  }, [includeArchive, dispatch, account])
+      if (account) {
+        dispatch(fetchFarmUserDataAsync({ account, pids }))
+      }
+    },
+    [includeArchive, dispatch, account],
+  )
 }
 
 /**
@@ -78,9 +103,12 @@ export const usePollFarmsWithUserData = (includeArchive = false) => {
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
 
-  useFastRefreshEffect((currentBlock) => {
-    dispatch(fetchFarmsPublicDataAsync({ pids: [1, 2], currentBlock }))
-  }, [dispatch])
+  useFastRefreshEffect(
+    (currentBlock) => {
+      dispatch(fetchFarmsPublicDataAsync({ pids: [1, 2], currentBlock }))
+    },
+    [dispatch],
+  )
 }
 
 export const useFarms = (): DeserializedNftFarmsState => {

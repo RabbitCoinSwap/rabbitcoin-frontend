@@ -18,7 +18,7 @@ interface Props {
 
 const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, publicIfoData, walletIfoData }) => {
   const userPoolCharacteristics = walletIfoData[poolId]
-  const { isHolder, discountAmount, } = walletIfoData
+  const { isHolder, discountAmount } = walletIfoData
   const { status, cost, balance } = publicIfoData
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
@@ -27,18 +27,16 @@ const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, publicIfoData, walle
   const [onPresentNewMintModal] = useModal(<NewMintModal collectionAddress={walletIfoData.contract.address} />, false)
 
   const setPendingTx = (isPending: boolean) => walletIfoData.setPendingTx(isPending, poolId)
-  
-  const handleClaim = async () => {
 
+  const handleClaim = async () => {
     if (balance >= 2) {
       toastError('Minting Limit Reached', 'Max 2 NFTs per account.')
-      return;
+      return
     }
 
-    
     const receipt = await fetchWithCatchTxError(() => {
       setPendingTx(true)
-      return walletIfoData.contract.mint(account, 1, {value: parseEther((cost - discountAmount).toString())})
+      return walletIfoData.contract.mint(account, 1, { value: parseEther((cost - discountAmount).toString()) })
     })
     if (receipt?.status) {
       walletIfoData.setIsClaimed(poolId)
@@ -48,11 +46,9 @@ const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, publicIfoData, walle
           {t('You have successfully minted your NFT.')}
         </ToastDescriptionWithTx>,
       )
-      onPresentNewMintModal();
+      onPresentNewMintModal()
     }
     setPendingTx(false)
-    
-    
   }
 
   return (

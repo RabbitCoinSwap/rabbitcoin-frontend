@@ -70,26 +70,25 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   const handleStake = async (selectedNftList: { collectionAddress: string; tokenId: number }[]) => {
     const receipt = await fetchWithCatchTxError(() => {
-      const tokenIds = selectedNftList.map((selectedNft) => selectedNft.tokenId);
-      const collectionAddresses = selectedNftList.map((selectedNft) => selectedNft.collectionAddress);
-      return onStake(collectionAddresses, tokenIds);
-    });
+      const tokenIds = selectedNftList.map((selectedNft) => selectedNft.tokenId)
+      const collectionAddresses = selectedNftList.map((selectedNft) => selectedNft.collectionAddress)
+      return onStake(collectionAddresses, tokenIds)
+    })
     if (receipt?.status) {
       toastSuccess(
         `${t('Staked')}!`,
         <ToastDescriptionWithTx txHash={receipt.transactionHash}>
           {t('Your tokens have been staked in the pool')}
-        </ToastDescriptionWithTx>
-      );
-      dispatch(fetchFarmUserDataAsync({ account, pids: [mainPid] }));
+        </ToastDescriptionWithTx>,
+      )
+      dispatch(fetchFarmUserDataAsync({ account, pids: [mainPid] }))
     }
-  };
-  
+  }
 
   const handleUnstake = async (selectedNftList: { collectionAddress: string; tokenId: number }[]) => {
     const receipt = await fetchWithCatchTxError(() => {
-      const tokenIds = selectedNftList.map((selectedNft) => selectedNft.tokenId);
-      const collectionAddresses = selectedNftList.map((selectedNft) => selectedNft.collectionAddress);
+      const tokenIds = selectedNftList.map((selectedNft) => selectedNft.tokenId)
+      const collectionAddresses = selectedNftList.map((selectedNft) => selectedNft.collectionAddress)
       return onUnstake(collectionAddresses, tokenIds)
     })
     if (receipt?.status) {
@@ -102,7 +101,6 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       dispatch(fetchFarmUserDataAsync({ account, pids: [mainPid] }))
     }
   }
-
 
   const [onPresentDeposit] = useModal(
     <DepositModal

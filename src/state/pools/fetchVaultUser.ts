@@ -4,7 +4,6 @@ import { getRabbitCoinAutoPoolVaultContract } from 'utils/contractHelpers'
 const cakeVaultContract = getRabbitCoinAutoPoolVaultContract()
 
 const fetchVaultUser = async (account: string) => {
-  
   try {
     const userContractResponse = await cakeVaultContract.userInfo(account)
 

@@ -12,7 +12,6 @@ import { DeserializedNftFarm } from 'state/types'
 import { mintingConfig } from 'config/constants'
 import nftFarmsConfig from 'config/constants/nftFarms'
 
-
 function collectionKey(collection: DeserializedNftFarm): number {
   return collection.pid
 }
@@ -32,7 +31,7 @@ export const CollectionAvatar = styled(ProfileAvatar)`
 `
 
 function Balance({ balance }: { balance: number }) {
-  return <StyledBalanceText title={"balance"}>{balance}</StyledBalanceText>
+  return <StyledBalanceText title={'balance'}>{balance}</StyledBalanceText>
 }
 
 const MenuItem = styled(RowBetween)<{ disabled: boolean; selected: boolean }>`
@@ -56,7 +55,7 @@ function CollectionRow({
   style,
   allowance,
   collectionPower,
-  eligiblePids
+  eligiblePids,
 }: {
   collection: DeserializedNftFarm
   onSelect: (task: string) => void
@@ -71,28 +70,31 @@ function CollectionRow({
   const balance = collection.userData.tokenBalance.toNumber()
   const collectionData = mintingConfig.find((mintCollection) => mintCollection.stake_pid === collection.pid)
   const nftFarmData = nftFarmsConfig.find((nftFarm) => nftFarm.pid === collection.pid)
-  const avatar = nftFarmData["avatar"] ? nftFarmData["avatar"] : collectionData?.avatar
+  const avatar = nftFarmData['avatar'] ? nftFarmData['avatar'] : collectionData?.avatar
   const isEligible = eligiblePids.includes(collection.pid)
-  
 
   // only show add or remove buttons if not on selected list
   return (
     <MenuItem
       style={style}
       className={`token-item-${key}`}
-      onClick={() => (isSelected ? null : onSelect(allowance ? "stake" : "approve"))}
+      onClick={() => (isSelected ? null : onSelect(allowance ? 'stake' : 'approve'))}
       disabled={balance == 0 || !isEligible} // Disable the item if not eligible
       selected={isSelected}
     >
-      <ListLogo logoURI={avatar} size={"34px"} />
+      <ListLogo logoURI={avatar} size={'34px'} />
       <Column>
-        <Text bold>{collection.lpSymbol} ({collectionPower}X)</Text>
+        <Text bold>
+          {collection.lpSymbol} ({collectionPower}X)
+        </Text>
         <Text color="textSubtle" small ellipsis maxWidth="200px">
-          {
-            !isEligible ? "This collection is not eligible" : // Show message if not eligible
-            balance === 0 ? "Insufficient balance" :
-            allowance ? "Click to Start Staking" : "Click to Enable"
-          }
+          {!isEligible
+            ? 'This collection is not eligible' // Show message if not eligible
+            : balance === 0
+            ? 'Insufficient balance'
+            : allowance
+            ? 'Click to Start Staking'
+            : 'Click to Enable'}
         </Text>
       </Column>
       <RowFixed style={{ justifySelf: 'flex-end' }}>
@@ -100,7 +102,6 @@ function CollectionRow({
       </RowFixed>
     </MenuItem>
   )
-
 }
 
 export default function CollectionList({
@@ -122,7 +123,6 @@ export default function CollectionList({
   fixedListRef?: MutableRefObject<FixedSizeList | undefined>
   eligiblePids?: number[]
 }) {
-
   const { chainId } = useActiveWeb3React()
 
   const { t } = useTranslation()
@@ -132,7 +132,6 @@ export default function CollectionList({
       const collection: DeserializedNftFarm = data[index]
       const isSelected = Boolean(selectedCollection && selectedCollection.pid == collection.pid)
       const handleSelect = (task) => onCurrencySelect(collection.pid, task)
-
 
       return (
         <CollectionRow
@@ -146,12 +145,7 @@ export default function CollectionList({
         />
       )
     },
-    [
-      chainId,
-      onCurrencySelect,
-      selectedCollection,
-      t,
-    ],
+    [chainId, onCurrencySelect, selectedCollection, t],
   )
 
   const itemKey = useCallback((index: number, data: any) => collectionKey(data[index]), [])

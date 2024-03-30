@@ -8,7 +8,7 @@ import { SerializedFarmConfig } from '../../config/constants/types'
 // TODO: Make it compatible both V2, V3 pools
 const fetchFarmCalls = (farm: SerializedFarm) => {
   const { lpAddresses, token, quoteToken } = farm
-  
+
   const lpAddress = getAddress(lpAddresses)
   return [
     // Balance of token in the LP contract

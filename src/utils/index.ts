@@ -127,7 +127,11 @@ export function getContract(address: string, ABI: any, signer?: Signer | Provide
 
 // account is optional
 export function getRouterContract(_: number, library: Web3Provider, account?: string) {
-  return getContract(ROUTER_ADDRESS, IRabbitCoinRouter02ABI, getProviderOrSigner(library, account)) as IRabbitCoinRouter02
+  return getContract(
+    ROUTER_ADDRESS,
+    IRabbitCoinRouter02ABI,
+    getProviderOrSigner(library, account),
+  ) as IRabbitCoinRouter02
 }
 
 export function escapeRegExp(string: string): string {

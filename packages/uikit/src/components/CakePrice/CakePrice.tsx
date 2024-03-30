@@ -25,10 +25,7 @@ const PriceLink = styled.a`
 
 const CakePrice: React.FC<Props> = ({ cakePriceUsd, color = "textSubtle" }) => {
   return cakePriceUsd ? (
-    <PriceLink
-      href="/swap?outputCurrency=0x28767E286113Ab01EE819b9398A22D6f27BaDb6E"
-      target="_blank"
-    >
+    <PriceLink href="/swap?outputCurrency=0x28767E286113Ab01EE819b9398A22D6f27BaDb6E" target="_blank">
       <LogoRound width="24px" mr="8px" />
       <Text color={color} bold>{`$${cakePriceUsd.toFixed(4)}`}</Text>
     </PriceLink>

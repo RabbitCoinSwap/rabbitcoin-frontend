@@ -62,7 +62,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     totalCakeInVault,
     fees: { performanceFee },
   } = useVaultPoolByKey(vaultKey)
-  
+
   const vaultPools = useVaultPools()
   const cakeInVaults = Object.values(vaultPools).reduce((total, vault) => {
     return total.plus(vault.totalCakeInVault)
@@ -179,11 +179,11 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       )}
 
       {
-      <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={`https://app.uniswap.org/#/tokens/polygon/${earningToken.address}`} bold={false} small>
-          {t('See Token Info')}
-        </LinkExternal>
-      </Flex>
+        <Flex mb="2px" justifyContent="flex-end">
+          <LinkExternal href={`https://app.uniswap.org/#/tokens/polygon/${earningToken.address}`} bold={false} small>
+            {t('See Token Info')}
+          </LinkExternal>
+        </Flex>
       }
 
       <Flex mb="2px" justifyContent="flex-end">

@@ -162,7 +162,7 @@ export const userMenulinks: DropdownMenuItems[] = [
   },
 ];
 
-export const socials: { label?: string, icon: string, items?: { label?: string, href?: string }[], href?: string }[] = [
+export const socials: { label?: string; icon: string; items?: { label?: string; href?: string }[]; href?: string }[] = [
   {
     label: "Telegram",
     icon: "TelegramIcon",

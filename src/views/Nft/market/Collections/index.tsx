@@ -1,5 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ArrowBackIcon, ArrowForwardIcon, Button, ChevronRightIcon, Flex, Grid, Heading, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
+import {
+  ArrowBackIcon,
+  ArrowForwardIcon,
+  Button,
+  ChevronRightIcon,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+  useMatchBreakpoints,
+} from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { FetchStatus } from 'config/constants/types'
 import { useGetShuffledCollections } from 'state/nftMarket/hooks'
@@ -107,7 +117,6 @@ const Collectible = () => {
     return collectionValues.filter((collection) => collection.status == 'liveprivate')
   }, [collections])
 
-
   const handleSortOptionChange = (option: OptionProps): void => {
     setSortField(option.value)
   }
@@ -160,21 +169,24 @@ const Collectible = () => {
               </Flex>
                 */}
             </Flex>
-            
-            {activePrivateMintings.length > 0 && <Collections
-              key="active-private-mintings"
-              title={t('🔥New & Hot')}
-              testId="active-private-mintings"
-              collections={activePrivateMintings}
-            />}
 
-            {activePublicMintings.length > 0 && <Collections
-              key="active-public-mintings"
-              title={t('Live Public Mintings')}
-              testId="active-public-mintings"
-              collections={activePublicMintings}
-            />}
+            {activePrivateMintings.length > 0 && (
+              <Collections
+                key="active-private-mintings"
+                title={t('🔥New & Hot')}
+                testId="active-private-mintings"
+                collections={activePrivateMintings}
+              />
+            )}
 
+            {activePublicMintings.length > 0 && (
+              <Collections
+                key="active-public-mintings"
+                title={t('Live Public Mintings')}
+                testId="active-public-mintings"
+                collections={activePublicMintings}
+              />
+            )}
 
             <Collections
               key="coming-soon-collections"
@@ -183,13 +195,14 @@ const Collectible = () => {
               collections={null}
             />
 
-            {finishedMintings.length > 0 && <Collections
-              key="finished-mintings"
-              title={t('Finished Mintings')}
-              testId="finished-mintings"
-              collections={finishedMintings}
-            />}
-
+            {finishedMintings.length > 0 && (
+              <Collections
+                key="finished-mintings"
+                title={t('Finished Mintings')}
+                testId="finished-mintings"
+                collections={finishedMintings}
+              />
+            )}
 
             {/*
             <PageButtons>
@@ -229,73 +242,66 @@ const Collections: React.FC<{ title: string; testId: string; collections: Collec
   const { t } = useTranslation()
 
   const CardRender = () => {
-
     if (collections) {
-
-
-      return (<Grid gridGap="16px" gridTemplateColumns={['1fr', '1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} mb="64px">
-
-
-        {collections.slice(0, 9).map((collection) => {
-          return (
-            <CollectionCard
-              key={collection.address}
-              bgSrc={collection.banner.small}
-              avatarSrc={collection.avatar}
-              collectionName={collection.name}
-              url={`${nftsBaseUrl}/collections/mint/${collection.address}`}
-            >
-              <Flex alignItems="center">
-                <Text fontSize="12px" color="textSubtle">
-                  {t('Volume')}
-                </Text>
-                <BNBAmountLabel amount={collection.totalSupply ? parseFloat(collection.totalSupply) : 0} />
-              </Flex>
-            </CollectionCard>
-          )
-        })}
-
-
-      </Grid>)
+      return (
+        <Grid gridGap="16px" gridTemplateColumns={['1fr', '1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} mb="64px">
+          {collections.slice(0, 9).map((collection) => {
+            return (
+              <CollectionCard
+                key={collection.address}
+                bgSrc={collection.banner.small}
+                avatarSrc={collection.avatar}
+                collectionName={collection.name}
+                url={`${nftsBaseUrl}/collections/mint/${collection.address}`}
+              >
+                <Flex alignItems="center">
+                  <Text fontSize="12px" color="textSubtle">
+                    {t('Volume')}
+                  </Text>
+                  <BNBAmountLabel amount={collection.totalSupply ? parseFloat(collection.totalSupply) : 0} />
+                </Flex>
+              </CollectionCard>
+            )
+          })}
+        </Grid>
+      )
     } else {
-      return (<Grid gridGap="16px" gridTemplateColumns={['1fr', '1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} mb="64px">
+      return (
+        <Grid gridGap="16px" gridTemplateColumns={['1fr', '1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} mb="64px">
+          {/* ======Dummy Collections====== */}
+          <CollectionCard
+            key="dummy"
+            bgSrc="https://rabbitcoin.xyz/assets/images/partners/sapienx/sapienBannerSm-min.png"
+            avatarSrc="https://rabbitcoin.xyz/assets/images/partners/sapienx/SapienXlogo.gif"
+            collectionName="SapienX AI"
+            url="https://sapienx.app"
+          >
+            <Flex alignItems="center">
+              <Text fontSize="12px" color="textSubtle">
+                MaxSupply
+              </Text>
+              <BNBAmountLabel amount={1000} />
+            </Flex>
+          </CollectionCard>
 
+          <CollectionCard
+            key="dummy"
+            bgSrc="https://rabbitcoin.xyz/assets/images/clone/web3sports.png"
+            avatarSrc="https://rabbitcoin.xyz/assets/images/clone/web3slogo128.png"
+            collectionName="Web3Sports"
+            url="https://web3sports.app"
+          >
+            <Flex alignItems="center">
+              <Text fontSize="12px" color="textSubtle">
+                MaxSupply
+              </Text>
+              <BNBAmountLabel amount={1000} />
+            </Flex>
+          </CollectionCard>
 
-        {/* ======Dummy Collections====== */}
-        <CollectionCard
-          key="dummy"
-          bgSrc="https://rabbitcoin.xyz/assets/images/partners/sapienx/sapienBannerSm-min.png"
-          avatarSrc="https://rabbitcoin.xyz/assets/images/partners/sapienx/SapienXlogo.gif"
-          collectionName="SapienX AI"
-          url="https://sapienx.app"
-        >
-          <Flex alignItems="center">
-            <Text fontSize="12px" color="textSubtle">
-              MaxSupply
-            </Text>
-            <BNBAmountLabel amount={1000} />
-          </Flex>
-        </CollectionCard>
-
-        <CollectionCard
-          key="dummy"
-          bgSrc="https://rabbitcoin.xyz/assets/images/clone/web3sports.png"
-          avatarSrc="https://rabbitcoin.xyz/assets/images/clone/web3slogo128.png"
-          collectionName="Web3Sports"
-          url="https://web3sports.app"
-        >
-          <Flex alignItems="center">
-            <Text fontSize="12px" color="textSubtle">
-              MaxSupply
-            </Text>
-            <BNBAmountLabel amount={1000} />
-          </Flex>
-        </CollectionCard>
-
-        {/* ======Dummy Collections====== */}
-
-
-      </Grid>)
+          {/* ======Dummy Collections====== */}
+        </Grid>
+      )
     }
   }
 
@@ -316,7 +322,6 @@ const Collections: React.FC<{ title: string; testId: string; collections: Collec
           {t('View All')}
         </Button>
         */}
-
       </Flex>
       <CardRender />
     </>

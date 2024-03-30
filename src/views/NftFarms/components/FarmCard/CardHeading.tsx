@@ -4,12 +4,11 @@ import { Token } from '@rabbitcoin/sdk'
 import { FarmAuctionTag, CoreTag } from 'components/Tags'
 import { mintingConfig } from 'config/constants'
 
-
 export interface ExpandableSectionProps {
   lpLabel?: string
   multiplier?: string
   nftToken?: string
-  pid?:number
+  pid?: number
 }
 
 const Wrapper = styled(Flex)`
@@ -26,7 +25,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, nf
   const collectionData = mintingConfig.find((collection) => collection.stake_pid == pid)
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <ProfileAvatar src={collectionData ? collectionData.avatar : ""} width={64} height={64} />
+      <ProfileAvatar src={collectionData ? collectionData.avatar : ''} width={64} height={64} />
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel}</Heading>
       </Flex>

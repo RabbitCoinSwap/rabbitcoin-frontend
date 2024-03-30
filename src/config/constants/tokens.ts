@@ -22,7 +22,7 @@ export const mainnetTokens = defineTokens({
     'WBNB',
     'Wrapped BNB',
     'https://www.binance.com/',
-  ),  
+  ),
   rabbit: new Token(
     POLYGON_MAINNET,
     '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E',
@@ -70,7 +70,7 @@ export const mainnetTokens = defineTokens({
     'CARROT',
     'CarrotBar',
     'https://www.rabbitcoin.xyz/',
-  ),    
+  ),
   // bnb here points to the wbnb contract. Wherever the currency BNB is required, conditional checks for the symbol 'BNB' can be used
   bnb: new Token(MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
   cake: new Token(
@@ -80,7 +80,7 @@ export const mainnetTokens = defineTokens({
     'CAKE',
     'PancakeSwap Token',
     'https://pancakeswap.finance/',
-  ),  
+  ),
   tlos: new Token(MAINNET, '0xb6C53431608E626AC81a9776ac3e999c5556717c', 18, 'TLOS', 'Telos', 'https://www.telos.net/'),
   beta: new Token(
     MAINNET,
@@ -2054,7 +2054,7 @@ export const mainnetTokens = defineTokens({
   ),
 } as const)
 
-export const testnetTokens = defineTokens({  
+export const testnetTokens = defineTokens({
   wbnb: new Token(
     TESTNET,
     '0x094616F0BdFB0b526bD735Bf66Eca0Ad254ca81F',
@@ -2062,7 +2062,7 @@ export const testnetTokens = defineTokens({
     'WBNB',
     'Wrapped BNB',
     'https://www.binance.com/',
-  ),  
+  ),
   cake: new Token(
     TESTNET,
     '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',

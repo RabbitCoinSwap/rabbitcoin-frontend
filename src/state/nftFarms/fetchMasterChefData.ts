@@ -45,15 +45,21 @@ const smartNftPoolCalls = (farm: SerializedNftFarm) => {
     : [null]
 }
 
-export const fetchMasterChefData = async (farms: SerializedNftFarmConfig[], isSmartNftPool: boolean): Promise<any[]> => {
-  const masterChefCalls = farms.map((farm) => isSmartNftPool ? smartNftPoolCalls(farm) : masterChefFarmCalls(farm))
+export const fetchMasterChefData = async (
+  farms: SerializedNftFarmConfig[],
+  isSmartNftPool: boolean,
+): Promise<any[]> => {
+  const masterChefCalls = farms.map((farm) => (isSmartNftPool ? smartNftPoolCalls(farm) : masterChefFarmCalls(farm)))
   const chunkSize = masterChefCalls.flat().length / farms.length
   const masterChefAggregatedCalls = masterChefCalls
     .filter((masterChefCall) => masterChefCall[0] !== null && masterChefCall[1] !== null)
     .flat()
 
-  const masterChefMultiCallResult = await multicallPolygonv2(isSmartNftPool ? smartNftStakeABI : rabbitCoinNftStakeABI, masterChefAggregatedCalls)
-  
+  const masterChefMultiCallResult = await multicallPolygonv2(
+    isSmartNftPool ? smartNftStakeABI : rabbitCoinNftStakeABI,
+    masterChefAggregatedCalls,
+  )
+
   const masterChefChunkedResultRaw = chunk(masterChefMultiCallResult, chunkSize)
   let masterChefChunkedResultCounter = 0
   return masterChefCalls.map((masterChefCall) => {

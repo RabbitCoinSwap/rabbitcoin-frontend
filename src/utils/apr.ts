@@ -55,18 +55,15 @@ export const getFarmApr = (
  * @param farmAddress Farm Address
  * @returns Farm Apr
  */
- export const getNftFarmApr = (
+export const getNftFarmApr = (
   poolWeight: BigNumber,
   tokenPerBlock: number,
   totalLiquidity: BigNumber,
   mainCollectionWeight?: number,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
-  
-  
   const liquidity = totalLiquidity.toNumber()
   const isSmartNftStake = tokenPerBlock
 
-  
   const yearlyCakeRewardAllocation = poolWeight ? poolWeight.times(RABBIT_PER_YEAR_NFTFARM) : new BigNumber(NaN)
   const cakeRewardsApr = yearlyCakeRewardAllocation.div(liquidity)
 

@@ -174,47 +174,44 @@ export const useGetNftActivityFilters = (collectionAddress: string) => {
   return collectionFilter || DEFAULT_NFT_ACTIVITY_FILTER
 }
 
-export const useMintingActivity = (
-  collectionAddress: string,
-) => {
-
+export const useMintingActivity = (collectionAddress: string) => {
   const { data, status, error, mutate } = useSWR(
-    [collectionAddress, 'mintingActivities'], 
-    async () => mintingActivityApi(collectionAddress), {
-    refreshInterval: 60 * 1000,
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-  });
+    [collectionAddress, 'mintingActivities'],
+    async () => mintingActivityApi(collectionAddress),
+    {
+      refreshInterval: 60 * 1000,
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+    },
+  )
 
-  const processedData: MintingActivity[] = data && !data["error"] ? data["result"]["transfers"].map(({ tokenId, asset, hash, from, to, rawContract, metadata }) => ({
-    tokenId: new BigNumber(tokenId).toString(),
-    asset,
-    marketEvent: "Minted",
-    tx: hash,
-    from,
-    to,
-    address: rawContract?.address,
-    timestamp: metadata?.blockTimestamp
-  })) : [];
+  const processedData: MintingActivity[] =
+    data && !data['error']
+      ? data['result']['transfers'].map(({ tokenId, asset, hash, from, to, rawContract, metadata }) => ({
+          tokenId: new BigNumber(tokenId).toString(),
+          asset,
+          marketEvent: 'Minted',
+          tx: hash,
+          from,
+          to,
+          address: rawContract?.address,
+          timestamp: metadata?.blockTimestamp,
+        }))
+      : []
 
   return { activities: processedData, isLoading: status !== FetchStatus.Fetched, error, refresh: mutate }
-
 }
 
-export const useLastMintedNft = (
-  ownerAddress: string,
-  collectionAddress: string,
-  chainId: number
-) => {
-
+export const useLastMintedNft = (ownerAddress: string, collectionAddress: string, chainId: number) => {
   const { data, status, error, mutate, isValidating } = useSWR(
-    [collectionAddress, 'lastMintedNft'], 
-    async () => getLastMintedNft(ownerAddress, collectionAddress, chainId), {
-    revalidateOnFocus: false,
-    revalidateIfStale: true,
-    revalidateOnReconnect: false
-  });
+    [collectionAddress, 'lastMintedNft'],
+    async () => getLastMintedNft(ownerAddress, collectionAddress, chainId),
+    {
+      revalidateOnFocus: false,
+      revalidateIfStale: true,
+      revalidateOnReconnect: false,
+    },
+  )
 
   return { lastMintedNft: data ?? null, isLoading: status !== FetchStatus.Fetched, error, isValidating }
-
 }

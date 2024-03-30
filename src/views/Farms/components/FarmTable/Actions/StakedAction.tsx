@@ -149,7 +149,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} />,
   )
 
-
   if (!account) {
     return (
       <ActionContainer>
@@ -196,7 +195,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       </ActionContainer>
     )
   }
-
 
   if (stakedBalance.gt(0)) {
     return (
@@ -262,7 +260,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       </ActionContent>
     </ActionContainer>
   )
-
 }
 
 export default Staked

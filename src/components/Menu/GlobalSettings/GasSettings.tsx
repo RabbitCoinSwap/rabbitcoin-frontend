@@ -21,7 +21,7 @@ const GasSettings = () => {
         />
       </Flex>
       <Flex flexWrap="wrap">
-      <Button
+        <Button
           mt="4px"
           mr="4px"
           scale="sm"

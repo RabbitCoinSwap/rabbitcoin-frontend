@@ -36,7 +36,7 @@ export const SoonTimer: React.FC<Props> = ({ publicIfoData }) => {
               {t('Start in')}
             </Heading>
             <FlexGap gap="4px" alignItems="baseline">
-            {timeUntil.months ? (
+              {timeUntil.months ? (
                 <>
                   <Heading scale="lg" color="secondary">
                     {timeUntil.months}
@@ -98,31 +98,30 @@ const LiveNowHeading = styled(EndInHeading)`
 
 const LiveTimer: React.FC<Props> = ({ publicIfoData }) => {
   const { t } = useTranslation()
-  const { cost, status, secondsUntilEnd, totalSupply, partialMaxSupply, isLastPrice, nextPrice, lastPrice } = publicIfoData
+  const { cost, status, secondsUntilEnd, totalSupply, partialMaxSupply, isLastPrice, nextPrice, lastPrice } =
+    publicIfoData
   const remainingSupply = partialMaxSupply - totalSupply
   const timeUntil = getTimePeriods(secondsUntilEnd)
-  const isDynamicPrice = (partialMaxSupply && nextPrice);
+  const isDynamicPrice = partialMaxSupply && nextPrice
 
-  const lastOrNextPrice = lastPrice ?? nextPrice;
-  
-  const discountPercentage = isLastPrice ? 0 : Math.round(((lastOrNextPrice - cost) / lastOrNextPrice) * 100);
+  const lastOrNextPrice = lastPrice ?? nextPrice
+
+  const discountPercentage = isLastPrice ? 0 : Math.round(((lastOrNextPrice - cost) / lastOrNextPrice) * 100)
   const messages = [
     `Hurry up! Only ${remainingSupply} left at this price - now ${discountPercentage}% off!`,
     `Don't miss out! Only ${remainingSupply} left at this price with a ${discountPercentage}% discount!`,
     `Amazing deal! Grab the last ${remainingSupply} at a ${discountPercentage}% lower price!`,
     `Discount alert! Only ${remainingSupply} left with a ${discountPercentage}% markdown!`,
   ]
-  const currentDate = new Date();
-  const currentMinute = currentDate.getMinutes();
-  const index = currentMinute % messages.length;
+  const currentDate = new Date()
+  const currentMinute = currentDate.getMinutes()
+  const index = currentMinute % messages.length
 
-
-  const message = isDynamicPrice ? 
-    (!isLastPrice ? messages[index] : 
-    `Final countdown! Only ${remainingSupply} left, grab yours before they're gone!`) : 
-    `LIVE NOW!`;
-
-  
+  const message = isDynamicPrice
+    ? !isLastPrice
+      ? messages[index]
+      : `Final countdown! Only ${remainingSupply} left, grab yours before they're gone!`
+    : `LIVE NOW!`
 
   return (
     <Flex justifyContent="center" position="relative">

@@ -58,43 +58,40 @@ export const getCollectionsApi = async (): Promise<ApiCollectionsResponse> => {
  * @param {string} collectionAddress - The collection's Ethereum address.
  * @returns {Promise<BigNumber[]>} - The response from the API or null if an error occurs.
  */
- export const walletOfOwnerApi = async (
-  ownerAddress: string,
-  collectionAddress: string
-): Promise<BigNumber[]> => {
-  const mumbaiCollections = ["0xf2149E6B11638BAEf791e3E66ac7E6469328e840", "0x28BC2B247aeE27d7d592FA51D5BfEFFf479C4A63"];
-  const network = mumbaiCollections.includes(collectionAddress) ? 'mumbai' : 'mainnet';
-  const baseUrl = `https://polygon-${network}.g.alchemy.com/nft/v2/w_1-F8BIeLkGtlMHR8BczL7Ko7NNTiZ4/getNFTs`;
-  const queryParams = `?owner=${ownerAddress}&contractAddresses[]=${collectionAddress}&pageSize=5`;
-  const fullUrl = `${baseUrl}${queryParams}`;
+export const walletOfOwnerApi = async (ownerAddress: string, collectionAddress: string): Promise<BigNumber[]> => {
+  const mumbaiCollections = ['0xf2149E6B11638BAEf791e3E66ac7E6469328e840', '0x28BC2B247aeE27d7d592FA51D5BfEFFf479C4A63']
+  const network = mumbaiCollections.includes(collectionAddress) ? 'mumbai' : 'mainnet'
+  const baseUrl = `https://polygon-${network}.g.alchemy.com/nft/v2/w_1-F8BIeLkGtlMHR8BczL7Ko7NNTiZ4/getNFTs`
+  const queryParams = `?owner=${ownerAddress}&contractAddresses[]=${collectionAddress}&pageSize=5`
+  const fullUrl = `${baseUrl}${queryParams}`
 
-  const res = await fetch(fullUrl);
+  const res = await fetch(fullUrl)
   if (res.ok) {
-    const json = await res.json();
-    return json.ownedNfts.map(item => new BigNumber(item.id.tokenId));
+    const json = await res.json()
+    return json.ownedNfts.map((item) => new BigNumber(item.id.tokenId))
   }
-  console.error('Failed to fetch NFTs', res.statusText);
-  return null;
+  console.error('Failed to fetch NFTs', res.statusText)
+  return null
 }
 
 export const getLastMintedNft = async (
   ownerAddress: string,
   collectionAddress: string,
-  chainId: number
+  chainId: number,
 ): Promise<any> => {
-  const network = chainId == 80001 ? 'mumbai' : 'mainnet';
-  const baseUrl = `https://polygon-${network}.g.alchemy.com/nft/v3/w_1-F8BIeLkGtlMHR8BczL7Ko7NNTiZ4/getNFTsForOwner`;
-  const queryParams = `?owner=${ownerAddress}&contractAddresses[]=${collectionAddress}&withMetadata=true&orderBy=transferTime&pageSize=1`;
-  const fullUrl = `${baseUrl}${queryParams}`;
+  const network = chainId == 80001 ? 'mumbai' : 'mainnet'
+  const baseUrl = `https://polygon-${network}.g.alchemy.com/nft/v3/w_1-F8BIeLkGtlMHR8BczL7Ko7NNTiZ4/getNFTsForOwner`
+  const queryParams = `?owner=${ownerAddress}&contractAddresses[]=${collectionAddress}&withMetadata=true&orderBy=transferTime&pageSize=1`
+  const fullUrl = `${baseUrl}${queryParams}`
 
-  const res = await fetch(fullUrl);
+  const res = await fetch(fullUrl)
   if (res.ok) {
-    const json = await res.json();
-    return json.ownedNfts.map(item => ({ "name": item.name, "image": item.image.originalUrl }));
+    const json = await res.json()
+    return json.ownedNfts.map((item) => ({ name: item.name, image: item.image.originalUrl }))
   }
 
-  console.error('Failed to fetch NFTs', res.statusText);
-  return null;
+  console.error('Failed to fetch NFTs', res.statusText)
+  return null
 }
 
 /**
@@ -102,67 +99,64 @@ export const getLastMintedNft = async (
  * @param {string} collectionAddress - The collection's Ethereum address.
  * @returns {Promise<BigNumber[]>} - The response from the API or null if an error occurs.
  */
- export const mintingActivityApi = async (
-  collectionAddress: string
-): Promise<any[]> => {
-  const mumbaiCollections = ["0xf2149E6B11638BAEf791e3E66ac7E6469328e840", "0x28BC2B247aeE27d7d592FA51D5BfEFFf479C4A63"];
-  const network = mumbaiCollections.includes(collectionAddress) ? 'mumbai' : 'mainnet';
-  const baseUrl = `https://polygon-${network}.g.alchemy.com/v2/w_1-F8BIeLkGtlMHR8BczL7Ko7NNTiZ4`;
-  
+export const mintingActivityApi = async (collectionAddress: string): Promise<any[]> => {
+  const mumbaiCollections = ['0xf2149E6B11638BAEf791e3E66ac7E6469328e840', '0x28BC2B247aeE27d7d592FA51D5BfEFFf479C4A63']
+  const network = mumbaiCollections.includes(collectionAddress) ? 'mumbai' : 'mainnet'
+  const baseUrl = `https://polygon-${network}.g.alchemy.com/v2/w_1-F8BIeLkGtlMHR8BczL7Ko7NNTiZ4`
+
   const payload = {
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "alchemy_getAssetTransfers",
-    "params": [
+    id: 1,
+    jsonrpc: '2.0',
+    method: 'alchemy_getAssetTransfers',
+    params: [
       {
-        "fromBlock": "0x0",
-        "toBlock": "latest",
-        "withMetadata": true,
-        "excludeZeroValue": true,
-        "maxCount": "0x3",
-        "fromAddress": "0x0000000000000000000000000000000000000000",
-        "contractAddresses": [
-                              "0x569B70fc565AFba702d9e77e75FD3e3c78F57eeD",
-                              "0x0B8E7D22CE826f1228a82525b8779dBdD9E24B80",
-                              "0x0a846Dd40152d6fE8CB4DE4107E0b063B6D6b3F9",
-                              "0x117D6870e6dE9faBcB40C34CceDD5228C63e3a1e",
-                              "0x2E1cF0960Fc9Ece56f53bf58351d175cd1867b2c",
-                              "0x7B1Ead5f2d144D6F8b0eDD3090cB7713A615C3C5",
-                              "0x7121D40FDe5F2a82674262b8601DEcd9E066C936",
-                              "0x446f52447C1bf0613b782A0A9707100655EF6A28",
-                              "0xB2e4ab09684a4850d3271C53D39D68C9afA4785E",
-                              "0x79C55f7f25b16D33A9C3352a332cbe6F375f7076",
-                              "0x334a3EBA14Bf369132B7A77CA0B09cfd0761D9d2"
-                            ],
-        "category": ["erc721"],
-        "order": "desc"
-      }
-    ]
-  };
+        fromBlock: '0x0',
+        toBlock: 'latest',
+        withMetadata: true,
+        excludeZeroValue: true,
+        maxCount: '0x3',
+        fromAddress: '0x0000000000000000000000000000000000000000',
+        contractAddresses: [
+          '0x569B70fc565AFba702d9e77e75FD3e3c78F57eeD',
+          '0x0B8E7D22CE826f1228a82525b8779dBdD9E24B80',
+          '0x0a846Dd40152d6fE8CB4DE4107E0b063B6D6b3F9',
+          '0x117D6870e6dE9faBcB40C34CceDD5228C63e3a1e',
+          '0x2E1cF0960Fc9Ece56f53bf58351d175cd1867b2c',
+          '0x7B1Ead5f2d144D6F8b0eDD3090cB7713A615C3C5',
+          '0x7121D40FDe5F2a82674262b8601DEcd9E066C936',
+          '0x446f52447C1bf0613b782A0A9707100655EF6A28',
+          '0xB2e4ab09684a4850d3271C53D39D68C9afA4785E',
+          '0x79C55f7f25b16D33A9C3352a332cbe6F375f7076',
+          '0x334a3EBA14Bf369132B7A77CA0B09cfd0761D9d2',
+        ],
+        category: ['erc721'],
+        order: 'desc',
+      },
+    ],
+  }
 
   const headers = {
-    "accept": "application/json",
-    "content-type": "application/json"
-  };
+    accept: 'application/json',
+    'content-type': 'application/json',
+  }
 
   try {
     const response = await fetch(baseUrl, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(payload),
-    });
+    })
 
     if (response.ok) {
-      const responseData = await response.json();
-      return responseData;
+      const responseData = await response.json()
+      return responseData
     } else {
-      console.error('Failed to fetch activities:', response.status);
-      return null;
+      console.error('Failed to fetch activities:', response.status)
+      return null
     }
   } catch (error) {
-    console.error('Error occurred:', error);
+    console.error('Error occurred:', error)
   }
-
 }
 
 const fetchCollectionsTotalSupply = async (collections: ApiCollection[]): Promise<number[]> => {
@@ -180,12 +174,12 @@ const fetchCollectionsTotalSupply = async (collections: ApiCollection[]): Promis
   return []
 }
 
-/** TODO: Deactivated thegraph data fetching functions, activate later 
+/** TODO: Deactivated thegraph data fetching functions, activate later
  * Fetch all collections data by combining data from the API (static metadata) and the Subgraph (dynamic market data)
  */
 export const getCollections = async (): Promise<Record<string, Collection>> => {
   try {
-    const [collections, /*collectionsMarket*/] = await Promise.all([getCollectionsApi(), /*getCollectionsSg()*/])
+    const [collections /*collectionsMarket*/] = await Promise.all([getCollectionsApi() /*getCollectionsSg()*/])
     const collectionApiData: ApiCollection[] = collections?.data ?? []
     /*
     const collectionsTotalSupply = await fetchCollectionsTotalSupply(collectionApiData)
@@ -752,7 +746,6 @@ export const getCollectionActivity = async (
     }
   }
 }
-
 
 export const getTokenActivity = async (
   tokenId: string,

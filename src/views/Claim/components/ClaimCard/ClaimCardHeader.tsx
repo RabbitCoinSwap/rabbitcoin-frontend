@@ -2,7 +2,6 @@ import { CardHeader, Flex, Heading, Text } from '@pancakeswap/uikit'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 
-
 const ClaimCardHeader: React.FC<{
   isFinished?: boolean
   isStaking?: boolean
@@ -10,9 +9,9 @@ const ClaimCardHeader: React.FC<{
   const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   return (
-      <Flex alignItems="center" justifyContent="space-center" p={20}>
-        {children}
-      </Flex>
+    <Flex alignItems="center" justifyContent="space-center" p={20}>
+      {children}
+    </Flex>
   )
 }
 

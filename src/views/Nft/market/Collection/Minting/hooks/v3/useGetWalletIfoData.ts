@@ -94,7 +94,6 @@ const useGetWalletIfoData = (ifo: Minting): WalletIfoData => {
     //const [userInfo, amounts, isQualifiedNFT, isQualifiedPoints] = await multicallv2(abi, [...ifoCalls, ...ifov3Calls])
     const [isHolder, discountAmount] = await multicallPolygonv1(abi, [...mintingV3Calls])
 
-
     setState((prevState) => ({
       ...prevState,
       isInitialized: true,

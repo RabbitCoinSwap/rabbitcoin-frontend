@@ -78,10 +78,10 @@ export interface Minting {
   symbol: string
   totalSupply: number
   avatar: string
-  banner: {large: string, small: string}
-  sampleNftImage?: {tokenId: number, image: string, link: string}
+  banner: { large: string; small: string }
+  sampleNftImage?: { tokenId: number; image: string; link: string }
   showCase?: any[]
-  faq?: {title: string, description: string[]}[]
+  faq?: { title: string; description: string[] }[]
   currency: Token
   token: Token
   releaseBlockNumber: number
@@ -139,8 +139,8 @@ interface NftFarmConfigBaseProps {
   participantThreshold?: number
   isFinished?: boolean
   performanceFee?: string
-  supportedCollectionPids?:number[]
-  collectionPowers?:number[]
+  supportedCollectionPids?: number[]
+  collectionPowers?: number[]
   dual?: {
     rewardPerBlock: number
     earnLabel: string

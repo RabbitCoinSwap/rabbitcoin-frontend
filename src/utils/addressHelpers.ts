@@ -103,7 +103,7 @@ export const getVaultPoolAddress = (vaultKey: VaultKey) => {
     return null
   }
   // CAUTION: This line below added by RabbitCoin
-  const address = vaultKey == "cakeVault" ? addresses.rabbitCoinAutoPoolVault : addresses[vaultKey]
+  const address = vaultKey == 'cakeVault' ? addresses.rabbitCoinAutoPoolVault : addresses[vaultKey]
   return getAddress(address)
 }
 

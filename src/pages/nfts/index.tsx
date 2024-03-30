@@ -11,8 +11,8 @@ export const getServerSideProps: GetStaticProps = async () => {
   return {
     redirect: {
       destination: `${nftsBaseUrl}/collections`,
-      permanent: true
-    }
+      permanent: true,
+    },
   }
 }
 

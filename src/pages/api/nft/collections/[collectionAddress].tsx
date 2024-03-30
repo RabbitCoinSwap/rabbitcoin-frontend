@@ -1,14 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { getDefaultProvider, Network } from "@ethersproject/providers";
-import { Contract } from "ethers";
-import { getRabbitCoinNftAddress } from "utils/addressHelpers";
-import { simplePolygonRpcProvider } from "utils/providers";
+import { getDefaultProvider, Network } from '@ethersproject/providers'
+import { Contract } from 'ethers'
+import { getRabbitCoinNftAddress } from 'utils/addressHelpers'
+import { simplePolygonRpcProvider } from 'utils/providers'
 import rabbitCoinNftAbi from 'config/abi/rabbitCoinNft.json'
-import { mintingConfig } from "config/constants";
-import { formatEther } from "@ethersproject/units";
-const axios = require('axios');
-
-
+import { mintingConfig } from 'config/constants'
+import { formatEther } from '@ethersproject/units'
+const axios = require('axios')
 
 const getDatas = async (contract: Contract) => {
   try {
@@ -19,49 +17,39 @@ const getDatas = async (contract: Contract) => {
     const isSaleActive = await contract.isSaleActive()
 
     return [totalSupply.toNumber(), maxSupply.toNumber(), formattedCost, isSaleActive]
-} catch(error) {
-  return [0, 0, 0, 0]
+  } catch (error) {
+    return [0, 0, 0, 0]
+  }
 }
-}
-
-
-
-
-
 
 export default async function handler(req, res) {
-
-
   let { collectionAddress } = req.query
 
   const activeMinting = mintingConfig.find((minting) => minting.address === collectionAddress)
 
   let { name, description, symbol, banner, avatar } = activeMinting
 
+  const contract = new Contract(collectionAddress, rabbitCoinNftAbi, simplePolygonRpcProvider)
+  const [totalSupply, maxSupply, cost, isSaleActive] = await getDatas(contract)
 
- const contract = new Contract(collectionAddress, rabbitCoinNftAbi, simplePolygonRpcProvider)
- const [totalSupply, maxSupply, cost, isSaleActive] = await getDatas(contract)
-
- let status = 'Active'
- status = totalSupply == maxSupply ? 'Finished' : (!isSaleActive ? 'Paused' : 'Active')
-
-  
+  let status = 'Active'
+  status = totalSupply == maxSupply ? 'Finished' : !isSaleActive ? 'Paused' : 'Active'
 
   res.status(200).json({
     data: {
-      "address": getRabbitCoinNftAddress(),
-      "name": name,
-      "description": description,
-      "symbol": "cNFT",
-      "totalSupply": totalSupply,
-      "maxSupply": maxSupply,
-      "cost": cost == 0 ? "Free" : cost,
-      "status": status,
-      "avatar": avatar,
-      "banner": {
-        "large": banner.large,
+      address: getRabbitCoinNftAddress(),
+      name: name,
+      description: description,
+      symbol: 'cNFT',
+      totalSupply: totalSupply,
+      maxSupply: maxSupply,
+      cost: cost == 0 ? 'Free' : cost,
+      status: status,
+      avatar: avatar,
+      banner: {
+        large: banner.large,
       },
-      attributes: []
-    }
+      attributes: [],
+    },
   })
 }

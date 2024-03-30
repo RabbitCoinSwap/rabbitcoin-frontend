@@ -1,6 +1,17 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading, ModalContainer, ModalHeader, ModalTitle, ModalBody, ModalCloseButton, Flex, Text, Button, Skeleton } from '@pancakeswap/uikit'
+import {
+  Heading,
+  ModalContainer,
+  ModalHeader,
+  ModalTitle,
+  ModalBody,
+  ModalCloseButton,
+  Flex,
+  Text,
+  Button,
+  Skeleton,
+} from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import delay from 'lodash/delay'
@@ -8,7 +19,6 @@ import confetti from 'canvas-confetti'
 import NFTMedia from 'views/Nft/market/components/NFTMedia'
 import PreviewImage from 'views/Nft/market/components/CollectibleCard/PreviewImage'
 import { useLastMintedNft } from 'state/nftMarket/hooks'
-
 
 const StyledModal = styled(ModalContainer)`
   position: relative;
@@ -47,7 +57,7 @@ const showConfetti = () => {
 }
 
 interface NewMintModalProps {
-  onDismiss?: () => void,
+  onDismiss?: () => void
   collectionAddress: string
 }
 
@@ -57,8 +67,13 @@ const NewMintModal: React.FC<NewMintModalProps> = ({ onDismiss, collectionAddres
   const { lastMintedNft, isLoading, error, isValidating } = useLastMintedNft(account, collectionAddress, chainId)
   const isNftReady = !isLoading && !error && lastMintedNft && lastMintedNft.length > 0
 
-  const nft = { 'tokenId': 12, 'collectionAddress': "0xA", 'name': isNftReady ? lastMintedNft[0].name : null, 'collectionName': "My Name", 'image': { 'thumbnail': isNftReady ? lastMintedNft[0].image : null } }
-
+  const nft = {
+    tokenId: 12,
+    collectionAddress: '0xA',
+    name: isNftReady ? lastMintedNft[0].name : null,
+    collectionName: 'My Name',
+    image: { thumbnail: isNftReady ? lastMintedNft[0].image : null },
+  }
 
   useEffect(() => {
     delay(showConfetti, 100)
@@ -76,7 +91,6 @@ const NewMintModal: React.FC<NewMintModalProps> = ({ onDismiss, collectionAddres
         <ModalCloseButton onDismiss={onDismiss} />
       </StyledModalHeader>
       <ModalBody p="24px">
-
         {isLoading || isValidating ? (
           <Flex alignItems="center" justifyContent="center">
             <Skeleton height={200} width={200} />
@@ -89,9 +103,9 @@ const NewMintModal: React.FC<NewMintModalProps> = ({ onDismiss, collectionAddres
               </Text>
             </Flex>
 
-            <Flex justifyContent={"center"} alignItems="center" maxWidth={440}>
+            <Flex justifyContent={'center'} alignItems="center" maxWidth={440}>
               <NFTMedia
-                style={{ backgroundPosition: "center" }}
+                style={{ backgroundPosition: 'center' }}
                 as={PreviewImage}
                 nft={nft}
                 height={200}
@@ -103,10 +117,8 @@ const NewMintModal: React.FC<NewMintModalProps> = ({ onDismiss, collectionAddres
           </>
         )}
 
-
-
         <Flex alignItems="center" justifyContent="center">
-          <Text mt="8px" mb="10px" fontSize="22px" color='primary' bold>
+          <Text mt="8px" mb="10px" fontSize="22px" color="primary" bold>
             {t('What is next?')}
           </Text>
         </Flex>

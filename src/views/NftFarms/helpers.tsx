@@ -1,4 +1,9 @@
-export const getNftFarmBlockInfo = (startBlock: number, endBlock: number, isFinished: boolean, currentBlock: number) => {
+export const getNftFarmBlockInfo = (
+  startBlock: number,
+  endBlock: number,
+  isFinished: boolean,
+  currentBlock: number,
+) => {
   const shouldShowBlockCountdown = Boolean(!isFinished && startBlock && endBlock)
   const blocksUntilStart = Math.max(startBlock - currentBlock, 0)
   const blocksRemaining = Math.max(endBlock - currentBlock, 0)

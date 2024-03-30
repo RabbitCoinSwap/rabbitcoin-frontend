@@ -381,7 +381,7 @@ export function useRemoveUserAddedToken(): (chainId: number, address: string) =>
 export function useGasPrice(chainIdOverride?: number): string {
   const { chainId: chainId_, library } = useActiveWeb3React()
   const chainId = chainIdOverride ?? chainId_
-  
+
   const userGas = useSelector<AppState, AppState['user']['gasPrice']>((state) => state.user.gasPrice)
   const { data: polygonProviderGasPrice = GAS_PRICE_GWEI.default } = useSWR(
     library &&
@@ -398,7 +398,6 @@ export function useGasPrice(chainIdOverride?: number): string {
     },
   )
 
-  
   if (chainId === ChainId.POLYGON) {
     return userGas === GAS_PRICE_GWEI.rpcDefault ? polygonProviderGasPrice : userGas
   }

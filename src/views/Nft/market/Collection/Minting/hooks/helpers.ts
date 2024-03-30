@@ -1,6 +1,12 @@
 import { IfoStatus } from 'config/constants/types'
 
-export const getStatus = (currentBlock: number, startBlock: number, totalSupply: number, maxSupply: number, isSaleActive: boolean): IfoStatus => {
+export const getStatus = (
+  currentBlock: number,
+  startBlock: number,
+  totalSupply: number,
+  maxSupply: number,
+  isSaleActive: boolean,
+): IfoStatus => {
   // Add an extra check to currentBlock because it takes awhile to fetch so the initial value is 0
   // making the UI change to an inaccurate status
   if (currentBlock === 0) {

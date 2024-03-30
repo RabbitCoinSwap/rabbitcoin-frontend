@@ -26,8 +26,9 @@ type TxError = {
 
 // -32000 is insufficient funds for gas * price + value
 const isGasEstimationError = (err: TxError): boolean => err?.data?.code === -32000
-const isBalanceError = (err: TxError): boolean => err?.data?.message.includes("insufficient funds") || err?.data?.message.includes("gas required exceeds allowance")
-const isLowGasPriceError = (err: TxError): boolean => err?.data?.message.includes("max fee per gas")
+const isBalanceError = (err: TxError): boolean =>
+  err?.data?.message.includes('insufficient funds') || err?.data?.message.includes('gas required exceeds allowance')
+const isLowGasPriceError = (err: TxError): boolean => err?.data?.message.includes('max fee per gas')
 
 export default function useCatchTxError(): CatchTxErrorReturn {
   const { library } = useWeb3React()
@@ -40,12 +41,11 @@ export default function useCatchTxError(): CatchTxErrorReturn {
       logError(error)
 
       if (error) {
-
         const reason = isBalanceError(error)
-          ? "Insufficient wallet balance for this transaction."
+          ? 'Insufficient wallet balance for this transaction.'
           : isLowGasPriceError(error)
-            ? "The network may be congested. Try increasing the transaction speed from settings or try again later."
-            : error.data.message;
+          ? 'The network may be congested. Try increasing the transaction speed from settings or try again later.'
+          : error.data.message
 
         toastError(
           t('Error'),

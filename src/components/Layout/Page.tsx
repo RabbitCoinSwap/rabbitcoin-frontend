@@ -25,10 +25,10 @@ const StyledPage = styled(Container)`
 export const PageMeta: React.FC<{ symbol?: string }> = ({ symbol }) => {
   const { t } = useTranslation()
   const { pathname } = useRouter()
-  
+
   const pageMeta = getCustomMeta(pathname, t) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  
+
   return (
     <Head>
       <title>{title}</title>

@@ -25,7 +25,7 @@ const NftProfilePage = () => {
     isLoading: isNftLoading,
     refresh: refreshUserNfts,
   } = useRabbitCoinNftsForAddress(accountAddress, profile, isProfileFetching)
-  
+
   return (
     <>
       {/* TODO: Activate Later

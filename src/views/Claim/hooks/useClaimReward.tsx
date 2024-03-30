@@ -29,15 +29,7 @@ export const useClaimReward = (claimId, nftAddresses, nftIds, rewardToken, versi
       // Refresh claim data
       refresh()
     }
-  }, [
-    account,
-    rewardToken,
-    t,
-    toastSuccess,
-    callWithGasPrice,
-    fetchWithCatchTxError,
-  ])
+  }, [account, rewardToken, t, toastSuccess, callWithGasPrice, fetchWithCatchTxError])
 
   return { handleClaimReward, pendingTx }
 }
-

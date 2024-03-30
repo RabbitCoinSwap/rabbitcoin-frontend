@@ -7,7 +7,6 @@ import OkNFTIcon from './Icons/OkNFT'
 import OkProfilePointsIcon from './Icons/OkProfilePoints'
 import TransWithElement from 'views/Ifos/components/TransWithElement'
 
-
 const NotOkNFT = ({ admissionProfile }) => {
   const { t } = useTranslation()
 

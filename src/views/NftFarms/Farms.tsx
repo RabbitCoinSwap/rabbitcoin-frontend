@@ -31,7 +31,6 @@ import { DesktopColumnSchema } from './components/types'
 import { getAddress } from 'utils/addressHelpers'
 import nftFarmsConfig from 'config/constants/nftFarms'
 
-
 const ControlContainer = styled.div`
   display: flex;
   width: 100%;
@@ -139,10 +138,18 @@ const Farms: React.FC = ({ children }) => {
 
   const activeFarms = farmsLP.filter(
     (farm) =>
-      farm.pid !== 0 && (farm.tokenPerBlock || farm.multiplier !== '0X') && !isArchivedPid(farm.pid) && !farm.isFinished,
+      farm.pid !== 0 &&
+      (farm.tokenPerBlock || farm.multiplier !== '0X') &&
+      !isArchivedPid(farm.pid) &&
+      !farm.isFinished,
   )
 
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && ((!farm.tokenPerBlock && farm.multiplier === '0X') || farm.isFinished) && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP.filter(
+    (farm) =>
+      farm.pid !== 0 &&
+      ((!farm.tokenPerBlock && farm.multiplier === '0X') || farm.isFinished) &&
+      !isArchivedPid(farm.pid),
+  )
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -168,12 +175,22 @@ const Farms: React.FC = ({ children }) => {
         const totalStaked = farm.totalStaked
         // We use sum of weights for smart pools
         const totalShares = farm.totalShares
-        const mainCollectionWeight = nftFarmsConfig.filter((f) => f.pid == farm.pid)[0]["mainCollectionWeight"]
+        const mainCollectionWeight = nftFarmsConfig.filter((f) => f.pid == farm.pid)[0]['mainCollectionWeight']
 
         const isSmartNftStakePool = Boolean(farm.contractAddresses)
-        const totalLiquidityWithThreshold = new BigNumber(Math.max(farm.participantThreshold ?? 0, isSmartNftStakePool ? totalShares.toNumber() : totalStaked.toNumber()))
+        const totalLiquidityWithThreshold = new BigNumber(
+          Math.max(
+            farm.participantThreshold ?? 0,
+            isSmartNftStakePool ? totalShares.toNumber() : totalStaked.toNumber(),
+          ),
+        )
         const { cakeRewardsApr, lpRewardsApr } = isActive
-          ? getNftFarmApr(new BigNumber(farm.poolWeight), farm.tokenPerBlock ? parseFloat(farm.tokenPerBlock) : null, totalLiquidityWithThreshold, mainCollectionWeight)
+          ? getNftFarmApr(
+              new BigNumber(farm.poolWeight),
+              farm.tokenPerBlock ? parseFloat(farm.tokenPerBlock) : null,
+              totalLiquidityWithThreshold,
+              mainCollectionWeight,
+            )
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalStaked }
       })
@@ -279,7 +296,7 @@ const Farms: React.FC = ({ children }) => {
       farm: {
         label: lpLabel,
         pid: farm.pid,
-        nftAddress: getAddress(farm.nftAddresses)
+        nftAddress: getAddress(farm.nftAddresses),
       },
       earned: {
         earnings: getBalanceNumber(new BigNumber(farm.userData.earnings)),

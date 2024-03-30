@@ -79,13 +79,7 @@ const LotteryCardContent = () => {
           </Text>
         )}
         {currentLotteryPrize && currentLotteryPrize.gt(0) ? (
-          <StyledBalance
-            fontSize="40px"
-            bold
-            prefix="Floor is $"
-            decimals={0}
-            value={10}
-          />
+          <StyledBalance fontSize="40px" bold prefix="Floor is $" decimals={0} value={10} />
         ) : (
           <>
             <Skeleton width={200} height={40} my="8px" />
