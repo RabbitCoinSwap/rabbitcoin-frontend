@@ -7,7 +7,7 @@
   "defaultCommandTimeout": 10000,
   "chromeWebSecurity": false,
   "pageLoadTimeout": 10000,
-  "blockHosts": ["vitals.vercel-insights.com", "*sentry.io", "*googletagmanager.com"],
+  "blockHosts": ["vitals.vercel-insights.com", "*sentry.io", "*googletagmanager.com", "*netlify.app"],
   "ignoreTestFiles": ["info.test.ts"],
   "retries": {
     "runMode": 3
