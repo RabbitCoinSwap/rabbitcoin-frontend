@@ -15,4 +15,5 @@ export const GRAPH_API_PREDICTION_V1 = 'https://api.thegraph.com/subgraphs/name/
 export const INFO_CLIENT = 'https://api.thegraph.com/subgraphs/name/rabbitcoinchef/exchange-mini'
 export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
 export const GRAPH_API_NFTMARKET = process.env.NEXT_PUBLIC_GRAPH_API_NFT_MARKET
-export const GRAPH_HEALTH = 'https://graphql.bitquery.io'
+export const GRAPH_HEALTH = 'https://api.thegraph.com/index-node/graphql'
+export const BIT_QUERY = 'https://graphql.bitquery.io'
