@@ -127,6 +127,7 @@ export default {
   cakeVault: {
     56: '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC',
     97: '',
+    137: '0x68B7c0F9E25Ee0d687662a5A030b8c54d0eD6232',
   },
   rabbitCoinAutoPoolVault: {
     137: '0xD626Fac9d305A6a7a1F09C16e1f92De2C3c427a3', // RabbitCoinAutoPool
