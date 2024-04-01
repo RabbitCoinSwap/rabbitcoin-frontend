@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 
 // endpoint to check asset exists and get url to CMC page
 // returns 400 status code if token is not on CMC
-const CMC_ENDPOINT = 'https://3rdparty-apis.coinmarketcap.com/v1/cryptocurrency/contract?address='
+// const CMC_ENDPOINT = 'https://3rdparty-apis.coinmarketcap.com/v1/cryptocurrency/contract?address='
+const CMC_ENDPOINT = 'https://api.coingecko.com/api/v3/coins/polygon/contract/'
 
 /**
  * Check if asset exists on CMC, if exists
