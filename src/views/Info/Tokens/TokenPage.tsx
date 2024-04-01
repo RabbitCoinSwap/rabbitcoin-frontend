@@ -51,7 +51,7 @@ const ContentLayout = styled.div`
   }
 `
 
-const StyledCMCLink = styled(UIKitLink)`
+const StyledAssetLink = styled(UIKitLink)`
   width: 24px;
   height: 24px;
   margin-right: 8px;
@@ -69,7 +69,7 @@ const TokenPage: React.FC<{ routeAddress: string }> = ({ routeAddress }) => {
   // In case somebody pastes checksummed address into url (since GraphQL expects lowercase address)
   const address = routeAddress.toLowerCase()
 
-  const cmcLink = useAssetLink(address)
+  const assetLink = useAssetLink(address)
 
   const tokenData = useTokenData(address)
   const poolsForToken = usePoolsForToken(address)
@@ -132,10 +132,10 @@ const TokenPage: React.FC<{ routeAddress: string }> = ({ routeAddress }) => {
                 <LinkExternal mr="8px" color="primary" href={getPolygonScanLink(address, 'address')}>
                   {t('View on BscScan')}
                 </LinkExternal>
-                {cmcLink && (
-                  <StyledCMCLink href={cmcLink} rel="noopener noreferrer nofollow" target="_blank">
+                {assetLink && (
+                  <StyledAssetLink href={assetLink} rel="noopener noreferrer nofollow" target="_blank">
                     <Image src="/images/CMC-logo.svg" height={22} width={22} alt={t('View token on CoinMarketCap')} />
-                  </StyledCMCLink>
+                  </StyledAssetLink>
                 )}
                 <SaveIcon fill={watchlistTokens.includes(address)} onClick={() => addWatchlistToken(address)} />
               </Flex>
