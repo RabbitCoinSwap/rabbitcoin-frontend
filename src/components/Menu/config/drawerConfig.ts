@@ -34,6 +34,10 @@ const drawerLinks: MenuItemsType[] = [
         label: 'Liquidity',
         href: '/liquidity',
       },
+      {
+        label: 'Info',
+        href: '/info',
+      }
     ],
   },
   {
