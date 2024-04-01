@@ -20,7 +20,7 @@ import {
 import Page from 'components/Layout/Page'
 import { getPolygonScanLink } from 'utils'
 import truncateHash from 'utils/truncateHash'
-import useCMCLink from 'views/Info/hooks/useCMCLink'
+import useAssetLink from 'views/Info/hooks/useAssetLink'
 import { CurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
@@ -69,7 +69,7 @@ const TokenPage: React.FC<{ routeAddress: string }> = ({ routeAddress }) => {
   // In case somebody pastes checksummed address into url (since GraphQL expects lowercase address)
   const address = routeAddress.toLowerCase()
 
-  const cmcLink = useCMCLink(address)
+  const cmcLink = useAssetLink(address)
 
   const tokenData = useTokenData(address)
   const poolsForToken = usePoolsForToken(address)
