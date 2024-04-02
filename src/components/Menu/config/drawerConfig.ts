@@ -34,9 +34,25 @@ const drawerLinks: MenuItemsType[] = [
         label: 'Liquidity',
         href: '/liquidity',
       },
+    ],
+  },
+  {
+    label: 'Info',
+    icon: 'InfoIcon',
+    href: '/info',
+    initialOpenState: false,
+    items: [
       {
         label: 'Info',
         href: '/info',
+      },
+      {
+        label: 'Pools',
+        href: '/info/pools',
+      },
+      {
+        label: 'Info',
+        href: '/info/tokens',
       }
     ],
   },
@@ -68,7 +84,7 @@ const drawerLinks: MenuItemsType[] = [
   },
   {
     label: 'More',
-    icon: 'InfoIcon',
+    icon: 'SunIcon',
     href: '/more',
     initialOpenState: false,
     items: [
