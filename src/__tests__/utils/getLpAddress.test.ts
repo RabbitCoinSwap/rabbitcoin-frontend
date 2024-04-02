@@ -2,10 +2,10 @@ import { Token, ChainId } from '@rabbitcoin/sdk'
 import getLpAddress from 'utils/getLpAddress'
 
 const CAKE_AS_STRING = '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E'
-const BUSD_AS_STRING = '0xdAb529f40E671A1D4bF91361c21bf9f0C9712ab7'
+const BUSD_AS_STRING = '0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39'
 const CAKE_AS_TOKEN = new Token(ChainId.MAINNET, CAKE_AS_STRING, 18)
 const BUSD_AS_TOKEN = new Token(ChainId.MAINNET, BUSD_AS_STRING, 18)
-const CAKE_BUSD_LP = '0x804678fa97d91B974ec2af3c843270886528a9E6'
+const CAKE_BUSD_LP = '0x804678fa97d91B974ec2af3c843270886528a9E6' // LP RabbitBUSD
 
 describe('getLpAddress', () => {
   it('returns correct LP address, both tokens are strings', () => {

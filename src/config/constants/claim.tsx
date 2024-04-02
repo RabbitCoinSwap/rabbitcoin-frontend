@@ -11,8 +11,8 @@ const claims: any[] = [
       </Trans>
     ),
     imageLink: 'https://rabbitcoin.xyz/assets/images/claim/RabbitCoinClaim.png',
-    rewardToken: 'Rabbit',
-    requiredToken: 'RabbitNFT',
+    rewardToken: 'Collect',
+    requiredToken: 'Collect NFT',
     baseAmount: 50,
     nftLimit: 5,
     totalReward: 100000,
