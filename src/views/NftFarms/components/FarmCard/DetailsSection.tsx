@@ -117,7 +117,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       <StyledLinkExternal href={bscScanAddress}>{t('View Contract')}</StyledLinkExternal>
 
       {earningToken?.address && (
-        <StyledLinkExternal href={`https://app.uniswap.org/#/tokens/polygon/${earningToken.address}`}>
+        <StyledLinkExternal href={`https://rabbitcoin.xyz/info/token/${earningToken.address}`}>
           {t('See Token Info')}
         </StyledLinkExternal>
       )}

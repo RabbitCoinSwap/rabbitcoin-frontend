@@ -199,7 +199,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
 
         {farm.earningToken?.address && (
-          <StyledLinkExternal href={`https://app.uniswap.org/#/tokens/polygon/${farm.earningToken.address}`}>
+          <StyledLinkExternal href={`https://rabbitcoin.xyz/info/token/${farm.earningToken.address}`}>
             {t('See Token Info')}
           </StyledLinkExternal>
         )}
