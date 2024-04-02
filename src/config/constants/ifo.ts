@@ -6,6 +6,7 @@ import { Ifo } from './types'
 //export const cakeBnbLpToken = new Token(ChainId.MAINNET, farms[1].lpAddresses[ChainId.MAINNET], 18, farms[1].lpSymbol)
 
 const ifos: Ifo[] = [
+  /*
   {
     id: 'era',
     address: '0x527201a43f8da24ce9b7c21744a0706942f41fa3',
@@ -63,7 +64,6 @@ const ifos: Ifo[] = [
     twitterUrl: 'https://twitter.com/realfroyogames',
     description: `Froyo Games is a game publisher and decentralized GameFi platform, with a NFT Marketplace that integrates NFTs with their games.\n \n FROYO tokens can be used to buy NFTs and participate in Froyo games`,
   },
-  /*
   {
     id: 'soteria',
     address: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',

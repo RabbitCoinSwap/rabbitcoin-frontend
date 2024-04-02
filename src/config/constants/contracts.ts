@@ -6,6 +6,7 @@ export default {
   },
   rabbitcoin: {
     137: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E',
+    80001: '0xAE234b5b5dBaaB22CfC7d6038b39c90aa4EC9Cc5',
   },
   // Only Pool Version Masterchef
   rabbitCoinPool: {

@@ -65,7 +65,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA',
-      80001: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA', // CHANGE_ADDRESS:Pair
+      80001: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA', // RabbitCoinPair
     },
     token: serializedTokens.usdt,
     quoteToken: serializedTokens.wmatic,
@@ -78,7 +78,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x4e89778ACd2975E998147d8E06053d714750AC2D',
-      80001: '0x2FC92a1F6556201b978c3A399b993e141a224aE4' // CHANGE_ADDRESS:Pair
+      80001: '0x2FC92a1F6556201b978c3A399b993e141a224aE4' // RabbitCoinPair
     },
     token: serializedTokens.avatar,
     quoteToken: serializedTokens.rabbit,
@@ -90,7 +90,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0xbff2b56188e606abf4b81a8dd782b515a8d097bd',
-      80001: '0xDc97b7c9646309e1b9075ACA69CC44f2672BEa86' // CHANGE_ADDRESS:Pair
+      80001: '0xDc97b7c9646309e1b9075ACA69CC44f2672BEa86' // RabbitCoinPair
     },
     token: serializedTokens.hunt,
     quoteToken: serializedTokens.rabbit,
@@ -102,7 +102,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x9556C3c45333476e0D2466CfBBE8f001055BDc41',
-      80001: '0xf228A55fFCD281b5a245D48f5677870313381c15' // CHANGE_ADDRESS:Pair
+      80001: '0xf228A55fFCD281b5a245D48f5677870313381c15' // RabbitCoinPair
     },
     token: serializedTokens.nitro,
     quoteToken: serializedTokens.rabbit,
@@ -114,7 +114,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x94d979cebe0481eab8a1296818e81fc2636b0d2f',
-      80001: '0x43Db09aa003A824A04BFd7555D92Ea7EB3F85d11' // CHANGE_ADDRESS:Pair
+      80001: '0x43Db09aa003A824A04BFd7555D92Ea7EB3F85d11' // RabbitCoinPair
     },
     token: serializedTokens.dj,
     quoteToken: serializedTokens.rabbit,
@@ -126,7 +126,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x3ad14c5fb4f8d2f09cdd1434473ed97fc8c7a62e',
-      80001: '0x32a0bd863Cd833a6306449f67c7211284D1EAF00' // CHANGE_ADDRESS:Pair
+      80001: '0x32a0bd863Cd833a6306449f67c7211284D1EAF00' // RabbitCoinPair
     },
     token: serializedTokens.z,
     quoteToken: serializedTokens.rabbit,
