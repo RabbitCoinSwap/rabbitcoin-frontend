@@ -51,7 +51,7 @@ const drawerLinks: MenuItemsType[] = [
         href: '/info/pools',
       },
       {
-        label: 'Info',
+        label: 'Tokens',
         href: '/info/tokens',
       }
     ],
