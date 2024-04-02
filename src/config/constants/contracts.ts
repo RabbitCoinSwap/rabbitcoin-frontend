@@ -4,7 +4,7 @@ export default {
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     137: '0x8a844091aB74b4a5742DdC4ADbdc988dFFf50752',
   },
-  rabbitcoin: {
+  rabbit: {
     137: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E',
     80001: '0xAE234b5b5dBaaB22CfC7d6038b39c90aa4EC9Cc5',
   },

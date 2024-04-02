@@ -11,8 +11,8 @@ const claims: any[] = [
       </Trans>
     ),
     imageLink: 'https://rabbitcoin.xyz/assets/images/claim/RabbitCoinClaim.png',
-    rewardToken: 'Collect',
-    requiredToken: 'Collect NFT',
+    rewardToken: 'Rabbit',
+    requiredToken: 'RabbitNFT',
     baseAmount: 50,
     nftLimit: 5,
     totalReward: 100000,
@@ -21,6 +21,7 @@ const claims: any[] = [
     projectSite: 'https://rabbitcoin.xyz',
     version: 1,
   },
+  /*
   {
     cid: 0,
     name: 'LotShare Rewards',
@@ -224,7 +225,6 @@ const claims: any[] = [
     projectSite: 'https://zidanogo.com/',
     version: 2,
   },
-  /*
   {
     cid: 4,
     name: 'Galxe Pass Rewards',
@@ -241,8 +241,6 @@ const claims: any[] = [
     version: 2,
     useApi: true,
   },
-*/
-  /*
   {
     name: 'Holder Party',
     description: <Trans>Rewards ready for top 100 Collect holders</Trans>,
