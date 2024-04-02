@@ -19,8 +19,8 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.IfoPool]: {
-    name: 'IFO RabbitCoin',
-    description: <Trans>Stake RabbitCoin to participate in IFOs</Trans>,
+    name: 'IFO CAKE',
+    description: <Trans>Stake CAKE to participate in IFOs</Trans>,
     autoCompoundFrequency: 1,
     gasLimit: 500000,
     tokenImage: {

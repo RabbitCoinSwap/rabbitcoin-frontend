@@ -15,14 +15,6 @@ interface TokenList {
 const defineTokens = <T extends TokenList>(t: T) => t
 
 export const mainnetTokens = defineTokens({
-  wmatic: new Token(
-    POLYGON_MAINNET,
-    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
-    18,
-    'WMATIC',
-    'Wrapped Matic',
-    'https://polygon.technology/',
-  ),
   wbnb: new Token(
     MAINNET,
     '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
@@ -31,15 +23,6 @@ export const mainnetTokens = defineTokens({
     'Wrapped BNB',
     'https://www.binance.com/',
   ),
-  // bnb here points to the wbnb contract. Wherever the currency BNB is required, conditional checks for the symbol 'BNB' can be used
-  matic: new Token(
-    MAINNET,
-    '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-    18,
-    'MATIC',
-    'MATIC',
-    'https://polygon.technology/'
-    ),
   rabbit: new Token(
     POLYGON_MAINNET,
     '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E',
@@ -47,6 +30,14 @@ export const mainnetTokens = defineTokens({
     'RABBIT',
     'RabbitCoin',
     'https://www.rabbitcoin.xyz/',
+  ),
+  wmatic: new Token(
+    POLYGON_MAINNET,
+    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+    18,
+    'WMATIC',
+    'Wrapped Matic',
+    'https://polygon.technology/',
   ),
   usdt: new Token(
     POLYGON_MAINNET,
@@ -88,6 +79,15 @@ export const mainnetTokens = defineTokens({
     'Binance USD',
     'https://www.binance/en/busd',
   ),
+  matic: new Token(
+    POLYGON_MAINNET,
+    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
+    18,
+    'MATIC',
+    'Matic',
+    'https://polygon.technology/',
+  ),
+  // bnb here points to the wbnb contract. Wherever the currency BNB is required, conditional checks for the symbol 'BNB' can be used
   bnb: new Token(MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
   cake: new Token(
     MAINNET,
