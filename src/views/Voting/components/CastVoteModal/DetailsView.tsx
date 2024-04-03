@@ -1,7 +1,7 @@
 import { Flex, LinkExternal, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
-import { getBscScanLink } from 'utils'
+import { getPolygonScanLink } from 'utils'
 import { formatNumber } from 'utils/formatBalance'
 import { ModalInner, VotingBox } from './styles'
 
@@ -54,7 +54,7 @@ const DetailsView: React.FC<DetailsViewProps> = ({
       </VotingBox>
       <Text color="secondary" textTransform="uppercase" mb="4px" bold fontSize="14px">
         {t('Your CAKE held at block')}
-        <StyledLinkExternal href={getBscScanLink(block, 'block')} ml="8px">
+        <StyledLinkExternal href={getPolygonScanLink(block, 'block')} ml="8px">
           {block}
         </StyledLinkExternal>
       </Text>

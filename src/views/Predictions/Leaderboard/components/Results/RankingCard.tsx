@@ -16,7 +16,7 @@ import {
 import { PredictionUser } from 'state/types'
 import { useProfileForAddress } from 'state/profile/hooks'
 import styled from 'styled-components'
-import { getBscScanLink } from 'utils'
+import { getPolygonScanLink } from 'utils'
 import truncateHash from 'utils/truncateHash'
 import { useTranslation } from 'contexts/Localization'
 import WalletStatsModal from '../WalletStatsModal'
@@ -75,7 +75,7 @@ const RankingCard: React.FC<RankingCardProps> = ({ rank, user }) => {
             options={{ placement: 'bottom' }}
           >
             <SubMenuItem onClick={onPresentWalletStatsModal}>{t('View Stats')}</SubMenuItem>
-            <SubMenuItem as={Link} href={getBscScanLink(user.id, 'address')} bold={false} color="text" external>
+            <SubMenuItem as={Link} href={getPolygonScanLink(user.id, 'address')} bold={false} color="text" external>
               {t('View on Polygonscan')}
             </SubMenuItem>
           </SubMenu>

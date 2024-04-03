@@ -20,7 +20,7 @@ import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useTheme from 'hooks/useTheme'
 
-import { getBscScanLink } from 'utils'
+import { getPolygonScanLink } from 'utils'
 import truncateHash from 'utils/truncateHash'
 
 type ConfirmModalProps = {
@@ -87,7 +87,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
               <Text mb="30px" bold>
                 {t('Transaction Submitted')}
               </Text>
-              <LinkExternal href={getBscScanLink(txHash, 'transaction', chainId)} mb="30px">
+              <LinkExternal href={getPolygonScanLink(txHash, 'transaction', chainId)} mb="30px">
                 {t('View on Polygonscan')}: {truncateHash(txHash, 8, 0)}
               </LinkExternal>
               <Flex
