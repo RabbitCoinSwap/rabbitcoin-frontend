@@ -49,7 +49,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ label, pid, nftAddress }) =>
   return (
     <Container>
       <TokenWrapper>
-        <TokenImage src={`/images/tokens/${nftAddress}.svg`} width={40} height={40} />
+        <TokenImage src={`https://app.rabbitcoin.xyz/images/tokens/${nftAddress}.svg`} width={40} height={40} />
       </TokenWrapper>
       <div>
         {handleRenderFarming()}
