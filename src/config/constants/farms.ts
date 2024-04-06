@@ -17,7 +17,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
       137: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E', // RabbitCoin
-      80001: '0x28767E286113Ab01EE819b9398A22D6f27BaDb6E', // RabbitCoin
+      80001: '0xAE234b5b5dBaaB22CfC7d6038b39c90aa4EC9Cc5', // RabbitCoin
     },
     token: serializedTokens.carrot,
     quoteToken: serializedTokens.rabbit,
@@ -29,7 +29,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0xFb982fA95e94D1F98f43ec9EBc8d31632DA0040b', // RabbitCoinPair
-      80001: '0xFb982fA95e94D1F98f43ec9EBc8d31632DA0040b', // RabbitCoinPair
+      80001: '0x', // RabbitCoinPair
     },
     token: serializedTokens.rabbit,
     quoteToken: serializedTokens.usdt,
@@ -41,7 +41,7 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x15D98d5b9Aa485a1f6989a507C9BbdCe8966F70D', // RabbitCoinPair
-      80001: '0x15D98d5b9Aa485a1f6989a507C9BbdCe8966F70D', // RabbitCoinPair
+      80001: '0x', // RabbitCoinPair
     },
     token: serializedTokens.rabbit,
     quoteToken: serializedTokens.wmatic,
@@ -53,36 +53,36 @@ const farms: SerializedFarmConfig[] = [
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0x70B118b9Bd6996638024Be5EbBaFBEEe7DDe702C', // RabbitCoinPair
-      80001: '0x70B118b9Bd6996638024Be5EbBaFBEEe7DDe702C', // RabbitCoinPair
+      80001: '0x', // RabbitCoinPair
     },
     token: serializedTokens.dai,
     quoteToken: serializedTokens.usdc,
   },
   {
     pid: 4,
-    lpSymbol: 'USDT-MATIC LP',
+    lpSymbol: 'MATIC-USDT LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
       137: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA',
-      80001: '0xd2E6c7fc39C5118c8F79B54B86768A520FC061CA', // RabbitCoinPair
+      80001: '0x', // RabbitCoinPair
     },
-    token: serializedTokens.usdt,
-    quoteToken: serializedTokens.wmatic,
+    token: serializedTokens.wmatic,
+    quoteToken: serializedTokens.usdt,
   },
-  /*
   {
     pid: 5,
-    lpSymbol: 'RABBIT-AVATAR LP',
+    lpSymbol: 'MATIC-USDC LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
-      137: '0x4e89778ACd2975E998147d8E06053d714750AC2D',
-      80001: '0x2FC92a1F6556201b978c3A399b993e141a224aE4' // RabbitCoinPair
+      137: '0xf356157463d5c263aAc7468F2E6e09DeE1F7c26C',
+      80001: '0x' // RabbitCoinPair
     },
-    token: serializedTokens.avatar,
-    quoteToken: serializedTokens.rabbit,
+    token: serializedTokens.wmatic,
+    quoteToken: serializedTokens.usdc,
   },
+  /*
   {
     pid: 6,
     lpSymbol: 'RABBIT-HUNT LP',

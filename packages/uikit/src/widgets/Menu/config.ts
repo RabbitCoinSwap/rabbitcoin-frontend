@@ -178,12 +178,12 @@ export const socials: { label?: string; icon: string; items?: { label?: string; 
     icon: "DiscordIcon",
     href: "https://discord.gg/4BQ9mkfJPT",
   },
-  /*
   {
-    label: "Instagram",
-    icon: "InstagramIcon",
-    href: "https://www.instagram.com/rabbitcoinorg/",
-  },  
+    label: "Reddit",
+    icon: "RedditIcon",
+    href: "https://reddit.com/r/rabbitcoinpolygon/",
+  },
+  /*
   {
     label: "Youtube",
     icon: "YoutubeIcon",

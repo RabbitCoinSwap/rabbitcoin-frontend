@@ -108,13 +108,11 @@ export const socials: SocialLinkType[] = [
     icon: "Discord",
     href: "https://discord.gg/4BQ9mkfJPT",
   },
-  /*
   {
-    label: "Youtube",
-    icon: "Youtube",
-    href: "https://www.youtube.com/@RabbitCoinApp",
+    label: "Reddit",
+    icon: "Reddit",
+    href: "https://reddit.com/r/rabbitcoinpolygon/",
   },
-  */
   {
     label: "Medium",
     icon: "Medium",
