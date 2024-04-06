@@ -47,7 +47,7 @@ const fetchBnbPrices = async (
   block24: number,
   block48: number,
   blockWeek: number,
-): Promise<{ bnbPrices: BnbPrices | undefined; error: boolean }> => {
+  ): Promise<{ bnbPrices: BnbPrices | undefined; error: string | null }> => {
   try {
     const data = await infoClient.request<PricesResponse>(BNB_PRICES, {
       block24,
@@ -55,7 +55,7 @@ const fetchBnbPrices = async (
       blockWeek,
     })
     return {
-      error: false,
+      error: null,
       bnbPrices: {
         current: parseFloat(data.current?.bnbPrice ?? '0'),
         oneDay: parseFloat(data.oneDay?.bnbPrice ?? '0'),
@@ -66,7 +66,7 @@ const fetchBnbPrices = async (
   } catch (error) {
     console.error('Failed to fetch BNB prices', error)
     return {
-      error: true,
+      error: 'Failed to fetch BNB prices',
       bnbPrices: undefined,
     }
   }
@@ -75,9 +75,10 @@ const fetchBnbPrices = async (
 /**
  * Returns BNB prices at current, 24h, 48h, and 7d intervals
  */
-export const useBnbPrices = (): BnbPrices | undefined => {
+export const useBnbPrices = (): { prices: BnbPrices | undefined; loading: boolean; error: string | null } => {
   const [prices, setPrices] = useState<BnbPrices | undefined>()
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const [t24, t48, tWeek] = getDeltaTimestamps()
   const { blocks, error: blockError } = useBlocksFromTimestamps([t24, t48, tWeek])
@@ -86,16 +87,17 @@ export const useBnbPrices = (): BnbPrices | undefined => {
     const fetch = async () => {
       const [block24, block48, blockWeek] = blocks
       const { bnbPrices, error: fetchError } = await fetchBnbPrices(block24.number, block48.number, blockWeek.number)
+      setLoading(false)
       if (fetchError) {
-        setError(true)
+        setError(fetchError)
       } else {
         setPrices(bnbPrices)
       }
     }
-    if (!prices && !error && blocks && !blockError) {
+    if (!prices && !loading && blocks && !blockError) {
       fetch()
     }
-  }, [error, prices, blocks, blockError])
+  }, [loading, prices, blocks, blockError])
 
-  return prices
+  return { prices, loading, error }
 }
