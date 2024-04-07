@@ -10,8 +10,12 @@ const poolsDeployedBlockNumber: PoolDeployedBlockNumber = {
   '0xD626Fac9d305A6a7a1F09C16e1f92De2C3c427a3': 54886677, // RabbitCoinAutoPools
   '0xb44dF85f83E3b8b7cf652071741600f1726AFbF9': 54891163, // RabbitCoinFarmV1  
   '0x18d8d6190C3BCb9514eb8151f690bB9Cd30e45fC': 55017451, // CarrotBar
-  '0x8d7c15970F6728E95c060fda680759Cd388Ff0fD': 55148905, // RabbitCoinFarmV2
+  '0x8d7c15970F6728E95c060fda680759Cd388Ff0fD': 55148905, // RabbitCoinFarmV2  
+}
 
+export default poolsDeployedBlockNumber
+
+/*
   '0x73feaa1eE314F8c655E354234017bE2193C9E24E': 699498,
   '0x09e727c83a75fFdB729280639eDBf947dB76EeB7': 14068005,
   '0x2718D56aE2b8F08B3076A409bBF729542233E451': 13930663,
@@ -256,6 +260,4 @@ const poolsDeployedBlockNumber: PoolDeployedBlockNumber = {
   '0x21A9A53936E812Da06B7623802DEc9A1f94ED23a': 1913459,
   '0xe7f9A439Aa7292719aC817798DDd1c4D35934aAF': 1913419,
   '0xcec2671C81a0Ecf7F8Ee796EFa6DBDc5Cb062693': 1913395,
-}
-
-export default poolsDeployedBlockNumber
+  */

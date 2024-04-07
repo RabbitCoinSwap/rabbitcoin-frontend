@@ -36,7 +36,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 2,
-    lpSymbol: 'RABBIT-MATIC LP',
+    lpSymbol: 'RABBIT-WMATIC LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
@@ -60,7 +60,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 4,
-    lpSymbol: 'MATIC-USDT LP',
+    lpSymbol: 'WMATIC-USDT LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
@@ -72,7 +72,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 5,
-    lpSymbol: 'MATIC-USDC LP',
+    lpSymbol: 'WMATIC-USDC LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
@@ -82,19 +82,19 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wmatic,
     quoteToken: serializedTokens.usdc,
   },
-  /*
   {
     pid: 6,
-    lpSymbol: 'RABBIT-HUNT LP',
+    lpSymbol: 'WMATIC-BUSD LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
-      137: '0xbff2b56188e606abf4b81a8dd782b515a8d097bd',
-      80001: '0xDc97b7c9646309e1b9075ACA69CC44f2672BEa86' // RabbitCoinPair
+      137: '0x074f962a2B52899B3DCE51FA891A5aeB42f2a045',
+      80001: '0x' // RabbitCoinPair
     },
-    token: serializedTokens.hunt,
-    quoteToken: serializedTokens.rabbit,
+    token: serializedTokens.wmatic,
+    quoteToken: serializedTokens.busd,
   },
+  /*
   {
     pid: 7,
     lpSymbol: 'RABBIT-NITRO LP',
