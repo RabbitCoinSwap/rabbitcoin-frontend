@@ -2654,10 +2654,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@rabbitcoin/sdk@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@rabbitcoin/sdk/-/sdk-2.4.2.tgz#c9f8967426587ff3527f250642e207cdbb9a4f74"
-  integrity sha512-bDBwfWREQoFYD8oq6WmLkCjm7hwFrEVy/iSm0v4jc6RKh6aGZPbHnPbtYSAE/giRj82b2Zjbra2RAt+AAFm2OQ==
+"@rabbitcoin/sdk@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@rabbitcoin/sdk/-/sdk-2.4.4.tgz#6c313743f81278d5464f4b2df8c13dc62e9df51c"
+  integrity sha512-fiZB694xTyEPvGZJ5h3bByHe4svhdOA1x/fFlcJxqEImbCJsMTGTyPTCjBg5wAM4SkLdqC0s6LZoGflD7b648w==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"

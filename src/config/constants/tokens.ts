@@ -133,6 +133,7 @@ export const mainnetTokens = defineTokens({
     'BSC Defi blue chips token',
     'https://powerpool.finance/',
   ),
+  /*
   busd: new Token(
     MAINNET,
     '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
@@ -141,7 +142,6 @@ export const mainnetTokens = defineTokens({
     'Binance USD',
     'https://www.paxos.com/busd/',
   ),
-    /*
   usdt: new Token(
     MAINNET,
     '0x55d398326f99059fF775485246999027B3197955',
@@ -2139,7 +2139,7 @@ export const testnetTokens = defineTokens({
   ),
   usdt: new Token(
     MUMBAI_TESTNET,
-    '0x6Add000b64258A977be4bE177A57a5cC8d59939f',
+    '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
     6,
     'USDT',
     'Tether USD',
@@ -2147,7 +2147,7 @@ export const testnetTokens = defineTokens({
   ),
   dai: new Token(
     MUMBAI_TESTNET,
-    '0xcB1e72786A6eb3b44C2a2429e317c8a2462CFeb1',
+    '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
     18,
     'DAI',
     'Dai Stablecoin',

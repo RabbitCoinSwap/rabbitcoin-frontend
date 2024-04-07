@@ -1,7 +1,7 @@
+import { ChainId } from '@rabbitcoin/sdk'
 import { serializeTokens } from './tokens'
 import { SerializedFarmConfig } from './types'
 import { CHAIN_ID } from './networks'
-import { ChainId } from '@rabbitcoin/sdk'
 
 const serializedTokens = serializeTokens()
 

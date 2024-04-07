@@ -29,8 +29,11 @@ export const getGQLHeaders = (endpoint: string) => {
   return undefined
 }
 
-export const infoClient = new GraphQLClient(INFO_CLIENT, { headers: getGQLHeaders(INFO_CLIENT) })
+export const infoClient = new GraphQLClient(INFO_CLIENT)
+
 /*
+export const infoClient = new GraphQLClient(INFO_CLIENT, { headers: getGQLHeaders(INFO_CLIENT) })
+
 export const infoServerClient = new GraphQLClient(INFO_CLIENT, {
   headers: {
     'X-Sf': process.env.SF_HEADER,
