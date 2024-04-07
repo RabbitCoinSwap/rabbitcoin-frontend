@@ -16,7 +16,7 @@ import {
   getZidanogoNftAddress,
 } from 'utils/addressHelpers'
 
-export const rabbitBnbLpToken = new Token(ChainId.POLYGON, farms[1].lpAddresses[ChainId.POLYGON], 18, farms[1].lpSymbol)
+// export const rabbitBnbLpToken = new Token(ChainId.POLYGON, farms[1].lpAddresses[ChainId.POLYGON], 18, farms[1].lpSymbol)
 
 const collectionLinks = {
   starter: 'https://opensea.io/collection/rabbitcoin-nfts',
