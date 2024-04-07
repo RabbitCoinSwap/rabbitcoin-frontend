@@ -22,7 +22,7 @@ import { Token } from '@rabbitcoin/sdk'
 import { Ifo, PoolIds } from 'config/constants/types'
 import tokens from 'config/constants/tokens'
 // @ts-ignore
-import { rabbitBnbLpToken } from 'config/constants/ifo'
+import { cakeBnbLpToken } from 'config/constants/ifo'
 import { PublicIfoData, WalletIfoData } from 'views/Ifos/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -71,7 +71,7 @@ const TokenSection: React.FC<TokenSectionProps> = ({ primaryToken, secondaryToke
 }
 
 const CommitTokenSection: React.FC<TokenSectionProps & { commitToken: Token }> = ({ commitToken, ...props }) => {
-  if (commitToken.equals(rabbitBnbLpToken)) {
+  if (commitToken.equals(cakeBnbLpToken)) {
     return <TokenSection primaryToken={tokens.cake} secondaryToken={tokens.wbnb} {...props} />
   }
   return <TokenSection primaryToken={commitToken} {...props} />

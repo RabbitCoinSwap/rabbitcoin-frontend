@@ -24,7 +24,7 @@ import { Ifo, Minting, PoolIds } from 'config/constants/types'
 import tokens from 'config/constants/tokens'
 // TODO: fix this
 //@ts-ignore
-import { rabbitBnbLpToken } from 'config/constants/ifo'
+import { cakeBnbLpToken } from 'config/constants/ifo'
 import { PublicIfoData, WalletIfoData } from 'views/Nft/market/Collection/Minting/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -76,7 +76,7 @@ const TokenSection: React.FC<TokenSectionProps> = ({ avatarUrl, primaryToken, se
 }
 
 const CommitTokenSection: React.FC<TokenSectionProps & { commitToken: Token }> = ({ commitToken, ...props }) => {
-  if (commitToken.equals(rabbitBnbLpToken)) {
+  if (commitToken.equals(cakeBnbLpToken)) {
     return <TokenSection primaryToken={tokens.cake} secondaryToken={tokens.wbnb} {...props} />
   }
   return <TokenSection primaryToken={commitToken} {...props} />
