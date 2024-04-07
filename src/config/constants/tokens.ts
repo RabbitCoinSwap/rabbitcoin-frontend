@@ -49,7 +49,7 @@ export const mainnetTokens = defineTokens({
   ),
   usdc: new Token(
     POLYGON_MAINNET,
-    '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+    '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
     6,
     'USDC',
     'USD Coin',
@@ -135,7 +135,7 @@ export const mainnetTokens = defineTokens({
   ),
   busd: new Token(
     MAINNET,
-    '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+    '0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39',
     18,
     'BUSD',
     'Binance USD',

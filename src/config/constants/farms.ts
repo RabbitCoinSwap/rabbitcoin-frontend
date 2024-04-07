@@ -24,7 +24,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 1,
-    lpSymbol: 'RABBIT-USDT LP',
+    lpSymbol: 'USDT-RABBIT LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
@@ -36,7 +36,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 2,
-    lpSymbol: 'RABBIT-WMATIC LP',
+    lpSymbol: 'WMATIC-RABBIT LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
@@ -48,7 +48,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 3,
-    lpSymbol: 'DAI-USDC LP',
+    lpSymbol: 'USDC-DAI LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
